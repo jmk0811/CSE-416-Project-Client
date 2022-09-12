@@ -28,7 +28,7 @@ Suhyun Chun
 
 ## Target Users
 
-1.	People who are willing to do volunteer works but
+1.	People who are willing to do volunteer works but  
   A.	Do not have enough information or do not know well about volunteer works.  
   B.	Want to manage their volunteer records and schedule effectively.  
   C.	Want to get some kind of reward, compensation, or collectibles.  
