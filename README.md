@@ -4,7 +4,7 @@
 
 ## Team members
 Minki Jeon  
-Sangwoo  
+Sangwoo Park  
 Suhyun Chun  
 
 
