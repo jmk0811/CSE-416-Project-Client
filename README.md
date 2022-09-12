@@ -30,10 +30,10 @@ Suhyun Chun
   
 2.	Volunteer works organizations, holders, who want to advertise their events and work opportunities to people.
 
-3.	Admin
-  A)	Create contents and post articles (volunteer work opportunities),
-  B)	Validate users’ submissions of paper certificates or photos,
-  C)	Manage the platform.
+3.	Admin who
+  A)	Creates contents and post articles (volunteer work opportunities),
+  B)	Validates users’ submissions of paper certificates or photos in order to issue NFT certificates and points,
+  C)	Manages and maintains the platform.
 
 
 
