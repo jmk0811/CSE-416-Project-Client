@@ -86,8 +86,7 @@ Suhyun Chun
 
 2.	Users’ points (earned from participating in volunteer works)
 
-3.	Lists of volunteer works and their name, date, theme, holder, vacancy, etc.  
-  A.	Each volunteer work data object reference user object to keep track of who have participated in.  
+3.	Lists of volunteer works and their name, date, theme, holder, vacancy, etc. (each volunteer work data object reference user object to keep track of who have participated in).
 
 4.	Metadata of NFTs (can be stored in IPFS)
 
