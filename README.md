@@ -24,16 +24,16 @@ Suhyun Chun
 ## Target Users
 
 1.	People who are willing to do volunteer works but
-  A.	Do not have enough information or do not know well about volunteer works.
-  B.	Want to manage their volunteer records and schedule effectively.
-  C.	Want to get some kind of reward, compensation, or collectibles.
+  A)	Do not have enough information or do not know well about volunteer works,
+  B)	Want to manage their volunteer records and schedule effectively,
+  C)	Want to get some kind of reward, compensation, or collectibles.
   
 2.	Volunteer works organizations, holders, who want to advertise their events and work opportunities to people.
 
 3.	Admin
-  A.	Create contents and post articles (volunteer work opportunities).
-  B.	Validate users’ submissions of paper certificates or photos.
-  C.	Manage the platform.
+  A)	Create contents and post articles (volunteer work opportunities),
+  B)	Validate users’ submissions of paper certificates or photos,
+  C)	Manage the platform.
 
 
 
