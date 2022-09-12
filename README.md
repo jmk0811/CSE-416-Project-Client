@@ -10,7 +10,7 @@ Suhyun Chun
 
 
 ## Project statement
-[PlatformTitle] is a platform where the users can see different kinds of volunteer works from various organizations, participate in, and earn NFT certificates and collectibles.
+[PlatformTitle] is a platform where the users can see different kinds of volunteer works from various organizations, participate in, and earn NFT certificates and collectibles as a compensation or commemoration.
 
 
 
