@@ -36,9 +36,9 @@ Suhyun Chun
 2.	Volunteer works organizations, holders, who want to advertise their events and work opportunities to people.
 
 3.	Admin who
-  A)	Creates contents and post articles (volunteer work opportunities),
-  B)	Validates users’ submissions of paper certificates or photos in order to issue NFT certificates and points,
-  C)	Manages and maintains the platform.
+  A.	Creates contents and post articles (volunteer work opportunities).  
+  B.	Validates users’ submissions of paper certificates or photos in order to issue NFT certificates and points.  
+  C.	Manages and maintains the platform.  
 
 
 
@@ -60,37 +60,49 @@ Suhyun Chun
 
 ## Sub functionalities (To be later added for the app’s complexity.)
 
-1.	Point trade system
+1.	Point trade system  
+  A.	Users earn points by participating in volunteer works  
+  B.	Users spend points to buy unique NFT collectibles  
 
-A.	Users earn points by participating in volunteer works
-B.	Users spend points to buy unique NFT collectibles
 2.	Bookmarking volunteer works
+
 3.	Scheduler, time overlap and schedule conflict detection
+
 4.	Customizable NFT minting
+
 5.	Separate IPFS server to store metadata of NFTs
-6.	Separate admin page
-A.	Review users’ paper certificate or photo submissions
-B.	Upload and manage IPFS server and metadata of NFTs
+
+6.	Separate admin page  
+  A.	Review users’ paper certificate or photo submissions  
+  B.	Upload and manage IPFS server and metadata of NFTs  
+
 7.	Real-time chat customer service
 
 
 
 ## Data to be stored in SQL Database
+
 1.	Users’ account information (name, user type, etc.)
+
 2.	Users’ points (earned from participating in volunteer works)
-3.	Lists of volunteer works and their name, date, theme, holder, vacancy, etc.
-A.	Each volunteer work data object reference user object to keep track of who have participated in.
+
+3.	Lists of volunteer works and their name, date, theme, holder, vacancy, etc.  
+  A.	Each volunteer work data object reference user object to keep track of who have participated in.  
+
 4.	Metadata of NFTs (can be stored in IPFS)
 
 
 
 ## Data to be stored in Blockchain
+
 1.	Smart contract
+
 2.	NFTs
 
 
 
 ## Data to be stored in IPFS (optional)
+
 1.	Metadata of NFTs
 
 
