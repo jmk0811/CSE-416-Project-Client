@@ -49,7 +49,7 @@ Suhyun Chun
   A.	Create contents and post articles (volunteer work opportunities).  
 
 3.	Admin who  
-  A.	Approve articles posted from organizations.
+  A.	Approve articles posted from organizations.  
   B.	Validates users’ submissions of paper certificates or photos in order to issue NFT certificates and points.  
   C.	Manages and maintains the platform.  
 
