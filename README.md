@@ -25,6 +25,17 @@ Suhyun Chun
 4.	People may become less motivated in volunteer work participation if there is no reward or compensation.
 
 
+## Solution
+
+1.  Make a platform that has various volunteer events from organizations, and list up so that the users can check events they want quickly.
+
+2.  For people who have done lots of volunteer works, it will show and provide well design displayed schedule of volunteer record that can be acceptable whenver.
+
+3.  Record and store online volunteer work histories that can never be lost, preventing losing volunteer/work experiences caused by an unexpected situation. 
+
+4.  Add rewards (points, NFTs certificates) when the users participate in the volunteer events to prompt and stimulate users’ desire to collect and give motivation. 
+
+
 
 ## Target Users
 
