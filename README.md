@@ -45,7 +45,7 @@ Suhyun Chun
   B.	Want to manage their volunteer records and schedule effectively.  
   C.	Want to get some kind of reward, compensation, or collectibles.  
   
-2.	Volunteer organizations and event holders who want to advertise their events and work opportunities to people.
+2.	Volunteer organizations and event holders who want to advertise their events and work opportunities to people.  
   A.	Create contents and post articles (volunteer work opportunities).  
 
 3.	Admin who  
