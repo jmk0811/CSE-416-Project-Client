@@ -45,9 +45,10 @@ Suhyun Chun
   C.	Want to get some kind of reward, compensation, or collectibles.  
   
 2.	Volunteer works organizations, holders, who want to advertise their events and work opportunities to people.
+  A.	Creates contents and post articles (volunteer work opportunities).  
 
 3.	Admin who  
-  A.	Creates contents and post articles (volunteer work opportunities).  
+  A.	Approve articles posted from organizations.
   B.	Validates users’ submissions of paper certificates or photos in order to issue NFT certificates and points.  
   C.	Manages and maintains the platform.  
 
