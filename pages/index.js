@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -20,6 +21,12 @@ export default function Home() {
           Get started by editing{' '}
           <code className={styles.code}>pages/index.js</code>
         </p>
+
+        <Link href={"/testpage"}>
+          <a>
+            <button className={"bg-blue-600 px-20 py-10 rounded-2xl text-[30px] text-white font-bold hover:scale-125 duration-200 mb-[60px]"}>Test Page</button>
+          </a>
+        </Link>
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
