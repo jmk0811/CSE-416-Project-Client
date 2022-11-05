@@ -6,6 +6,7 @@
     "extends": [
         "plugin:react/recommended",
         "airbnb",
+        "next/core-web-vitals",
         "plugin:prettier/recommended"
     ],
     "overrides": [],
@@ -14,5 +15,8 @@
         "sourceType": "module"
     },
     "plugins": ["react"],
-    "rules": {}
+    "rules": {
+        "react/jsx-props-no-spreading": "off",
+        "react/jsx-filename-extension": "off"
+    }
 }
