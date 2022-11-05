@@ -14,9 +14,10 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
-    "plugins": ["react"],
+    "plugins": ["react", "prettier"],
     "rules": {
         "react/jsx-props-no-spreading": "off",
-        "react/jsx-filename-extension": "off"
+        "react/jsx-filename-extension": "off",
+        "prettier/prettier": "error"
     }
 }

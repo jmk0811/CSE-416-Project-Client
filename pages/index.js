@@ -1,7 +1,7 @@
 import Head from "next/head";
-import Image from "next/image"
-import Link from "next/link"
-import styles from "../styles/Home.module.css"
+import Image from "next/image";
+import Link from "next/link";
+import styles from "../styles/Home.module.css";
 
 export default function Home() {
 	return (
@@ -22,7 +22,9 @@ export default function Home() {
 				</p>
 
 				<Link href="/testpage">
+					{/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
 					<a>
+						{/* eslint-disable-next-line react/button-has-type */}
 						<button className="bg-blue-600 px-20 py-10 rounded-2xl text-[30px] text-white font-bold hover:scale-125 duration-200 mb-[60px]">Test Page</button>
 					</a>
 				</Link>
