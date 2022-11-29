@@ -2,6 +2,7 @@
     "name": "my-next-app",
     "version": "0.1.0",
     "private": true,
+    "proxy": "http://0.0.0.0:5000",
     "scripts": {
         "dev": "next dev",
         "build": "next build",
@@ -10,6 +11,11 @@
         "prepare": "husky install"
     },
     "dependencies": {
+        "@next/env": "^12.0.7",
+        "@emotion/react": "^11.10.5",
+        "@emotion/styled": "^11.10.5",
+        "@mui/icons-material": "^5.10.16",
+        "@mui/material": "^5.10.16",
         "next": "12.3.1",
         "react": "18.2.0",
         "react-dom": "18.2.0"
