@@ -1,12 +1,50 @@
 import Link from "next/link";
 import SearchIcon from "@mui/icons-material/Search";
-import { useEffect } from "react";
-import { logoutUserAPIMethod } from "../../api/client";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { createVolunteerWorkAPIMethod, logoutUserAPIMethod } from "../../api/client";
 
 export default function Header(props) {
+	const [query, setQuery] = useState("");
+	const router = useRouter();
+
 	const logout = () => {
 		logoutUserAPIMethod().then(() => {
 			props.setLogin(false);
+		});
+	};
+
+	const getItemsDataWithQuery = (e) => {
+		e.preventDefault();
+		router.push({
+			pathname: "/search",
+			query: { query },
+		});
+	};
+
+	// TODO: remove testing code
+
+	const populateData = () => {
+		const volunteerWorks = [
+			{
+				title: "Plogging event",
+				description: "test description 1",
+			},
+			{
+				title: "Medical event",
+				description: "test description 2",
+			},
+			{
+				title: "School event",
+				description: "test description 3",
+			},
+		];
+
+		volunteerWorks.map((event) => {
+			console.log(event);
+			createVolunteerWorkAPIMethod(event).then((res) => {
+				console.log(res);
+			});
 		});
 	};
 
@@ -19,10 +57,20 @@ export default function Header(props) {
 					</a>
 				</Link>
 				<div className="flex flex-row mx-auto">
-					<div className="flex flex-row bg-main2 rounded-[10px] min-w-[400px] w-full px-[10px]">
-						<SearchIcon className="mt-[4px]" sx={{ color: "white" }} />
-						<input className="bg-transparent border-none outline-none text-white mt-[2px] px-[10px]" type="text" placeholder="Search" />
-					</div>
+					<form onSubmit={getItemsDataWithQuery}>
+						<div className="flex flex-row bg-main2 rounded-[10px] min-w-[400px] w-full px-[10px] py-[2px]">
+							<button>
+								<SearchIcon className="mt-[4px]" sx={{ color: "white" }} />
+							</button>
+							<input
+								className="bg-transparent border-none outline-none text-white mt-[2px] px-[10px]"
+								type="text"
+								placeholder="Search"
+								value={query}
+								onChange={(e) => setQuery(e.target.value)}
+							/>
+						</div>
+					</form>
 				</div>
 				{props.login ? (
 					<div className="ml-auto my-auto flex flex-row gap-x-[20px] font-semibold text-white text-14">

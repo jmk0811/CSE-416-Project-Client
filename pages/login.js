@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { loginUserAPIMethod } from "../api/client";
 import { useRouter } from "next/router";
+import { loginUserAPIMethod } from "../api/client";
 
 export default function Login(props) {
 	const [email, setEmail] = useState();
