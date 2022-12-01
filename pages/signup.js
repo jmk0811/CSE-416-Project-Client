@@ -78,13 +78,13 @@ export default function SignUp(props) {
 			// } else if (prop === "userId") {
 			// 	setUserId(event.target.value);
 			// }
-		} else if (prop === "userGender") {
+		} else if (prop === "gender") {
 			setGender(event.target.value);
 		} else if (prop === "DOB") {
 			setDateOfBirth(event.target.value);
 		} else if (prop === "phoneNumber") {
 			setPhoneNumber(event);
-		} else if (prop === "userSSN") {
+		} else if (prop === "SSN") {
 			setSSN(event.target.value);
 		} else if (prop == "userType") {
 			setType(event.target.value);
