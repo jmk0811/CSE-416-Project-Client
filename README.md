@@ -141,4 +141,4 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
  ## How to Submit an issue
-1. You can submit an issue through the "[Github issues tab]" "(https://github.com/jmk0811/CSE-416-Project-Client/issues)"
+1. You can submit an issue through the [Github issues tab](https://github.com/jmk0811/CSE-416-Project-Client/issues)
