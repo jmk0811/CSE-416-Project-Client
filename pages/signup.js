@@ -38,7 +38,7 @@ export default function SignUp(props) {
 					name: name,
 					email: email,
 					password: pw,
-					profileImg: profileUrl,
+					profile_url: profileUrl,
 					id: userId,
 					type: type,
 					gender: gender,
@@ -75,8 +75,9 @@ export default function SignUp(props) {
 		} else if (prop === "addr2") {
 			setAddr2(event.target.value);
 		} */
-		} else if (prop === "userId") {
-			setUserId(event.target.value);
+			// } else if (prop === "userId") {
+			// 	setUserId(event.target.value);
+			// }
 		} else if (prop === "userGender") {
 			setGender(event.target.value);
 		} else if (prop === "DOB") {
@@ -192,7 +193,7 @@ export default function SignUp(props) {
 											onChange={handleChange("email")}
 										/>
 									</div>
-									<div className={"form-group col-md-6"}>
+									{/* <div className={"form-group col-md-6"}>
 										<label for="userId" className={"text-[15px]"}>
 											ID*
 										</label>
@@ -206,7 +207,7 @@ export default function SignUp(props) {
 											className={"bg-transparent h-[40px] w-full px-10 pr-4 text-base border-[#4EA1D3]"}
 											required
 										/>
-									</div>
+									</div> */}
 									<div className={"form-group col-md-6"}>
 										<label for="userPassword" className={"text-[15px]"}>
 											Password*
