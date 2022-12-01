@@ -122,3 +122,4 @@ Suhyun Chun
 
  ## How to Submit an issue
 1. You can submit an issue through the [Github issues tab](https://github.com/jmk0811/CSE-416-Project-Client/issues)
+2. All outstanding issues can be found in the issue tab
