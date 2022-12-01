@@ -35,12 +35,16 @@ export default function SignUp(props) {
 			if (/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email)) {
 				// email validation
 				const user1 = {
-					name,
-					email,
+					name: name,
+					email: email,
 					password: pw,
-					address1: addr1,
-					address2: addr2,
-					profileUrl,
+					profileImg: profileUrl,
+					id: userId,
+					type: type,
+					gender: gender,
+					dateOfBirth: dateOfBirth,
+					phoneNumber: phoneNumber,
+					SSN: SSN,
 				};
 				registerUserAPIMethod(user1).then((ret) => {
 					console.log(ret);
