@@ -7,8 +7,87 @@ import { getCurrentUserAPIMethod } from "../api/client";
 export default function MyApp({ Component, pageProps }) {
 	const [login, setLogin] = useState(false);
 	const [currUser, setCurrUser] = useState({});
+	const [user, setUser] = useState({
+		profileImg: "https://s3.ap-northeast-2.amazonaws.com/wanted-public/profile_default.png",
+		name: "abc",
+		points: 2,
+		type: "user",
+		phoneNumber: "0",
+		dayOfBirth: "2022-12-01",
+		gender: "female",
+		interest: ["education"],
+		myParticipant: [
+			{
+				Userid: "1",
+				Workid: {
+					title: "animal",
+					description: "animal volunteer work",
+					point: 100,
+				},
+				ParticipationDate: "2021-01-01",
+				Progress: true,
+			},
+			{
+				Userid: "1",
+				Workid: {
+					title: "animal2",
+					description: "animal volunteer work2",
+					point: 100,
+				},
+				ParticipationDate: "2022-11-30",
+				Progress: true,
+			},
+			{
+				Userid: "1",
+				Workid: {
+					title: "animal3",
+					description: "animal volunteer work3",
+					point: 100,
+				},
+				ParticipationDate: "2022-05-30",
+				Progress: true,
+			},
+			{
+				Userid: "1",
+				Workid: {
+					title: "animal4",
+					description: "animal volunteer work4",
+					point: 300,
+				},
+				ParticipationDate: "2022-12-30",
+				Progress: true,
+			},
+		],
+		certificates: [
+			{
+				certificatesNumber: 0,
+				issueDate: "2023-12-1",
+				owner: "abc",
+				contractAddress: "",
+			},
+			{
+				certificatesNumber: 1,
+				issueDate: "2022-8-4",
+				owner: "abc",
+				contractAddress: "",
+			},
+			{
+				certificatesNumber: 1,
+				issueDate: "2022-11-4",
+				owner: "abc",
+				contractAddress: "",
+			},
+			{
+				certificatesNumber: 1,
+				issueDate: "2021-11-2",
+				owner: "abc",
+				contractAddress: "",
+			},
+		],
+	});
 
 	useEffect(() => {
+		localStorage.setItem("userData", JSON.stringify(user));
 		getCurrentUserAPIMethod().then((user) => {
 			console.log(user);
 			if (user != null && Object.keys(user).length !== 0) {

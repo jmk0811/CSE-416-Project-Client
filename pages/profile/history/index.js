@@ -22,12 +22,12 @@ function History() {
 		setType(retrievedObject.type);
 
 		for (let i = 0; i < retrievedObject.myParticipant.length; i++) {
-			// if (logs[i] != undefined) {
 			var year = new Date(retrievedObject.myParticipant[i].ParticipationDate).getFullYear();
 			// if (year != NaN) {
 			if (tmp[year] != undefined) {
 				//console.log(tmp);
 				arr = tmp;
+
 				arr[year].push(retrievedObject.myParticipant[i]);
 				arr[year] = arr[year].sort((a, b) => new Date(b.ParticipationDate) - new Date(a.ParticipationDate));
 
@@ -42,7 +42,7 @@ function History() {
 			}
 		}
 	}, []);
-	console.log(years, logs);
+	console.log(logs);
 	return (
 		<div>
 			<Sidebar width={320}>
@@ -140,7 +140,7 @@ function History() {
 												{v == new Date().getFullYear() && type == "company" ? <button>+</button> : ""}
 											</Typography>
 											<div className="p-[7px]">
-												<HistoryCard data={logs[v]} />
+												<HistoryCard data={logs[v]} logs={logs} />
 											</div>
 										</div>
 									</div>
