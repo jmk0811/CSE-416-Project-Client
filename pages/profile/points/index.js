@@ -6,33 +6,31 @@ import { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import PointCard from "../../../components/PointCard";
 function Point() {
 	const [user, setUser] = useState({});
 	const [data, setData] = useState([]);
+
 	let tmp = [];
 	useEffect(() => {
+		setData([]);
 		var retrievedObject = JSON.parse(localStorage.getItem("userData"));
 		setUser(retrievedObject);
 		if (user.type == "user") {
 			tmp = retrievedObject.myParticipant;
-			// Array.from(tmp).sort(
-			//     (a, b) =>
-			//         new Date(b.ParticipationDate) - new Date(a.ParticipationDate)
-			// );
-			// console.log(
-			//     Array.from(tmp).sort(
-			//         (a, b) =>
-			//             new Date(b.ParticipationDate) -
-			//             new Date(a.ParticipationDate)
-			//     )
-			// );
 			setData(Array.from(tmp).sort((a, b) => new Date(b.ParticipationDate) - new Date(a.ParticipationDate)));
 		} else {
 			tmp = retrievedObject.volunteerWorks;
-
 			if (tmp != undefined) {
-				tmp_obj = { title: tmp.title, workingDays: tmp.workingDays };
-				console.log(tmp_obj);
+				for (let i = 0; i < tmp.length; i++) {
+					// console.log(tmp[i]);
+					var workingDays_data = Array.from(tmp[i].workingDays).sort((a, b) => new Date(b.date) - new Date(a.date));
+					var tmp_obj = { title: tmp[i].title, workingDays: workingDays_data };
+					var tmp_data = data;
+
+					tmp_data.push(tmp_obj);
+					setData(tmp_data);
+				}
 			}
 			//
 
@@ -40,8 +38,8 @@ function Point() {
 		}
 	}, []);
 
-	console.log(user);
-	return user.type == "user" ? (
+	console.log(user, data);
+	return (
 		<div>
 			{" "}
 			<Sidebar width={320}>
@@ -117,41 +115,55 @@ function Point() {
 					</div>
 				</div>
 			</Sidebar>
-			<div className="flex flex-col justify-center items-center p-[40px]">
-				<Typography variant="h5" component="div">
-					Points
-				</Typography>
-				{Array.from(data).map((v, idx) => {
-					return (
-						<Card
-							sx={{
-								minWidth: 400,
-								maxWidth: 700,
-								margin: "5px",
-								alignItems: "center",
-								dispaly: "flex",
-								flexDirection: "column",
-							}}
-						>
-							{" "}
-							<CardContent>
+			{user.type == "user" ? (
+				<div className="flex flex-col justify-center items-center p-[40px]">
+					<Typography variant="h5" component="div">
+						Points
+					</Typography>
+					{Array.from(data).map((v, idx) => {
+						return (
+							<Card
+								sx={{
+									minWidth: 400,
+									maxWidth: 700,
+									margin: "5px",
+									alignItems: "center",
+									dispaly: "flex",
+									flexDirection: "column",
+								}}
+							>
+								{" "}
+								<CardContent>
+									<Typography variant="h5" component="div">
+										{v.Workid.title}
+									</Typography>
+									<Typography sx={{ mb: 1.5 }} color="text.secondary">
+										+{v.Workid.point}
+									</Typography>{" "}
+									<Typography sx={{ mb: 1.5 }} color="text.secondary">
+										{v.ParticipationDate}
+									</Typography>
+								</CardContent>
+							</Card>
+						);
+					})}
+				</div>
+			) : (
+				<div className="flex flex-col justify-center items-center p-[40px]">
+					{data.map((v) => {
+						return (
+							<div>
 								<Typography variant="h5" component="div">
-									{v.Workid.title}
+									{v.title}
+									<PointCard data={v.workingDays} />
 								</Typography>
-								<Typography sx={{ mb: 1.5 }} color="text.secondary">
-									+{v.Workid.point}
-								</Typography>{" "}
-								<Typography sx={{ mb: 1.5 }} color="text.secondary">
-									{v.ParticipationDate}
-								</Typography>
-							</CardContent>
-						</Card>
-					);
-				})}
-			</div>
+							</div>
+						);
+					})}
+				</div>
+			)}
 		</div>
-	) : (
-		<div>company</div>
 	);
 }
+
 export default Point;
