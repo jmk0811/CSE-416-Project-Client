@@ -30,7 +30,7 @@ function HistoryCard(props) {
 		}
 		setData(tmpArr);
 	}
-	console.log("history card", user);
+
 	return (
 		<div className="flex flex-col sm:flex-row">
 			{" "}
@@ -83,7 +83,7 @@ function HistoryCard(props) {
 									{
 										(" ");
 									}
-								} else {
+								} else if (user.type == "company") {
 									{
 										new Date(v.applicationCloseDate) > today ? <span>Please Send Email to Use to Delete this event </span> : <div>nothing</div>;
 									}
