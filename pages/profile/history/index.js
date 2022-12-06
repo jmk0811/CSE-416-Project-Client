@@ -137,10 +137,23 @@ function History() {
 										<div className="m-[5px]">
 											<Typography variant="h5" component="div">
 												{v}
-												{v == new Date().getFullYear() && type == "company" ? <button>+</button> : ""}
+												{v == new Date().getFullYear() && type == "company" ? (
+													<button>
+														{" "}
+														<Link
+															href={{
+																pathname: "/workUpload",
+															}}
+														>
+															+
+														</Link>
+													</button>
+												) : (
+													""
+												)}
 											</Typography>
 											<div className="p-[7px]">
-												<HistoryCard data={logs[v]} logs={logs} />
+												<HistoryCard user={user} data={logs[v]} logs={logs} />
 											</div>
 										</div>
 									</div>

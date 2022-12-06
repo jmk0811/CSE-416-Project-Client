@@ -85,9 +85,30 @@ export default function MyApp({ Component, pageProps }) {
 			},
 		],
 	});
-
+	const [company, setCompany] = useState({
+		id: "1",
+		name: "company1",
+		type: "company",
+		profileImg: "https://s3.ap-northeast-2.amazonaws.com/wanted-public/profile_default.png",
+		volunteerWorks: [
+			{
+				title: "vol1",
+				description: "vol1",
+				holder: "company1",
+				applicationStartDate: "2022-8-4",
+				applicationCloseDate: "2022-10-4",
+			},
+			{
+				title: "vol1",
+				description: "vol1",
+				holder: "company1",
+				applicationStartDate: "2022-12-4",
+				applicationCloseDate: "2023-1-4",
+			},
+		],
+	});
 	useEffect(() => {
-		localStorage.setItem("userData", JSON.stringify(user));
+		localStorage.setItem("userData", JSON.stringify(company));
 		getCurrentUserAPIMethod().then((user) => {
 			console.log(user);
 			if (user != null && Object.keys(user).length !== 0) {

@@ -5,9 +5,11 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
+import { userAgent } from "next/server";
 
 function HistoryCard(props) {
 	const [data, setData] = useState(props.data);
+	const [user, setUser] = useState(props.user);
 	let today = new Date();
 	useEffect(() => {
 		let tmpData = data;
@@ -54,19 +56,35 @@ function HistoryCard(props) {
 								{v.ParticipationDate}
 							</Typography>
 							<Typography variant="body2">{v.Workid.description}</Typography>
-							{new Date(v.ParticipationDate) > today ? (
-								<CardActions>
-									<Button
-										size="small"
-										onClick={handleCancleEvent}
-										name={v.Workid.title} //나중에 key로 바꾸기
-									>
-										Cancle
-									</Button>
-								</CardActions>
-							) : (
-								""
-							)}{" "}
+							{(() => {
+								if (user.type == "user") {
+									{
+										new Date(v.ParticipationDate) > today ? (
+											<CardActions>
+												<Button
+													size="small"
+													onClick={handleCancleEvent}
+													name={v.Workid.title} //나중에 key로 바꾸기
+												>
+													Cancle
+												</Button>
+											</CardActions>
+										) : (
+											""
+										);
+									}
+									{
+										(" ");
+									}
+								} else {
+									{
+										new Date(v.volunteerWorks.applicationCloseDate) > today ? <span>Please Send Email to Use to Delete this event </span> : "";
+									}
+									{
+										(" ");
+									}
+								}
+							})()}
 						</CardContent>
 					</Card>
 				);

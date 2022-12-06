@@ -303,76 +303,80 @@ function MyPage() {
 							/>
 						</div>
 					</div>
-					<div className={"form-group col-md-6"}>
-						<label for="userInterest" className={"text-[15px]"}>
-							Your Interest
-						</label>
-						<br />
+					{user.type == "user" ? (
+						<div className={"form-group col-md-6"}>
+							<label for="userInterest" className={"text-[15px]"}>
+								Your Interest
+							</label>
+							<br />
 
-						<Sheet
-							variant="outlined"
-							sx={{
-								width: 360,
-								p: 2,
-								borderRadius: "sm",
-								borderColor: "#CACACA",
-							}}
-						>
-							<Box role="group" aria-labelledby="rank">
-								<List
-									row
-									wrap
-									sx={{
-										"--List-gap": "8px",
-										"--List-item-radius": "20px",
-										"--List-item-minHeight": "32px",
-									}}
-								>
-									{["education", "animal", "environment", "healthcare", "sports"].map((item, index) => (
-										<ListItem key={item}>
-											{value.includes(item) && (
-												<Done
-													fontSize="md"
-													color="primary"
-													sx={{
-														ml: -0.5,
-														mr: 0.5,
-														zIndex: 2,
-														pointerEvents: "none",
+							<Sheet
+								variant="outlined"
+								sx={{
+									width: 360,
+									p: 2,
+									borderRadius: "sm",
+									borderColor: "#CACACA",
+								}}
+							>
+								<Box role="group" aria-labelledby="rank">
+									<List
+										row
+										wrap
+										sx={{
+											"--List-gap": "8px",
+											"--List-item-radius": "20px",
+											"--List-item-minHeight": "32px",
+										}}
+									>
+										{["education", "animal", "environment", "healthcare", "sports"].map((item, index) => (
+											<ListItem key={item}>
+												{value.includes(item) && (
+													<Done
+														fontSize="md"
+														color="primary"
+														sx={{
+															ml: -0.5,
+															mr: 0.5,
+															zIndex: 2,
+															pointerEvents: "none",
+														}}
+													/>
+												)}
+												<Checkbox
+													size="sm"
+													disableIcon
+													overlay
+													label={item}
+													checked={value.includes(item)}
+													variant={value.includes(item) ? "soft" : "outlined"}
+													onChange={(event) => {
+														if (event.target.checked) {
+															setValue((val) => [...val, item]);
+														} else {
+															setValue((val) => val.filter((text) => text !== item));
+														}
+													}}
+													componentsProps={{
+														action: ({ checked }) => ({
+															sx: checked
+																? {
+																		border: "1px solid",
+																		borderColor: "primary.500",
+																  }
+																: {},
+														}),
 													}}
 												/>
-											)}
-											<Checkbox
-												size="sm"
-												disableIcon
-												overlay
-												label={item}
-												checked={value.includes(item)}
-												variant={value.includes(item) ? "soft" : "outlined"}
-												onChange={(event) => {
-													if (event.target.checked) {
-														setValue((val) => [...val, item]);
-													} else {
-														setValue((val) => val.filter((text) => text !== item));
-													}
-												}}
-												componentsProps={{
-													action: ({ checked }) => ({
-														sx: checked
-															? {
-																	border: "1px solid",
-																	borderColor: "primary.500",
-															  }
-															: {},
-													}),
-												}}
-											/>
-										</ListItem>
-									))}
-								</List>
-							</Box>
-						</Sheet>
-					</div>
+											</ListItem>
+										))}
+									</List>
+								</Box>
+							</Sheet>
+						</div>
+					) : (
+						<div></div>
+					)}
 					<div className="clearfix">
 						<button type="submit" className="save" onClick={handleSave} style={{ width: 150 + "px" }}>
 							Save
