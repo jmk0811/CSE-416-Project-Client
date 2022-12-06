@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import PointCard from "../../../components/PointCard";
+
 function Point() {
 	const [user, setUser] = useState({});
 	const [data, setData] = useState([]);
@@ -37,7 +38,9 @@ function Point() {
 			//console.log(Array.from(tmp_obj.workingDays).sort((a, b) => new Date(b.date) - new Date(a.date)));
 		}
 	}, []);
-
+	function handleConfirm(e) {
+		console.log("update to backend ");
+	}
 	console.log(user, data);
 	return (
 		<div>
@@ -117,7 +120,7 @@ function Point() {
 			</Sidebar>
 			{user.type == "user" ? (
 				<div className="flex flex-col justify-center items-center p-[40px]">
-					<Typography variant="h5" component="div">
+					<Typography variant="h3" component="div">
 						Points
 					</Typography>
 					{Array.from(data).map((v, idx) => {
@@ -152,14 +155,20 @@ function Point() {
 				<div className="flex flex-col justify-center items-center p-[40px]">
 					{data.map((v) => {
 						return (
-							<div>
-								<Typography variant="h5" component="div">
+							<div className="flex flex-col">
+								<Typography variant="h3" component="div">
 									{v.title}
-									<PointCard data={v.workingDays} />
 								</Typography>
+								<div className="flex flex-col">
+									<PointCard data={v.workingDays} />
+								</div>
 							</div>
 						);
-					})}
+					})}{" "}
+					<button className="mt-6" onClick={handleConfirm}>
+						{" "}
+						Confirm{" "}
+					</button>
 				</div>
 			)}
 		</div>
