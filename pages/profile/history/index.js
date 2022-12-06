@@ -21,24 +21,47 @@ function History() {
 		setUser(retrievedObject);
 		setType(retrievedObject.type);
 
-		for (let i = 0; i < retrievedObject.myParticipant.length; i++) {
-			var year = new Date(retrievedObject.myParticipant[i].ParticipationDate).getFullYear();
-			// if (year != NaN) {
-			if (tmp[year] != undefined) {
-				//console.log(tmp);
-				arr = tmp;
+		if (retrievedObject.type == "user") {
+			for (let i = 0; i < retrievedObject.myParticipant.length; i++) {
+				var year = new Date(retrievedObject.myParticipant[i].ParticipationDate).getFullYear();
+				// if (year != NaN) {
+				if (tmp[year] != undefined) {
+					//console.log(tmp);
+					arr = tmp;
 
-				arr[year].push(retrievedObject.myParticipant[i]);
-				arr[year] = arr[year].sort((a, b) => new Date(b.ParticipationDate) - new Date(a.ParticipationDate));
+					arr[year].push(retrievedObject.myParticipant[i]);
+					arr[year] = arr[year].sort((a, b) => new Date(b.ParticipationDate) - new Date(a.ParticipationDate));
 
-				setLogs(arr);
-			} else {
-				//console.log(year);
-				arr = tmp;
-				arr[year] = [retrievedObject.myParticipant[i]];
-				setLogs(arr);
-				tmp_year.push(year);
-				setYears(tmp_year);
+					setLogs(arr);
+				} else {
+					//console.log(year);
+					arr = tmp;
+					arr[year] = [retrievedObject.myParticipant[i]];
+					setLogs(arr);
+					tmp_year.push(year);
+					setYears(tmp_year);
+				}
+			}
+		} else {
+			for (let i = 0; i < retrievedObject.volunteerWorks.length; i++) {
+				var year = new Date(retrievedObject.volunteerWorks[i].applicationCloseDate).getFullYear();
+				// if (year != NaN) {
+				if (tmp[year] != undefined) {
+					//console.log(tmp);
+					arr = tmp;
+
+					arr[year].push(retrievedObject.volunteerWorks[i]);
+					arr[year] = arr[year].sort((a, b) => new Date(b.applicationCloseDate) - new Date(a.applicationCloseDate));
+
+					setLogs(arr);
+				} else {
+					//console.log(year);
+					arr = tmp;
+					arr[year] = [retrievedObject.volunteerWorks[i]];
+					setLogs(arr);
+					tmp_year.push(year);
+					setYears(tmp_year);
+				}
 			}
 		}
 	}, []);
@@ -137,7 +160,7 @@ function History() {
 										<div className="m-[5px]">
 											<Typography variant="h5" component="div">
 												{v}
-												{v == new Date().getFullYear() && type == "company" ? (
+												{v >= new Date().getFullYear() && type == "company" ? (
 													<button>
 														{" "}
 														<Link

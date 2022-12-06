@@ -17,6 +17,7 @@ function HistoryCard(props) {
 
 		setData(tmpData);
 	}, []);
+
 	function handleCancleEvent(e) {
 		let tmp = data;
 		let tmpArr = [];
@@ -28,8 +29,8 @@ function HistoryCard(props) {
 			}
 		}
 		setData(tmpArr);
-		console.log(tmp, data);
 	}
+	console.log("history card", user);
 	return (
 		<div className="flex flex-col sm:flex-row">
 			{" "}
@@ -46,16 +47,22 @@ function HistoryCard(props) {
 						{" "}
 						<CardContent>
 							<Typography variant="h5" component="div">
-								{v.Workid.title}
+								{user.type == "user" ? v.Workid.title : v.title}
 							</Typography>
 							<Typography sx={{ mb: 1.5 }} color="text.secondary">
 								<CurrencyExchangeIcon />
-								{v.Workid.point}
+								{user.type == "user" ? v.Workid.point : v.point}
 							</Typography>{" "}
 							<Typography sx={{ mb: 1.5 }} color="text.secondary">
-								{v.ParticipationDate}
+								{user.type == "user" ? (
+									v.ParticipationDate
+								) : (
+									<div>
+										{v.applicationStartDate} ~ {v.applicationCloseDate}{" "}
+									</div>
+								)}
 							</Typography>
-							<Typography variant="body2">{v.Workid.description}</Typography>
+							<Typography variant="body2">{user.type == "user" ? v.Workid.description : v.description}</Typography>
 							{(() => {
 								if (user.type == "user") {
 									{
@@ -78,10 +85,7 @@ function HistoryCard(props) {
 									}
 								} else {
 									{
-										new Date(v.volunteerWorks.applicationCloseDate) > today ? <span>Please Send Email to Use to Delete this event </span> : "";
-									}
-									{
-										(" ");
+										new Date(v.applicationCloseDate) > today ? <span>Please Send Email to Use to Delete this event </span> : <div>nothing</div>;
 									}
 								}
 							})()}
