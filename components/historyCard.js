@@ -58,7 +58,7 @@ function HistoryCard(props) {
 									v.ParticipationDate
 								) : (
 									<div>
-										{v.applicationStartDate} ~ {v.applicationCloseDate}{" "}
+										{v.volunteeringStart} ~ {v.volunteeringEnd}{" "}
 									</div>
 								)}
 							</Typography>

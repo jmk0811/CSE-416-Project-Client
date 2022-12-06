@@ -44,14 +44,14 @@ function History() {
 			}
 		} else {
 			for (let i = 0; i < retrievedObject.volunteerWorks.length; i++) {
-				var year = new Date(retrievedObject.volunteerWorks[i].applicationCloseDate).getFullYear();
+				var year = new Date(retrievedObject.volunteerWorks[i].volunteeringEnd).getFullYear();
 				// if (year != NaN) {
 				if (tmp[year] != undefined) {
 					//console.log(tmp);
 					arr = tmp;
 
 					arr[year].push(retrievedObject.volunteerWorks[i]);
-					arr[year] = arr[year].sort((a, b) => new Date(b.applicationCloseDate) - new Date(a.applicationCloseDate));
+					arr[year] = arr[year].sort((a, b) => new Date(b.volunteeringEnd) - new Date(a.volunteeringEnd));
 
 					setLogs(arr);
 				} else {
