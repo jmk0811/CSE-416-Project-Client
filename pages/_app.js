@@ -98,7 +98,46 @@ export default function MyApp({ Component, pageProps }) {
 				point: 123,
 				volunteeringStart: "2022-8-4",
 				volunteeringEnd: "2022-10-4",
-				participants: [],
+				workingDays: [
+					{
+						date: new Date("2022-12-11 14:00"),
+						numberOfRegistered: 10,
+						occupy: 1,
+						registeredUsers: [
+							{
+								name: "James",
+								phone: "010-1234-5678",
+								emailAddress: "james@gmail.com",
+								//...
+							},
+						],
+					},
+					{
+						date: new Date("2022-12-12 14:00"),
+						numberOfRegistered: 10,
+						occupy: 2,
+						registeredUsers: [
+							{
+								name: "John",
+								phone: "010-2345-6789",
+								emailAddress: "john123@gmail.com",
+								//...
+							},
+							{
+								name: "Chris",
+								phone: "010-5434-4234",
+								emailAddress: "chris232@gmail.com",
+								//...
+							},
+						],
+					},
+					{
+						date: new Date("2022-12-13 14:00"),
+						numberOfRegistered: 10,
+						occupy: 0,
+						registeredUsers: [],
+					},
+				],
 			},
 			{
 				title: "vol2",
@@ -107,7 +146,33 @@ export default function MyApp({ Component, pageProps }) {
 				point: 200,
 				volunteeringStart: "2022-12-4",
 				volunteeringEnd: "2023-10-4",
-				participants: [],
+				workingDays: [
+					{
+						date: new Date("2022-12-11 14:00"),
+						numberOfRegistered: 10,
+						occupy: 1,
+						registeredUsers: [],
+					},
+					{
+						date: new Date("2022-12-12 14:00"),
+						numberOfRegistered: 10,
+						occupy: 2,
+						registeredUsers: [
+							{
+								name: "Jane",
+								phone: "010-2345-6789",
+								emailAddress: "john123@gmail.com",
+								//...
+							},
+						],
+					},
+					{
+						date: new Date("2022-12-13 14:00"),
+						numberOfRegistered: 10,
+						occupy: 0,
+						registeredUsers: [],
+					},
+				],
 			},
 		],
 	});

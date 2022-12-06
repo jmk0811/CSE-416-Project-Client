@@ -13,22 +13,35 @@ function Point() {
 	useEffect(() => {
 		var retrievedObject = JSON.parse(localStorage.getItem("userData"));
 		setUser(retrievedObject);
-		tmp = retrievedObject.myParticipant;
-		console.log(tmp);
-		// Array.from(tmp).sort(
-		//     (a, b) =>
-		//         new Date(b.ParticipationDate) - new Date(a.ParticipationDate)
-		// );
-		// console.log(
-		//     Array.from(tmp).sort(
-		//         (a, b) =>
-		//             new Date(b.ParticipationDate) -
-		//             new Date(a.ParticipationDate)
-		//     )
-		// );
-		setData(Array.from(tmp).sort((a, b) => new Date(b.ParticipationDate) - new Date(a.ParticipationDate)));
+		if (user.type == "user") {
+			tmp = retrievedObject.myParticipant;
+			// Array.from(tmp).sort(
+			//     (a, b) =>
+			//         new Date(b.ParticipationDate) - new Date(a.ParticipationDate)
+			// );
+			// console.log(
+			//     Array.from(tmp).sort(
+			//         (a, b) =>
+			//             new Date(b.ParticipationDate) -
+			//             new Date(a.ParticipationDate)
+			//     )
+			// );
+			setData(Array.from(tmp).sort((a, b) => new Date(b.ParticipationDate) - new Date(a.ParticipationDate)));
+		} else {
+			tmp = retrievedObject.volunteerWorks;
+
+			if (tmp != undefined) {
+				tmp_obj = { title: tmp.title, workingDays: tmp.workingDays };
+				console.log(tmp_obj);
+			}
+			//
+
+			//console.log(Array.from(tmp_obj.workingDays).sort((a, b) => new Date(b.date) - new Date(a.date)));
+		}
 	}, []);
-	return (
+
+	console.log(user);
+	return user.type == "user" ? (
 		<div>
 			{" "}
 			<Sidebar width={320}>
@@ -137,6 +150,8 @@ function Point() {
 				})}
 			</div>
 		</div>
+	) : (
+		<div>company</div>
 	);
 }
 export default Point;

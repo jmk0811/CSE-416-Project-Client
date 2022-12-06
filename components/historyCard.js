@@ -85,7 +85,7 @@ function HistoryCard(props) {
 									}
 								} else if (user.type == "company") {
 									{
-										new Date(v.applicationCloseDate) > today ? <span>Please Send Email to Use to Delete this event </span> : <div>nothing</div>;
+										new Date(v.applicationCloseDate) > today ? <span>Please Send Email to Delete this event </span> : <div>nothing</div>;
 									}
 								}
 							})()}
