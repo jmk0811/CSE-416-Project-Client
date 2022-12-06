@@ -75,6 +75,11 @@ export default function Header(props) {
 				{props.login ? (
 					<div className="ml-auto my-auto flex flex-row gap-x-[20px] font-semibold text-white text-14">
 						<button className="">
+							<Link href="/about">
+								<a>ABOUT US</a>
+							</Link>
+						</button>
+						<button className="">
 							<Link href="/profile">
 								<a>PROFILE</a>
 							</Link>
@@ -83,6 +88,11 @@ export default function Header(props) {
 					</div>
 				) : (
 					<div className="ml-auto my-auto flex flex-row gap-x-[20px] font-semibold text-white text-14">
+						<button className="">
+							<Link href="/about">
+								<a>ABOUT US</a>
+							</Link>
+						</button>
 						<button className="">
 							<Link href="/login">
 								<a>LOGIN</a>
