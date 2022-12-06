@@ -3,6 +3,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { createVolunteerWorkAPIMethod, logoutUserAPIMethod } from "../../api/client";
+import Login from "../../pages/login";
 
 export default function Header(props) {
 	const [query, setQuery] = useState("");
@@ -48,8 +49,14 @@ export default function Header(props) {
 		});
 	};
 
+	const [openLogin, setOpenLogin] = useState(false);
+
+    const handleClickLogIn = () => { setOpenLogin(true); }
+    const handleCloseLogin = () => { setOpenLogin(false); }
+
 	return (
 		<div className="z-50 w-full h-[60px] bg-main1 sticky top-0 flex flex-col px-[30px]">
+			{openLogin ? <Login status = {openLogin} close = {handleCloseLogin}/> : null}
 			<div className="flex flex-row my-auto mx-auto w-full max-w-[1400px] px-[20px]">
 				<Link href="/">
 					<a>
@@ -93,10 +100,11 @@ export default function Header(props) {
 								<a>ABOUT US</a>
 							</Link>
 						</button>
-						<button className="">
-							<Link href="/login">
+						<button className="" onClick={handleClickLogIn}>
+							{/* <Link href="/login">
 								<a>LOGIN</a>
-							</Link>
+							</Link> */}
+							LOGIN
 						</button>
 						<button className="">
 							<Link href="/signup">
