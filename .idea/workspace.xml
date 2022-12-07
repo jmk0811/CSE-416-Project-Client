@@ -5,9 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe09c4a4-1171-4842-81c6-27082dd963f8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/hello.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/PointCard.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/historyCard.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/sideBar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/apply/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/profile/analysis/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/profile/history/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/profile/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/profile/points/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/search_sangwoo/Table.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/search_sangwoo/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/work/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/workUpload/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/Home.module.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
