@@ -4,13 +4,13 @@ const defaultHeaders = {
 	},
 };
 
-/// /////////////////////////////////////////////////////////////////////////////
+// ************************************************** //
 
 /*
  * User
  */
 
-// register
+// create user (register)
 export const registerUserAPIMethod = (user) => {
 	return fetch(`/api/users`, {
 		...defaultHeaders,
@@ -36,7 +36,7 @@ export const logoutUserAPIMethod = () => {
 	}).then(checkLoginStatus);
 };
 
-// get users (admin)
+// get all users (admin)
 export const getUsersAPIMethod = () => {
 	return fetch(`/api/users`, {
 		...defaultHeaders,
@@ -45,7 +45,7 @@ export const getUsersAPIMethod = () => {
 		.then(parseJSON);
 };
 
-// get current user @
+// get current user
 export const getCurrentUserAPIMethod = () => {
 	return fetch(`/api/currentuser`, {
 		...defaultHeaders,
@@ -83,46 +83,116 @@ export const uploadImageToCloudinaryAPIMethod = (formData) => {
 		.then(checkStatus)
 		.then(parseJSON);
 };
-/// /////////////////////////////////////////////////////////////////////////////
-// Address
-export const getAddressByIdAPIMethod = (addressId) => {
-	return fetch(`/api/address/${addressId}`, {
+
+// ************************************************** //
+
+/*
+ * Event
+ */
+
+// create event
+export const createEventAPIMethod = (event) => {
+	return fetch(`/api/events`, {
 		...defaultHeaders,
+		method: "POST",
+		body: JSON.stringify(event),
 	})
 		.then(checkStatus)
 		.then(parseJSON);
 };
-export const updateAddressAPIMethod = (address) => {
-	return fetch(`/api/address/${address._id}`, {
+
+// update event
+export const updateEventAPIMethod = (events) => {
+	return fetch(`/api/events/${events._id}`, {
 		...defaultHeaders,
 		method: "PUT",
-		body: JSON.stringify(address),
+		body: JSON.stringify(events),
 	}).then(checkStatus);
 };
 
-/// /////////////////////////////////////////////////////////////////////////////
+// get all events
+export const getEventsAPIMethod = () => {
+	return fetch(`/api/events`, {
+		...defaultHeaders,
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
+
+// get event by id
+export const getEventByIdAPIMethod = (eventId) => {
+	return fetch(`/api/events/${eventId}`, {
+		...defaultHeaders,
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
+
+// delete event
+export const deleteQuestionByIdAPIMethod = (eventId) => {
+	return fetch(`/api/events/${eventId}`, {
+		...defaultHeaders,
+		method: "DELETE",
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
+
+// ************************************************** //
 
 /*
- * Volunteer
+ * Certificate
  */
 
-export const getVolunteerWorksAPIMethod = () => {
-	return fetch(`/api/volunteer`, {
+// create certificate
+export const createCertificateAPIMethod = (certificate) => {
+	return fetch(`/api/certificates`, {
+		...defaultHeaders,
+		method: "POST",
+		body: JSON.stringify(certificate),
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
+
+// update certificate
+export const updateCertificateAPIMethod = (certificate) => {
+	return fetch(`/api/certificates/${certificate._id}`, {
+		...defaultHeaders,
+		method: "PUT",
+		body: JSON.stringify(certificate),
+	}).then(checkStatus);
+};
+
+// get all certificates
+export const getCertificatesAPIMethod = () => {
+	return fetch(`/api/certificates`, {
 		...defaultHeaders,
 	})
 		.then(checkStatus)
 		.then(parseJSON);
 };
 
-export const createVolunteerWorkAPIMethod = (volunteerWork) => {
-	return fetch(`/api/volunteer`, {
+// get certificate by id
+export const getCertificateByIdAPIMethod = (certificateId) => {
+	return fetch(`/api/certificates/${certificateId}`, {
 		...defaultHeaders,
-		method: "POST",
-		body: JSON.stringify(volunteerWork),
 	})
 		.then(checkStatus)
 		.then(parseJSON);
 };
+
+// delete certificate
+export const deleteCertificateByIdAPIMethod = (certificateId) => {
+	return fetch(`/api/certificates/${certificateId}`, {
+		...defaultHeaders,
+		method: "DELETE",
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
+
+// ************************************************** //
 
 function checkLoginStatus(response) {
 	if (response.status >= 200 && response.status < 300) {
