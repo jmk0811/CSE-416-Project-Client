@@ -20,10 +20,10 @@ function SignUp(props) {
 
 	const testRegister = (e) => {
 		e.preventDefault();
+		// password validation
 		if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/.test(pw)) {
-			// password validation
+			// email validation
 			if (/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email)) {
-				// email validation
 				const user1 = {
 					name,
 					email,
