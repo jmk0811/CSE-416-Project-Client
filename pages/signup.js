@@ -12,7 +12,7 @@ export default function SignUp(props) {
 	const [pw, setPw] = useState();
 	//	const [addr1, setAddr1] = useState();
 	//	const [addr2, setAddr2] = useState();
-	const [type, setType] = useState("");
+	const [type, setType] = useState("User");
 	const [gender, setGender] = useState("");
 	const [dateOfBirth, setDateOfBirth] = useState("");
 	const [phoneNumber, setPhoneNumber] = useState(0);
@@ -84,8 +84,6 @@ export default function SignUp(props) {
 			setDateOfBirth(event.target.value);
 		} else if (prop === "phoneNumber") {
 			setPhoneNumber(event);
-		} else if (prop === "SSN") {
-			setSSN(event.target.value);
 		} else if (prop == "userType") {
 			setType(event.target.value);
 		} else if (prop === "profileUrl") {
@@ -243,7 +241,7 @@ export default function SignUp(props) {
 											<option value="User" selected>
 												User
 											</option>
-											<option value="Company">Company</option>
+											<option value="Organization">Organization</option>
 										</select>
 									</div>
 									<div className="form-group col-md-6">
@@ -270,20 +268,6 @@ export default function SignUp(props) {
 											// value={this.state.phone}
 											name="phoneNumber"
 											onChange={handleChange("phoneNumber")}
-										/>
-									</div>
-									<div className="form-group col-md-6">
-										<label for="userSSN" className="text-[15px]">
-											SSN*
-										</label>
-										<br />
-										<input
-											type="password"
-											name="userSSN"
-											placeholder="enter your SSN"
-											onChange={handleChange("SSN")}
-											className="text-left bg-transparent w-full h-[40px] px-10 text-base border-[#4EA1D3] "
-											required
 										/>
 									</div>
 								</div>

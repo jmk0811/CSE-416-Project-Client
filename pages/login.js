@@ -6,7 +6,7 @@ import { loginUserAPIMethod } from "../api/client";
 
 export default function Login(props) {
 	// const [email, setEmail] = useState();
-	const [id, setId] = useState("");
+	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState();
 	const [error, setError] = useState();
 	const router = useRouter();
@@ -17,7 +17,8 @@ export default function Login(props) {
 
 	const login = (e) => {
 		e.preventDefault();
-		const userInfo = { id, password };
+		const userInfo = { email, password };
+		console.log(userInfo);
 		loginUserAPIMethod(userInfo).then((status) => {
 			console.log(status);
 			if (status) {
@@ -32,7 +33,7 @@ export default function Login(props) {
 	};
 
 	function handleId(e) {
-		setId(e.target.value);
+		setEmail(e.target.value);
 	}
 	function handlePassword(e) {
 		setPassword(e.target.value);
@@ -40,7 +41,7 @@ export default function Login(props) {
 	function IsPasswordMatched(e) {
 		e.preventDefault();
 		console.log("props", props);
-		console.log("id", id, "password", password);
+		console.log("id", email, "password", password);
 	}
 
 	return (

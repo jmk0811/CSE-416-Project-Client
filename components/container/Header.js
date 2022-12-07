@@ -24,7 +24,6 @@ export default function Header(props) {
 	};
 
 	// TODO: remove testing code
-
 	const populateData = () => {
 		const volunteerWorks = [
 			{
@@ -59,15 +58,22 @@ export default function Header(props) {
 	};
 
 	return (
-		<div className="z-50 w-full h-[60px] bg-main1 sticky top-0 flex flex-col px-[30px]">
-			{openLogin ? <Login status={openLogin} close={handleCloseLogin} /> : null}
-			<div className="flex flex-row my-auto mx-auto w-full max-w-[1400px] px-[20px]">
+		<div className="z-50 w-full h-[60px] bg-main1 sticky top-0 flex flex-col px-[20px]">
+			{openLogin ? <Login status={openLogin} close={handleCloseLogin} setLogin={props.setLogin} /> : null}
+			<div className="flex flex-row my-auto mx-auto w-full px-[20px]">
 				<Link href="/">
 					<a>
 						<div className="mr-auto my-auto font-bold text-white text-22">Platform Logo</div>
 					</a>
 				</Link>
-				<div className="flex flex-row mx-auto">
+				{props.currUser?.type === "Organization" && (
+					<button className={"mx-auto my-auto text-white font-semibold"}>
+						<Link href={"/create"}>
+							<a>Create Event</a>
+						</Link>
+					</button>
+				)}
+				<div className="flex flex-row ml-auto">
 					<form onSubmit={getItemsDataWithQuery}>
 						<div className="flex flex-row bg-main2 rounded-[10px] min-w-[400px] w-full px-[10px] py-[2px]">
 							<button>

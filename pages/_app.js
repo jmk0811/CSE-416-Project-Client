@@ -10,7 +10,8 @@ export default function MyApp({ Component, pageProps }) {
 
 	useEffect(() => {
 		getCurrentUserAPIMethod().then((user) => {
-			console.log(user);
+			console.log(`login user: ${user?.email}`);
+			console.log(`user type: ${user?.type}`);
 			if (user != null && Object.keys(user).length !== 0) {
 				setLogin(true);
 				setCurrUser(user);
@@ -25,11 +26,11 @@ export default function MyApp({ Component, pageProps }) {
 
 	return (
 		<div className="bg-white text-black">
-			<Header login={login} setLogin={setLogin} />
+			<Header login={login} setLogin={setLogin} currUser={currUser} />
 
 			<main className="min-h-screen">
-				<div className="w-full mx-auto">
-					<Component {...pageProps} login={login} setLogin={setLogin} />
+				<div className="w-full min-h-screen mx-auto">
+					<Component {...pageProps} login={login} setLogin={setLogin} currUser={currUser} />
 				</div>
 			</main>
 
