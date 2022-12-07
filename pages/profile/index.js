@@ -7,10 +7,11 @@ import Box from "@mui/joy/Box";
 import Checkbox from "@mui/joy/Checkbox";
 import List from "@mui/joy/List";
 import ListItem from "@mui/joy/ListItem";
-import Sidebar from "../../components/sideBar";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import Link from "next/link";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import Sidebar from "../../components/sideBar";
+
 function MyPage() {
 	const [user, setUser] = useState({});
 	//     {
@@ -95,16 +96,16 @@ function MyPage() {
 	const [value, setValue] = useState([]);
 	let formData;
 	useEffect(() => {
-		var retrievedObject = JSON.parse(localStorage.getItem("userData"));
+		const retrievedObject = JSON.parse(localStorage.getItem("userData"));
 		setUser(retrievedObject);
 		setValue(retrievedObject.interest);
 		// localStorage.setItem('userData', JSON.stringify(user));
 	}, []);
 	const onChangeInput = (event) => {
-		const target = event.target;
+		const { target } = event;
 		console.log("change input", target);
-		const value = target.value;
-		const name = target.name;
+		const { value } = target;
+		const { name } = target;
 		let updatedUser = { ...user };
 
 		updatedUser = { ...user, [name]: value };
@@ -112,21 +113,21 @@ function MyPage() {
 		setUser(updatedUser);
 	};
 	const removeImg = () => {
-		let updatedUser = {
+		const updatedUser = {
 			...user,
 			profileImg: "https://s3.ap-northeast-2.amazonaws.com/wanted-public/profile_default.png",
 		};
 		setUser(updatedUser);
 	};
 	const handleSave = (event) => {
-		let tmpUser = { ...user };
+		const tmpUser = { ...user };
 		// const loc = tmpUser.locations.location;
 		// const loc2 = tmpUser.locations.locationDetail;
 		// tmpUser = { ...user, location: loc, locationDetail: loc2 };
-		//updateUserAPIMethod(tmpUser).then((res) => console.dir(res));
-		//props.setUser(user);
-		//setUser(user);
-		let updatedUser = { ...user, interest: value };
+		// updateUserAPIMethod(tmpUser).then((res) => console.dir(res));
+		// props.setUser(user);
+		// setUser(user);
+		const updatedUser = { ...user, interest: value };
 		console.log(updatedUser);
 	};
 
@@ -237,7 +238,7 @@ function MyPage() {
 						<div className="photo">
 							<img className="profile_picture" src={!user ? "defaultProfile.png" : user.profileImg} alt="profile" />
 							<label className="newImg">
-								<input type="file" name="image" accept="image/*" id="cloudinary" className="newImg" style={{ width: 0 + "%" }} onChange={handleImageSelected} />
+								<input type="file" name="image" accept="image/*" id="cloudinary" className="newImg" style={{ width: `${0}%` }} onChange={handleImageSelected} />
 								Choose New Image
 							</label>
 							<button type="button" className="removeImg" onClick={removeImg}>
@@ -247,8 +248,8 @@ function MyPage() {
 					</div>
 
 					<div>
-						<div className={"form-group col-md-6"}>
-							<label for="name" className={"text-[15px]"}>
+						<div className="form-group col-md-6">
+							<label for="name" className="text-[15px]">
 								Name*
 							</label>
 							<br />
@@ -257,26 +258,26 @@ function MyPage() {
 								name="name"
 								value={user ? user.name : ""}
 								onChange={onChangeInput}
-								className={"bg-transparent h-[40px] w-full px-10 pr-4 text-base border-[#4EA1D3]"}
+								className="bg-transparent h-[40px] w-full px-10 pr-4 text-base border-[#4EA1D3]"
 							/>
 						</div>
 
-						<div className={"form-group col-md-6"}>
-							<label for="userGender" className={"text-[15px]"}>
+						<div className="form-group col-md-6">
+							<label for="userGender" className="text-[15px]">
 								Gender
 							</label>
 							<br />
 							<select class="form-select form-select-sm bg-white font-sans text-[16px]" onChange={onChangeInput} name="gender">
-								<option value="male" selected={user.gender == "male" ? true : false}>
+								<option value="male" selected={user.gender == "male"}>
 									Male
 								</option>
-								<option value="female" selected={user.gender == "female" ? true : false}>
+								<option value="female" selected={user.gender == "female"}>
 									Female
 								</option>
 							</select>
 						</div>
-						<div className={"form-group col-md-6"}>
-							<label for="userDateOfBirth" className={"text-[15px]"}>
+						<div className="form-group col-md-6">
+							<label for="userDateOfBirth" className="text-[15px]">
 								Date of Birth
 							</label>
 							<br />
@@ -290,13 +291,13 @@ function MyPage() {
 								onChange={onChangeInput}
 							/>
 						</div>
-						<div className={"form-group col-md-6"}>
-							<label for="userPhoneNumber" className={"text-[15px]"}>
+						<div className="form-group col-md-6">
+							<label for="userPhoneNumber" className="text-[15px]">
 								Phone number
 							</label>
 							<br />
 							<PhoneInput
-								country={"us"}
+								country="us"
 								name="phoneNumber"
 								value={user.phoneNumber ? user.phoneNumber : ""}
 								onChange={(v) => setUser({ ...user, phoneNumber: v })}
@@ -304,8 +305,8 @@ function MyPage() {
 						</div>
 					</div>
 					{user.type == "user" ? (
-						<div className={"form-group col-md-6"}>
-							<label for="userInterest" className={"text-[15px]"}>
+						<div className="form-group col-md-6">
+							<label for="userInterest" className="text-[15px]">
 								Your Interest
 							</label>
 							<br />
@@ -375,10 +376,10 @@ function MyPage() {
 							</Sheet>
 						</div>
 					) : (
-						<div></div>
+						<div />
 					)}
 					<div className="clearfix">
-						<button type="submit" className="save" onClick={handleSave} style={{ width: 150 + "px" }}>
+						<button type="submit" className="save" onClick={handleSave} style={{ width: `${150}px` }}>
 							Save
 						</button>
 					</div>

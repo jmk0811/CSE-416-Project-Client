@@ -1,4 +1,3 @@
-import Sidebar from "../../../components/sideBar";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import Link from "next/link";
@@ -6,6 +5,7 @@ import { useEffect, useState } from "react";
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import Sidebar from "../../../components/sideBar";
 import PointCard from "../../../components/PointCard";
 
 function Point() {
@@ -15,7 +15,7 @@ function Point() {
 	let tmp = [];
 	useEffect(() => {
 		setData([]);
-		var retrievedObject = JSON.parse(localStorage.getItem("userData"));
+		const retrievedObject = JSON.parse(localStorage.getItem("userData"));
 		setUser(retrievedObject);
 		if (user.type == "user") {
 			tmp = retrievedObject.myParticipant;
@@ -25,9 +25,9 @@ function Point() {
 			if (tmp != undefined) {
 				for (let i = 0; i < tmp.length; i++) {
 					// console.log(tmp[i]);
-					var workingDays_data = Array.from(tmp[i].workingDays).sort((a, b) => new Date(b.date) - new Date(a.date));
-					var tmp_obj = { title: tmp[i].title, workingDays: workingDays_data };
-					var tmp_data = data;
+					const workingDays_data = Array.from(tmp[i].workingDays).sort((a, b) => new Date(b.date) - new Date(a.date));
+					const tmp_obj = { title: tmp[i].title, workingDays: workingDays_data };
+					const tmp_data = data;
 
 					tmp_data.push(tmp_obj);
 					setData(tmp_data);
@@ -35,7 +35,7 @@ function Point() {
 			}
 			//
 
-			//console.log(Array.from(tmp_obj.workingDays).sort((a, b) => new Date(b.date) - new Date(a.date)));
+			// console.log(Array.from(tmp_obj.workingDays).sort((a, b) => new Date(b.date) - new Date(a.date)));
 		}
 	}, []);
 	function handleConfirm(e) {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { getVolunteerWorksAPIMethod } from "../../api/client";
 import { useRouter } from "next/router";
+import { getVolunteerWorksAPIMethod } from "../../api/client";
 
 export default function Index(props) {
 	const [volunteerWorks, setVolunteerWorks] = useState([]);
@@ -19,14 +19,16 @@ export default function Index(props) {
 
 	return (
 		<div className="px-[100px] pt-[100px]">
-			<div className={"mb-[100px] text-24 font-bold"}>search page</div>
+			<div className="mb-[100px] text-24 font-bold">search page</div>
 			<div>
-				{volunteerWorks.filter((item) => item.title.toLowerCase().includes(query)).map((item) => (
-					<div className={"mb-[20px]"}>
-						<div className={"font-bold"}>{item.title}</div>
-						<div>{item.description}</div>
-					</div>
-				))}
+				{volunteerWorks
+					.filter((item) => item.title.toLowerCase().includes(query))
+					.map((item) => (
+						<div className="mb-[20px]">
+							<div className="font-bold">{item.title}</div>
+							<div>{item.description}</div>
+						</div>
+					))}
 			</div>
 		</div>
 	);

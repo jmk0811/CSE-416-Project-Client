@@ -1,23 +1,24 @@
-import Sidebar from "../../../components/sideBar";
 import { withRouter } from "next/router";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import Link from "next/link";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import React, { useEffect, useState } from "react";
-import HistoryCard from "../../../components/historyCard";
 import Typography from "@mui/material/Typography";
+import HistoryCard from "../../../components/historyCard";
+import Sidebar from "../../../components/sideBar";
+
 function History() {
 	const [user, setUser] = useState({});
 	const [type, setType] = useState("");
 	const [logs, setLogs] = useState([]);
 	const [years, setYears] = useState([]);
 
-	var tmp = [];
-	var tmp_year = [];
-	var arr = [];
+	const tmp = [];
+	const tmp_year = [];
+	let arr = [];
 
 	useEffect(() => {
-		var retrievedObject = JSON.parse(localStorage.getItem("userData"));
+		const retrievedObject = JSON.parse(localStorage.getItem("userData"));
 		setUser(retrievedObject);
 		setType(retrievedObject.type);
 
@@ -26,7 +27,7 @@ function History() {
 				var year = new Date(retrievedObject.myParticipant[i].ParticipationDate).getFullYear();
 				// if (year != NaN) {
 				if (tmp[year] != undefined) {
-					//console.log(tmp);
+					// console.log(tmp);
 					arr = tmp;
 
 					arr[year].push(retrievedObject.myParticipant[i]);
@@ -34,7 +35,7 @@ function History() {
 
 					setLogs(arr);
 				} else {
-					//console.log(year);
+					// console.log(year);
 					arr = tmp;
 					arr[year] = [retrievedObject.myParticipant[i]];
 					setLogs(arr);
@@ -47,7 +48,7 @@ function History() {
 				var year = new Date(retrievedObject.volunteerWorks[i].volunteeringEnd).getFullYear();
 				// if (year != NaN) {
 				if (tmp[year] != undefined) {
-					//console.log(tmp);
+					// console.log(tmp);
 					arr = tmp;
 
 					arr[year].push(retrievedObject.volunteerWorks[i]);
@@ -55,7 +56,7 @@ function History() {
 
 					setLogs(arr);
 				} else {
-					//console.log(year);
+					// console.log(year);
 					arr = tmp;
 					arr[year] = [retrievedObject.volunteerWorks[i]];
 					setLogs(arr);

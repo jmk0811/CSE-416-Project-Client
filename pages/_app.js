@@ -108,7 +108,7 @@ export default function MyApp({ Component, pageProps }) {
 								name: "James",
 								phone: "010-1234-5678",
 								emailAddress: "james@gmail.com",
-								//...
+								// ...
 							},
 						],
 					},
@@ -121,13 +121,13 @@ export default function MyApp({ Component, pageProps }) {
 								name: "John",
 								phone: "010-2345-6789",
 								emailAddress: "john123@gmail.com",
-								//...
+								// ...
 							},
 							{
 								name: "Chris",
 								phone: "010-5434-4234",
 								emailAddress: "chris232@gmail.com",
-								//...
+								// ...
 							},
 						],
 					},
@@ -162,7 +162,7 @@ export default function MyApp({ Component, pageProps }) {
 								name: "Jane",
 								phone: "010-2345-6789",
 								emailAddress: "john123@gmail.com",
-								//...
+								// ...
 							},
 						],
 					},

@@ -1,7 +1,7 @@
 import react, { useEffect, useState } from "react";
 import React from "react";
-import { registerUserAPIMethod, uploadImageToCloudinaryAPIMethod } from "../api/client";
 import PhoneInput from "react-phone-input-2";
+import { registerUserAPIMethod, uploadImageToCloudinaryAPIMethod } from "../api/client";
 import "react-phone-input-2/lib/style.css";
 
 export default function SignUp(props) {
@@ -35,16 +35,16 @@ export default function SignUp(props) {
 			if (/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email)) {
 				// email validation
 				const user1 = {
-					name: name,
-					email: email,
+					name,
+					email,
 					password: pw,
 					profile_url: profileUrl,
 					id: userId,
-					type: type,
-					gender: gender,
-					dateOfBirth: dateOfBirth,
-					phoneNumber: phoneNumber,
-					SSN: SSN,
+					type,
+					gender,
+					dateOfBirth,
+					phoneNumber,
+					SSN,
 				};
 				registerUserAPIMethod(user1).then((ret) => {
 					console.log(ret);
@@ -136,16 +136,16 @@ export default function SignUp(props) {
 		// 		</form>
 		// 	</div>
 
-		<div className={"flex"}>
-			<div className={"mx-auto mt-[100px] text-[30px]"}>
-				<div className={"row-justify-content-center"}>
-					<div className={"col-lg-8 min-w-[500px]"}>
-						<div className={"p-5 shadow rounded content"}>
-							<h2 className={"font-bold font-sans"}>Sign up</h2>
+		<div className="flex">
+			<div className="mx-auto mt-[100px] text-[30px]">
+				<div className="row-justify-content-center">
+					<div className="col-lg-8 min-w-[500px]">
+						<div className="p-5 shadow rounded content">
+							<h2 className="font-bold font-sans">Sign up</h2>
 							<form method="POST" action="#">
 								<div>
-									<div className={"form-group col-md-6"}>
-										<label for="image" className={"text-[15px]"}>
+									<div className="form-group col-md-6">
+										<label for="image" className="text-[15px]">
 											Profile Image
 										</label>
 										<img className="avatar" src={profileUrl} style={{ width: "80px", borderRadius: "50%" }} />
@@ -158,17 +158,17 @@ export default function SignUp(props) {
 											accept="image/*"
 											id="cloudinary"
 											onChange={handleChange("profileUrl")}
-											className={"bg-transparent h-[40px] w-full px-10 pr-4 text-base border-[#4EA1D3]"}
+											className="bg-transparent h-[40px] w-full px-10 pr-4 text-base border-[#4EA1D3]"
 										/>
 									</div>
-									<div className={"form-group col-md-6"}>
-										<label for="iName " className={"text-[15px]"}>
+									<div className="form-group col-md-6">
+										<label for="iName " className="text-[15px]">
 											Name*
 										</label>
 
 										<br />
 										<input
-											className={"bg-transparent h-[40px] w-full px-10 pr-4 text-base border-[#4EA1D3]"}
+											className="bg-transparent h-[40px] w-full px-10 pr-4 text-base border-[#4EA1D3]"
 											placeholder="Please enter your name"
 											type="text"
 											id="iName"
@@ -178,8 +178,8 @@ export default function SignUp(props) {
 											onChange={handleChange("name")}
 										/>
 									</div>
-									<div className={"form-group col-md-6"}>
-										<label for="Email" className={"text-[15px]"}>
+									<div className="form-group col-md-6">
+										<label for="Email" className="text-[15px]">
 											Email{" "}
 										</label>
 
@@ -189,7 +189,7 @@ export default function SignUp(props) {
 											name="Email"
 											placeholder="Please enter your Email address"
 											value={email}
-											className={"bg-transparent h-[40px] w-full px-10 pr-4 text-base border-[#4EA1D3]"}
+											className="bg-transparent h-[40px] w-full px-10 pr-4 text-base border-[#4EA1D3]"
 											onChange={handleChange("email")}
 										/>
 									</div>
@@ -208,8 +208,8 @@ export default function SignUp(props) {
 											required
 										/>
 									</div> */}
-									<div className={"form-group col-md-6"}>
-										<label for="userPassword" className={"text-[15px]"}>
+									<div className="form-group col-md-6">
+										<label for="userPassword" className="text-[15px]">
 											Password*
 										</label>
 										<br />
@@ -218,12 +218,12 @@ export default function SignUp(props) {
 											name="userPassword"
 											placeholder="enter your password"
 											onChange={handleChange("pw")}
-											className={"text-left bg-transparent w-full h-[40px] px-10 text-base border-[#4EA1D3] "}
+											className="text-left bg-transparent w-full h-[40px] px-10 text-base border-[#4EA1D3] "
 											required
 										/>
 									</div>
-									<div className={"form-group col-md-6"}>
-										<label for="userGender" className={"text-[15px]"}>
+									<div className="form-group col-md-6">
+										<label for="userGender" className="text-[15px]">
 											Gender
 										</label>
 										<br />
@@ -234,8 +234,8 @@ export default function SignUp(props) {
 											<option value="female">Female</option>
 										</select>
 									</div>
-									<div className={"form-group col-md-6"}>
-										<label for="userType" className={"text-[15px]"}>
+									<div className="form-group col-md-6">
+										<label for="userType" className="text-[15px]">
 											Type
 										</label>
 										<br />
@@ -246,8 +246,8 @@ export default function SignUp(props) {
 											<option value="Company">Company</option>
 										</select>
 									</div>
-									<div className={"form-group col-md-6"}>
-										<label for="userDateOfBirth" className={"text-[15px]"}>
+									<div className="form-group col-md-6">
+										<label for="userDateOfBirth" className="text-[15px]">
 											Date of Birth
 										</label>
 										<br />
@@ -260,20 +260,20 @@ export default function SignUp(props) {
 											onChange={handleChange("DOB")}
 										/>
 									</div>
-									<div className={"form-group col-md-6"}>
-										<label for="userOhoneNumber" className={"text-[15px]"}>
+									<div className="form-group col-md-6">
+										<label for="userOhoneNumber" className="text-[15px]">
 											Phone number*
 										</label>
 										<br />
 										<PhoneInput
-											country={"us"}
+											country="us"
 											// value={this.state.phone}
 											name="phoneNumber"
 											onChange={handleChange("phoneNumber")}
 										/>
 									</div>
-									<div className={"form-group col-md-6"}>
-										<label for="userSSN" className={"text-[15px]"}>
+									<div className="form-group col-md-6">
+										<label for="userSSN" className="text-[15px]">
 											SSN*
 										</label>
 										<br />
@@ -282,7 +282,7 @@ export default function SignUp(props) {
 											name="userSSN"
 											placeholder="enter your SSN"
 											onChange={handleChange("SSN")}
-											className={"text-left bg-transparent w-full h-[40px] px-10 text-base border-[#4EA1D3] "}
+											className="text-left bg-transparent w-full h-[40px] px-10 text-base border-[#4EA1D3] "
 											required
 										/>
 									</div>

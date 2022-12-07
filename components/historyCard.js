@@ -10,17 +10,17 @@ import { userAgent } from "next/server";
 function HistoryCard(props) {
 	const [data, setData] = useState(props.data);
 	const [user, setUser] = useState(props.user);
-	let today = new Date();
+	const today = new Date();
 	useEffect(() => {
-		let tmpData = data;
+		const tmpData = data;
 		tmpData.sort((a, b) => new Date(b.ParticipationDate) - new Date(a.ParticipationDate));
 
 		setData(tmpData);
 	}, []);
 
 	function handleCancleEvent(e) {
-		let tmp = data;
-		let tmpArr = [];
+		const tmp = data;
+		const tmpArr = [];
 		for (let i = 0; i < data.length; i++) {
 			if (data[i].Workid.title == e.target.name) {
 				continue;
@@ -71,7 +71,7 @@ function HistoryCard(props) {
 												<Button
 													size="small"
 													onClick={handleCancleEvent}
-													name={v.Workid.title} //나중에 key로 바꾸기
+													name={v.Workid.title} // 나중에 key로 바꾸기
 												>
 													Cancle
 												</Button>
