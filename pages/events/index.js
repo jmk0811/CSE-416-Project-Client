@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { getEventsAPIMethod } from "../../api/client";
 
 export default function Index(props) {
@@ -13,6 +14,7 @@ export default function Index(props) {
 
 	useEffect(() => {
 		getEventsAPIMethod().then((res) => {
+			console.log(res);
 			setEvents(res);
 		});
 	}, []);
@@ -24,10 +26,22 @@ export default function Index(props) {
 				<div>
 					{events
 						.filter((item) => item.title.toLowerCase().includes(query))
-						.map((item) => (
-							<div className="mb-[20px]">
-								<div className="font-bold">{item.title}</div>
-								<div>{item.description}</div>
+						.map((item, i) => (
+							<div key={i + 1}>
+								{/* TODO: change to dynamic route */}
+								<Link
+									href={{
+										pathname: "/events/details",
+										query: { query: item._id },
+									}}
+								>
+									<a>
+										<div className="w-[300px] mb-[20px] bg-main2 rounded-[10px] py-[10px] px-[20px] hover:shadow-md">
+											<div className="font-bold">{item.title}</div>
+											<div>{item.description}</div>
+										</div>
+									</a>
+								</Link>
 							</div>
 						))}
 				</div>

@@ -18,7 +18,7 @@ export default function Header(props) {
 	const getItemsDataWithQuery = (e) => {
 		e.preventDefault();
 		router.push({
-			pathname: "/search",
+			pathname: "/events",
 			query: { query },
 		});
 	};
