@@ -102,11 +102,11 @@ export const createEventAPIMethod = (event) => {
 };
 
 // update event
-export const updateEventAPIMethod = (events) => {
-	return fetch(`/api/events/${events._id}`, {
+export const updateEventAPIMethod = (event, nEvent) => {
+	return fetch(`/api/events/${event._id}`, {
 		...defaultHeaders,
 		method: "PUT",
-		body: JSON.stringify(events),
+		body: JSON.stringify(nEvent),
 	}).then(checkStatus);
 };
 

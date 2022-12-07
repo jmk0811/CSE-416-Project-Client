@@ -3,15 +3,16 @@ import { Box, Typography, TextField, Button, Grid, Paper, Checkbox, FormControlL
 import { styled } from "@mui/material/styles";
 import { useRouter } from "next/router";
 import {useEffect, useState} from "react";
-import {getEventByIdAPIMethod} from "../../../api/client";
+import {getEventByIdAPIMethod, updateEventAPIMethod, updateUserAPIMethod} from "../../../api/client";
 
 export default function Index(props) {
 	const [data, setDate] = useState();
+	const [eventId, setEventId] = useState(props.query.query);
 	const [timeSlots, setTimeSlots] = useState([]);
 
 	useEffect(() => {
 		getEventByIdAPIMethod(props.query.query).then((res) => {
-			console.log(res.timeSlots);
+			setEventId(props.query.query);
 			setDate(res);
 			setTimeSlots(res.timeSlots);
 		});
@@ -42,8 +43,7 @@ export default function Index(props) {
 
 	const [name, setName] = React.useState("");
 	useEffect(() => {
-		//TODO: remove hard-coded parts
-		setName(props.currUser.email.split("@")[0]);
+		setName(props.currUser.name);
 	}, [props.currUser]);
 
 	const handleNameChange = (e) => {
@@ -74,9 +74,53 @@ export default function Index(props) {
 		if (term === false) {
 			return alert("Please Check our terms before applying");
 		}
-
+		if (isChecked.indexOf(true) === -1) {
+			return alert("Please select the time slot");
+		}
+		//TODO
 		// 완료 페이지로 이동
 		// 서버에서 추가로 확인해야할 것 이 있어서 추후에 설명 드리겠습니다 use Queue
+
+		const newUser = {
+			name: props.currUser.name,
+			email: props.currUser.email,
+			password: props.currUser.password,
+			type: props.currUser.type,
+			address1: props.currUser.address1,
+			address2: props.currUser.address2,
+			profileUrl: props.currUser.profileUrl,
+			gender: props.currUser.gender,
+			dateOfBirth: props.currUser.dateOfBirth,
+			phoneNumber: props.currUser.phoneNumber,
+			events: [...props.currUser.events, eventId],
+		}
+
+		updateUserAPIMethod(props.currUser, newUser).then((res) => {
+			console.log(res);
+		});
+
+		const tempTimeSlots = [...timeSlots];
+		tempTimeSlots[isChecked.indexOf(true)].registeredUsers.push(props.currUser._id);
+
+		const newEvent = {
+			title: data?.title,
+			description: data?.description,
+			holder: data?.holder,
+			recruitmentStartDate: data?.recruitmentStartDate,
+			recruitmentEndDate: data?.recruitmentEndDate,
+			eventStartDate: data?.eventStartDate,
+			eventEndDate: data?.eventEndDate,
+			thumbnail: data?.thumbnail,
+			image: data?.image,
+			address: data?.address,
+			point: data?.point,
+			timeSlots: [...tempTimeSlots],
+		}
+
+		updateEventAPIMethod(data, newEvent).then((res) => {
+			console.log(res);
+		});
+
 		alert("Your reservation has been successful. Thank you for volunteering!");
 		router.push(`/`);
 	};

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import {getEventsAPIMethod} from "../../api/client";
+import { getEventByIdAPIMethod, getEventsAPIMethod } from "../../api/client";
 
 export default function index(props) {
 	const [page, setPage] = useState("home");
@@ -25,9 +25,19 @@ export default function index(props) {
 		pages[page]();
 	};
 
-	const loadHistory = () => {
-		getEventsAPIMethod().then((res) => {
-			console.log(res);
+	const loadHistory = async () => {
+		const tempHistory = [];
+
+		Promise.all(
+			props.currUser.events.map(async (id) => {
+				console.log(id);
+				const res = await getEventByIdAPIMethod(id);
+				console.log(res);
+				tempHistory.push(res);
+			}),
+		).then(() => {
+			console.log(tempHistory);
+			setHistory(tempHistory);
 		});
 	};
 
@@ -66,26 +76,18 @@ export default function index(props) {
 				</div>
 			</div>
 			<div className="w-full bg-white m-[20px] py-[30px] px-[40px] rounded-[20px]">
-				{page === "home" && (
-					<div className="flex flex-col">
-
-					</div>
-				)}
+				{page === "home" && <div className="flex flex-col" />}
 				{page === "history" && (
 					<div className="flex flex-col">
-
+						{history.map((item) => (
+							<div className={"flex flex-col mb-[20px]"}>
+								<div className={"font-semibold"}>{item.title}</div>
+							</div>
+						))}
 					</div>
 				)}
-				{page === "points" && (
-					<div className="flex flex-col">
-
-					</div>
-				)}
-				{page === "certificates" && (
-					<div className="flex flex-col">
-
-					</div>
-				)}
+				{page === "points" && <div className="flex flex-col" />}
+				{page === "certificates" && <div className="flex flex-col" />}
 			</div>
 		</div>
 	);
