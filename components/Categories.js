@@ -1,7 +1,7 @@
 export default function Categories() {
 	return (
-		<div className="grid grid-cols-4 gap-y-[30px] mx-auto text-black">
-			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200">
+		<div className="grid grid-cols-4 gap-y-[30px] mx-auto text-black" style={{ display:'flex', flexDirection: 'row', flexWrap: 'wrap', maxWidth: '100vw'}}> 
+			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200" style={{minWidth: '300px'}}>
 				<div className="relative w-full h-[200px]">
 					<div className="absolute bottom-0 w-full h-[50px] rounded-b-[10px] bg-white/90">
 						<div className="text-center mx-auto font-semibold text-20 mt-[8px]">Plogging</div>
@@ -10,7 +10,7 @@ export default function Categories() {
 				</div>
 			</div>
 
-			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200">
+			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200" style={{minWidth: '300px'}}>
 				<div className="relative w-full h-[200px]">
 					<div className="absolute bottom-0 w-full h-[50px] rounded-b-[10px] bg-white/90">
 						<div className="text-center mx-auto font-semibold text-20 mt-[8px]">Animal Care</div>
@@ -19,7 +19,7 @@ export default function Categories() {
 				</div>
 			</div>
 
-			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200">
+			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200" style={{minWidth: '300px'}}>
 				<div className="relative w-full h-[200px]">
 					<div className="absolute bottom-0 w-full h-[50px] rounded-b-[10px] bg-white/90">
 						<div className="text-center mx-auto font-semibold text-20 mt-[8px]">Education</div>
@@ -28,7 +28,7 @@ export default function Categories() {
 				</div>
 			</div>
 
-			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200">
+			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200" style={{minWidth: '300px'}}>
 				<div className="relative w-full h-[200px]">
 					<div className="absolute bottom-0 w-full h-[50px] rounded-b-[10px] bg-white/90">
 						<div className="text-center mx-auto font-semibold text-20 mt-[8px]">Beautification</div>
@@ -37,7 +37,7 @@ export default function Categories() {
 				</div>
 			</div>
 
-			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200">
+			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200" style={{minWidth: '300px'}}>
 				<div className="relative w-full h-[200px]">
 					<div className="absolute bottom-0 w-full h-[50px] rounded-b-[10px] bg-white/90">
 						<div className="text-center mx-auto font-semibold text-20 mt-[8px]">Service</div>
@@ -46,7 +46,7 @@ export default function Categories() {
 				</div>
 			</div>
 
-			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200">
+			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200" style={{minWidth: '300px'}}>
 				<div className="relative w-full h-[200px]">
 					<div className="absolute bottom-0 w-full h-[50px] rounded-b-[10px] bg-white/90">
 						<div className="text-center mx-auto font-semibold text-20 mt-[8px]">Disaster Relief</div>
@@ -55,7 +55,7 @@ export default function Categories() {
 				</div>
 			</div>
 
-			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200">
+			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200" style={{minWidth: '300px'}}>
 				<div className="relative w-full h-[200px]">
 					<div className="absolute bottom-0 w-full h-[50px] rounded-b-[10px] bg-white/90">
 						<div className="text-center mx-auto font-semibold text-20 mt-[8px]">Medical</div>
@@ -64,7 +64,7 @@ export default function Categories() {
 				</div>
 			</div>
 
-			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200">
+			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200" style={{minWidth: '300px'}}>
 				<div className="relative w-full h-[200px]">
 					<div className="absolute bottom-0 w-full h-[50px] rounded-b-[10px] bg-white/90">
 						<div className="text-center mx-auto font-semibold text-20 mt-[8px]">Mentoring</div>

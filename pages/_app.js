@@ -193,10 +193,10 @@ export default function MyApp({ Component, pageProps }) {
 	}, [login]);
 
 	return (
-		<div className="bg-white text-black">
+		<div className="bg-white text-black" >
 			<Header login={login} setLogin={setLogin} />
 
-			<main className="min-h-screen">
+			<main className="min-h-screen" >
 				<div className="w-full mx-auto">
 					<Component {...pageProps} login={login} setLogin={setLogin} />
 				</div>
