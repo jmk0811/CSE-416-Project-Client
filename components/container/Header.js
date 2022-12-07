@@ -51,12 +51,16 @@ export default function Header(props) {
 
 	const [openLogin, setOpenLogin] = useState(false);
 
-    const handleClickLogIn = () => { setOpenLogin(true); }
-    const handleCloseLogin = () => { setOpenLogin(false); }
+	const handleClickLogIn = () => {
+		setOpenLogin(true);
+	};
+	const handleCloseLogin = () => {
+		setOpenLogin(false);
+	};
 
 	return (
 		<div className="z-50 w-full h-[60px] bg-main1 sticky top-0 flex flex-col px-[30px]">
-			{openLogin ? <Login status = {openLogin} close = {handleCloseLogin}/> : null}
+			{openLogin ? <Login status={openLogin} close={handleCloseLogin} /> : null}
 			<div className="flex flex-row my-auto mx-auto w-full max-w-[1400px] px-[20px]">
 				<Link href="/">
 					<a>

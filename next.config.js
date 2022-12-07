@@ -13,5 +13,8 @@ module.exports = () => {
 		rewrites,
 		reactStrictMode: false,
 		swcMinify: true,
+		eslint: {
+			ignoreDuringBuilds: true,
+		},
 	};
 };

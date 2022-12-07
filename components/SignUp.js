@@ -76,7 +76,7 @@ function SignUp(props) {
 					setProfileUrl(response.url);
 				});
 			}
-		} else if (prop == "x") {
+		} else if (prop === "x") {
 			event.preventDefault();
 			// props.setShowSignup(false);
 			setError("");
