@@ -13,6 +13,9 @@ export default function Header(props) {
 		logoutUserAPIMethod().then(() => {
 			props.setLogin(false);
 		});
+		router.push({
+			pathname: "/",
+		});
 	};
 
 	const getItemsDataWithQuery = (e) => {
