@@ -4,21 +4,29 @@ import { getEventByIdAPIMethod, getEventsAPIMethod, getUserByIdAPIMethod, getUse
 export default function index(props) {
 	const [page, setPage] = useState("home");
 	const [events, setEvents] = useState([]);
-
+	useEffect(() => {
+		//let page_loc = localStorage.getItem("page");
+		//setPage(page_loc);
+		//console.log(page_loc);
+	}, []);
 	const handlePageChange = (page) => {
 		const pages = {
 			home() {
 				setPage("home");
+				//localStorage.setItem("page", "home");
 			},
 			events() {
 				loadEvents();
 				setPage("events");
+				//localStorage.setItem("page", "events");
 			},
 			points() {
 				setPage("points");
+				//localStorage.setItem("page", "points");
 			},
 			certificates() {
 				setPage("certificates");
+				//localStorage.setItem("page", "certificates");
 			},
 		};
 

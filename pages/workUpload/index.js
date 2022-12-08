@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography, Button, Stack, Chip } from "@mui/material";
-
+import { uploadImageToCloudinaryAPIMethod } from "../../api/client";
 import MUIRichTextEditor from "mui-rte";
 import { createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@mui/styles";
@@ -123,11 +123,28 @@ export default function workupload() {
 		setEndDate(e.target.value);
 	};
 
-	const [fileURL, setfileURL] = React.useState('');
+	const [fileURL, setfileURL] = React.useState("");
 	const handleFiile = (e) => {
 		// 여기 파일 url부탁드립니다
 		// 아래 return에서는 file이라 검색하시면 찾기 편하실거에요
-	}
+
+		if (e.target.files && e.target.files[0]) {
+			const selectedFile = e.target.files[0];
+
+			const formData = new FormData();
+			const unsignedUploadPreset = "v8dfxg1t";
+			formData.append("file", selectedFile);
+			formData.append("upload_preset", unsignedUploadPreset);
+
+			console.log("Cloudinary upload");
+			console.log(formData.file);
+			uploadImageToCloudinaryAPIMethod(formData).then((response) => {
+				console.log(response.url);
+				setfileURL(response.url);
+				//setProfileUrl(response.url);
+			});
+		}
+	};
 	const [applyDay, setApplyDate] = React.useState([1, 2, 3, 4]);
 
 	const [detail, setDetail] = React.useState("");
@@ -155,11 +172,11 @@ export default function workupload() {
 	const handleSubmit = () => {
 		//api here createEventAPIMethod
 		const interest = [];
-		if(animal == "") interest.push('animal');
-		if(education == "") interest.push('education');
-		if(environment == "") interest.push('environment');
-		if(sports == "") interest.push('sports');
-		if(healthcare == "") interest.push('healthcare');
+		if (animal == "") interest.push("animal");
+		if (education == "") interest.push("education");
+		if (environment == "") interest.push("environment");
+		if (sports == "") interest.push("sports");
+		if (healthcare == "") interest.push("healthcare");
 
 		const event = {
 			title: title,
@@ -175,16 +192,16 @@ export default function workupload() {
 			interests: interest,
 			point: point,
 			timeSlots: applyDay,
-		}
-		console.log(interest)
-	}
+		};
+		console.log(interest);
+	};
 
 	React.useEffect(() => {
 		const sd = new Date(startDate);
 		const ed = new Date(endDate);
-		const daysBetween = ((ed.getTime() - sd.getTime()) / (1000 * 3600 * 24)) + 1;
+		const daysBetween = (ed.getTime() - sd.getTime()) / (1000 * 3600 * 24) + 1;
 		if (daysBetween <= 0) {
-			alert('please make the start date before the end date');
+			alert("please make the start date before the end date");
 			setEndDate(sd);
 			return;
 		}
@@ -192,18 +209,16 @@ export default function workupload() {
 		setApplyDate(dateArray);
 	}, [startDate, endDate]);
 
-
 	React.useEffect(() => {
 		const sd = new Date(recruitmentStartDate);
 		const ed = new Date(recruitmentEndDate);
-		const daysBetween = ((ed.getTime() - sd.getTime()) / (1000 * 3600 * 24)) + 1;
+		const daysBetween = (ed.getTime() - sd.getTime()) / (1000 * 3600 * 24) + 1;
 		if (daysBetween <= 0) {
-			alert('please make the start date before the end date');
+			alert("please make the start date before the end date");
 			setRecruitmentEndDate(sd);
 			return;
 		}
 	}, [recruitmentStartDate, recruitmentEndDate]);
-
 
 	return (
 		<Box display="flex" flexDirection="column">
@@ -275,7 +290,7 @@ export default function workupload() {
 						<div className="text-[25px] font-bold font-sans" style={{ display: "flex", justifyContent: "center", alignItems: "center", margin: "10px" }}>
 							Files
 						</div>
-						<input type="file" style={{ display: "flex", justifyContent: "center", alignSelf: "center" }} onChange={handleFiile}/>
+						<input type="file" style={{ display: "flex", justifyContent: "center", alignSelf: "center" }} onChange={handleFiile} />
 					</div>
 
 					<div style={{ display: "flex", flexDirection: "column", justifyContent: "left", maxWidth: "90vw", marginBottom: "20px" }}>
@@ -294,32 +309,60 @@ export default function workupload() {
 					<div>
 						<div className="text-[25px] font-bold font-sans">Time Slots</div>
 						{applyDay.map((arr, i) => (
-							<div style={{ display: "flex", flexWrap: "wrap", flexDirection: "row", justifyContent: "left", border: "1px solid black", borderRadius: "10px", marginBottom: '10px'}} onChange={(event) => handleFormDate(event, i)}>
+							<div
+								style={{
+									display: "flex",
+									flexWrap: "wrap",
+									flexDirection: "row",
+									justifyContent: "left",
+									border: "1px solid black",
+									borderRadius: "10px",
+									marginBottom: "10px",
+								}}
+								onChange={(event) => handleFormDate(event, i)}
+							>
 								<input
 									id="date"
 									type="date"
 									value={dateFormat2(new Date(arr.date), i)}
-									style={{ display: "flex", justifyContent: "center", alignSelf: "center", marginRight: '10px'}}
+									style={{ display: "flex", justifyContent: "center", alignSelf: "center", marginRight: "10px" }}
 								/>
-								<input id="time" type="time" value={arr.time} style={{ display: "flex", justifyContent: "center", alignSelf: "center", marginRight: '10px'}}/>
+								<input id="time" type="time" value={arr.time} style={{ display: "flex", justifyContent: "center", alignSelf: "center", marginRight: "10px" }} />
 								<div style={{ display: "flex", flexDirection: "row", justifyContent: "left", margin: "10px" }}>
-									<Typography style={{marginRight: '10px'}}>Occupy:</Typography>
+									<Typography style={{ marginRight: "10px" }}>Occupy:</Typography>
 									<input
 										id="occupy"
 										type="number"
 										value={arr.occupy}
-										style={{ paddingLeft: '10px', display: "flex", justifyContent: "center", alignSelf: "center", border: "1px solid black", borderRadius: "10px", width: "100px", marginRight: '10px'}}
+										style={{
+											paddingLeft: "10px",
+											display: "flex",
+											justifyContent: "center",
+											alignSelf: "center",
+											border: "1px solid black",
+											borderRadius: "10px",
+											width: "100px",
+											marginRight: "10px",
+										}}
 									/>
 								</div>
 								<div style={{ display: "flex", flexDirection: "row", justifyContent: "left", margin: "10px" }}>
-									<Typography style={{marginRight: '10px'}}>Registered Users:</Typography>
+									<Typography style={{ marginRight: "10px" }}>Registered Users:</Typography>
 									<input
 										id="occupy"
 										type="number"
 										value={0}
 										// value will change to register.length when we will be getting data, this may be needed to be done in useEffects
 										disabled
-										style={{ paddingLeft: '10px', display: "flex", justifyContent: "center", alignSelf: "center", border: "1px solid black", borderRadius: "10px", width: "100px" }}
+										style={{
+											paddingLeft: "10px",
+											display: "flex",
+											justifyContent: "center",
+											alignSelf: "center",
+											border: "1px solid black",
+											borderRadius: "10px",
+											width: "100px",
+										}}
 									/>
 								</div>
 							</div>
@@ -333,13 +376,18 @@ export default function workupload() {
 						<input
 							className="text-[20px] font-bold font-sans"
 							type="text"
-							style={{ border: "1px solid black", borderRadius: "10px", padding: "15px", maxWidth: "100px"}}
+							style={{ border: "1px solid black", borderRadius: "10px", padding: "15px", maxWidth: "100px" }}
 							value={point}
 							onChange={handlePoint}
 						/>
 					</div>
 
-					<Button type="submit" variant="contained" style={{ backgroundColor: "skyblue", marginTop: "20px", marginBottom: "20px", width: "200px"}} onClick={handleSubmit}>
+					<Button
+						type="submit"
+						variant="contained"
+						style={{ backgroundColor: "skyblue", marginTop: "20px", marginBottom: "20px", width: "200px" }}
+						onClick={handleSubmit}
+					>
 						<Typography
 							variant={{ md: "h5", sm: "body1" }}
 							style={{ display: "flex", justifyContent: "center", flexDirection: "column", color: "black", width: "100px", height: "30px" }}

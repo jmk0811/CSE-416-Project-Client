@@ -9,6 +9,7 @@ import List from "@mui/joy/List";
 import ListItem from "@mui/joy/ListItem";
 import Sheet from "@mui/joy/Sheet";
 import Done from "@mui/icons-material/Done";
+
 export default function SignUp(props) {
 	const [profileUrl, setProfileUrl] = useState("");
 	const [name, setName] = useState();
@@ -168,7 +169,7 @@ export default function SignUp(props) {
 									</div>
 									<div className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
 										<label for="Email" className="flex justify-center items-center w-[120px] h-[70px] font-bold text-[15px] border bg-slate-200 mr-[10px]">
-											Email{" "}
+											Email*{" "}
 										</label>
 
 										<input
@@ -213,7 +214,7 @@ export default function SignUp(props) {
 									</div>
 									<div className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
 										<label for="userType" className="flex justify-center items-center w-[120px] h-[70px] font-bold text-[15px] border bg-slate-200 mr-[10px]">
-											Type
+											Type*
 										</label>
 
 										<select class="form-select form-select-sm bg-white font-sans text-[16px]" name="userType" onChange={handleChange("userType")}>
