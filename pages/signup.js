@@ -3,13 +3,19 @@ import React from "react";
 import PhoneInput from "react-phone-input-2";
 import { registerUserAPIMethod, uploadImageToCloudinaryAPIMethod } from "../api/client";
 import "react-phone-input-2/lib/style.css";
-
+import Box from "@mui/joy/Box";
+import Checkbox from "@mui/joy/Checkbox";
+import List from "@mui/joy/List";
+import ListItem from "@mui/joy/ListItem";
+import Sheet from "@mui/joy/Sheet";
+import Done from "@mui/icons-material/Done";
 export default function SignUp(props) {
 	const [profileUrl, setProfileUrl] = useState("");
 	const [name, setName] = useState();
 	const [email, setEmail] = useState();
 	const [userId, setUserId] = useState("");
 	const [pw, setPw] = useState();
+
 	//	const [addr1, setAddr1] = useState();
 	//	const [addr2, setAddr2] = useState();
 	const [type, setType] = useState("User");
@@ -18,8 +24,7 @@ export default function SignUp(props) {
 	const [phoneNumber, setPhoneNumber] = useState(0);
 	const [SSN, setSSN] = useState(0);
 	const [error, setError] = useState();
-
-	// const [value, setValue] = useState([]);
+	const [value, setValue] = useState([]);
 
 	useEffect(() => {
 		setProfileUrl(profileUrl);
@@ -245,6 +250,81 @@ export default function SignUp(props) {
 											name="phoneNumber"
 											onChange={handleChange("phoneNumber")}
 										/>
+									</div>
+
+									<div className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
+										<label
+											for="userInterest"
+											className="flex justify-center items-center w-[120px] h-100% font-bold text-[15px] border bg-slate-200 mr-[10px]"
+											style={{ height: "16vh" }}
+										>
+											Interests
+										</label>
+										<br />
+
+										<Sheet
+											variant="outlined"
+											sx={{
+												width: 360,
+												p: 2,
+												borderRadius: "sm",
+												borderColor: "#CACACA",
+											}}
+										>
+											<Box role="group" aria-labelledby="rank">
+												<List
+													row
+													wrap
+													sx={{
+														"--List-gap": "8px",
+														"--List-item-radius": "20px",
+														"--List-item-minHeight": "32px",
+													}}
+												>
+													{["Education", "Animal", "Environment", "Healthcare", "Sports"].map((item, index) => (
+														<ListItem key={item}>
+															{value.includes(item) && (
+																<Done
+																	fontSize="md"
+																	color="primary"
+																	sx={{
+																		ml: -0.5,
+																		mr: 0.5,
+																		zIndex: 2,
+																		pointerEvents: "none",
+																	}}
+																/>
+															)}
+															<Checkbox
+																size="sm"
+																disableIcon
+																overlay
+																label={item}
+																checked={value.includes(item)}
+																variant={value.includes(item) ? "soft" : "outlined"}
+																onChange={(event) => {
+																	if (event.target.checked) {
+																		setValue((val) => [...val, item]);
+																	} else {
+																		setValue((val) => val.filter((text) => text !== item));
+																	}
+																}}
+																componentsProps={{
+																	action: ({ checked }) => ({
+																		sx: checked
+																			? {
+																					border: "1px solid",
+																					borderColor: "primary.500",
+																			  }
+																			: {},
+																	}),
+																}}
+															/>
+														</ListItem>
+													))}
+												</List>
+											</Box>
+										</Sheet>
 									</div>
 								</div>
 								<div className="flex flex-col items-center w-full justify-center p-[30px]">
