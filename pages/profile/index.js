@@ -23,6 +23,7 @@ export default function index(props) {
 			localStorage.setItem("page", "home");
 			setPage("home");
 		}
+		setUser(props.currUser);
 	}, []);
 
 	const handleEdit = (e) => {
