@@ -108,7 +108,7 @@ export default function workupload() {
 		setRecruitmentEndDate(e.target.value);
 	};
 
-	const [startDate, setStartDate] = React.useState(`2022-12-01`); // dateFormat(new Date)
+	const [startDate, setStartDate] = React.useState(dateFormat(new Date()));
 	const handleStartDate = (e) => {
 		setStartDate(e.target.value);
 	};
@@ -142,17 +142,35 @@ export default function workupload() {
 		setApplyDate(updatedArray);
 	};
 
+	const handleSubmit = () => {
+		// api here
+	}
+
 	React.useEffect(() => {
 		const sd = new Date(startDate);
 		const ed = new Date(endDate);
-		const daysBetween = (ed.getTime() - sd.getTime()) / (1000 * 3600 * 24);
-		if (daysBetween < 0) {
+		const daysBetween = ((ed.getTime() - sd.getTime()) / (1000 * 3600 * 24)) + 1;
+		if (daysBetween <= 0) {
+			alert('please make the start date before the end date');
+			setEndDate(sd);
 			return;
 		}
 		const dateArray = new Array(daysBetween).fill({ date: sd, time: "00:00", occupy: 0, register: 0 });
-		console.log(dateArray);
 		setApplyDate(dateArray);
 	}, [startDate, endDate]);
+
+
+	React.useEffect(() => {
+		const sd = new Date(recruitmentStartDate);
+		const ed = new Date(recruitmentEndDate);
+		const daysBetween = ((ed.getTime() - sd.getTime()) / (1000 * 3600 * 24)) + 1;
+		if (daysBetween <= 0) {
+			alert('please make the start date before the end date');
+			setRecruitmentEndDate(sd);
+			return;
+		}
+	}, [recruitmentStartDate, recruitmentEndDate]);
+
 
 	return (
 		<Box display="flex" flexDirection="column">
@@ -269,7 +287,7 @@ export default function workupload() {
 							</div>
 						))}
 					</div>
-					<Button type="submit" variant="contained" style={{ backgroundColor: "skyblue", marginTop: "20px", marginBotton: "20px", width: "200px" }}>
+					<Button type="submit" variant="contained" style={{ backgroundColor: "skyblue", marginTop: "20px", marginBottom: "20px", width: "200px"}} onClick={handleSubmit}>
 						<Typography
 							variant={{ md: "h5", sm: "body1" }}
 							style={{ display: "flex", justifyContent: "center", flexDirection: "column", color: "black", width: "100px", height: "30px" }}
