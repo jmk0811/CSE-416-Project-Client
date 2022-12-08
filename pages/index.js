@@ -7,7 +7,7 @@ export default function Home(props) {
 	return (
 		<div className="">
 			<MainBanner />
-			<div className="mx-auto">
+			<div className="max-w-[1400px] mx-auto">
 				<div className="py-[60px]">
 					<div className="flex flex-row px-[30px]">
 						<div className="font-bold text-30 my-auto mb-[10px] mr-auto">Categories</div>
