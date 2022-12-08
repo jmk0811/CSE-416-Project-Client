@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Temporal } from "@js-temporal/polyfill";
-import { createEventAPIMethod } from "../api/client";
+import {createEventAPIMethod, updateUserAPIMethod} from "../api/client";
 
 export default function index(props) {
 	const [title, setTitle] = useState("");
@@ -59,9 +59,32 @@ export default function index(props) {
 			timeSlots: testTimeSlots,
 		};
 
+		let eventId;
+
 		createEventAPIMethod(event).then((res) => {
 			console.log(res);
+			//TODO: append new object id to user's events list
 		});
+
+		/*
+		const newUser = {
+			name: props.currUser.name,
+			email: props.currUser.email,
+			password: props.currUser.password,
+			type: props.currUser.type,
+			address1: props.currUser.address1,
+			address2: props.currUser.address2,
+			profileUrl: props.currUser.profileUrl,
+			gender: props.currUser.gender,
+			dateOfBirth: props.currUser.dateOfBirth,
+			phoneNumber: props.currUser.phoneNumber,
+			events: [...props.currUser.events, eventId],
+		}
+
+		updateUserAPIMethod(props.currUser, newUser).then((res) => {
+			console.log(res);
+		});
+		*/
 	};
 
 	return (

@@ -3,16 +3,16 @@ import { getEventByIdAPIMethod, getEventsAPIMethod } from "../../api/client";
 
 export default function index(props) {
 	const [page, setPage] = useState("home");
-	const [history, setHistory] = useState([]);
+	const [events, setEvents] = useState([]);
 
 	const handlePageChange = (page) => {
 		const pages = {
 			home() {
 				setPage("home");
 			},
-			history() {
-				loadHistory();
-				setPage("history");
+			events() {
+				loadEvents();
+				setPage("events");
 			},
 			points() {
 				setPage("points");
@@ -25,20 +25,36 @@ export default function index(props) {
 		pages[page]();
 	};
 
-	const loadHistory = async () => {
-		const tempHistory = [];
+	const loadEvents = async () => {
+		const tempEvents = [];
 
-		Promise.all(
-			props.currUser.events.map(async (id) => {
-				console.log(id);
-				const res = await getEventByIdAPIMethod(id);
-				console.log(res);
-				tempHistory.push(res);
-			}),
-		).then(() => {
-			console.log(tempHistory);
-			setHistory(tempHistory);
-		});
+		//TODO: refactor
+		if (props.currUser.type === "User") {
+			Promise.all(
+				props.currUser.events.map(async (id) => {
+					console.log(id);
+					const res = await getEventByIdAPIMethod(id);
+					console.log(res);
+					tempEvents.push(res);
+				}),
+			).then(() => {
+				console.log(tempEvents);
+				setEvents(tempEvents);
+			});
+		}
+		else {
+			Promise.all(
+				props.currUser.events.map(async (id) => {
+					console.log(id);
+					const res = await getEventByIdAPIMethod(id);
+					console.log(res);
+					tempEvents.push(res);
+				}),
+			).then(() => {
+				console.log(tempEvents);
+				setEvents(tempEvents);
+			});
+		}
 	};
 
 	return (
@@ -52,34 +68,38 @@ export default function index(props) {
 				</div>
 				<div
 					className={`w-full duration-200 hover:bg-hover1 pl-[20px] py-[5px] rounded-r-full cursor-pointer ${
-						page === "history" && "bg-activate2 font-semibold"
+						page === "events" && "bg-activate2 font-semibold"
 					}`}
-					onClick={() => handlePageChange("history")}
+					onClick={() => handlePageChange("events")}
 				>
-					History
+					Events
 				</div>
-				<div
-					className={`w-full duration-200 hover:bg-hover1 pl-[20px] py-[5px] rounded-r-full cursor-pointer ${
-						page === "points" && "bg-activate2 font-semibold"
-					}`}
-					onClick={() => handlePageChange("points")}
-				>
-					Points
-				</div>
-				<div
-					className={`w-full duration-200 hover:bg-hover1 pl-[20px] py-[5px] rounded-r-full cursor-pointer ${
-						page === "certificates" && "bg-activate2 font-semibold"
-					}`}
-					onClick={() => handlePageChange("certificates")}
-				>
-					Certificates
-				</div>
+				{props.currUser.type === "User" && (
+					<div
+						className={`w-full duration-200 hover:bg-hover1 pl-[20px] py-[5px] rounded-r-full cursor-pointer ${
+							page === "points" && "bg-activate2 font-semibold"
+						}`}
+						onClick={() => handlePageChange("points")}
+					>
+						Points
+					</div>
+				)}
+				{props.currUser.type === "User" && (
+					<div
+						className={`w-full duration-200 hover:bg-hover1 pl-[20px] py-[5px] rounded-r-full cursor-pointer ${
+							page === "certificates" && "bg-activate2 font-semibold"
+						}`}
+						onClick={() => handlePageChange("certificates")}
+					>
+						Certificates
+					</div>
+				)}
 			</div>
 			<div className="w-full bg-white m-[20px] py-[30px] px-[40px] rounded-[20px]">
 				{page === "home" && <div className="flex flex-col" />}
-				{page === "history" && (
+				{page === "events" && (
 					<div className="flex flex-col">
-						{history.map((item) => (
+						{events.map((item) => (
 							<div className={"flex flex-col mb-[20px]"}>
 								<div className={"font-semibold"}>{item.title}</div>
 							</div>

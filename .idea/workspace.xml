@@ -8,10 +8,10 @@
       <change afterPath="$PROJECT_DIR$/pages/events/[id]/index.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/pages/events/details/index_backup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/client.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/container/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/container/Header.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/_app.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/create.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/create.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/events/details/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/events/details/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/profile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/profile/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/search/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/events/index.js" afterDir="false" />
