@@ -35,6 +35,7 @@ export default function SignUp(props) {
 
 	const testRegister = (e) => {
 		e.preventDefault();
+
 		if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/.test(pw)) {
 			// password validation
 			if (/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email)) {
@@ -50,7 +51,9 @@ export default function SignUp(props) {
 					dateOfBirth,
 					phoneNumber,
 					SSN,
+					interests: value,
 				};
+
 				registerUserAPIMethod(user1).then((ret) => {
 					console.log(ret);
 					if (ret) {
