@@ -148,6 +148,10 @@ export default function Index(props) {
 		<Box display="flex" flexDirection="column">
 			<Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" alignSelf="center" width="md">
 				<Box display="flex" flexDirection="column" alignItems="left" justifyContent="center" maxWidth="md" width="md" p={{ xs: 1, sm: 2, md: 0 }}>
+					<div className={"flex flex-col"}>
+						<div className={"mx-auto text-28 font-bold my-[50px]"}>{data?.title}</div>
+						<div className={"mx-auto text-20 my-[20px] mb-[100px]"}>{data?.description}</div>
+					</div>
 					<Box width="80vw" maxWidth="md" height="40vh" maxHeight="75vh" overflow="scroll" style={{ marginTop: "20px" }}>
 						<Box sx={{ flexGrow: 1 }}>
 							<Grid container spacing={1} style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px" }}>
