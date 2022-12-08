@@ -98,6 +98,11 @@ export default function workupload() {
 		setAddress(e.target.value);
 	};
 
+	const [point, setPoint] = React.useState(0);
+	const handlePoint = (e) => {
+		setPoint(e.target.value);
+	};
+
 	const [recruitmentStartDate, setRecruitmentStartDate] = React.useState(dateFormat(new Date()));
 	const handleRecruitmentStartDate = (e) => {
 		setRecruitmentStartDate(e.target.value);
@@ -118,6 +123,11 @@ export default function workupload() {
 		setEndDate(e.target.value);
 	};
 
+	const [fileURL, setfileURL] = React.useState('');
+	const handleFiile = (e) => {
+		// 여기 파일 url부탁드립니다
+		// 아래 return에서는 file이라 검색하시면 찾기 편하실거에요
+	}
 	const [applyDay, setApplyDate] = React.useState([1, 2, 3, 4]);
 
 	const [detail, setDetail] = React.useState("");
@@ -143,7 +153,30 @@ export default function workupload() {
 	};
 
 	const handleSubmit = () => {
-		// api here
+		//api here createEventAPIMethod
+		const interest = [];
+		if(animal == "") interest.push('animal');
+		if(education == "") interest.push('education');
+		if(environment == "") interest.push('environment');
+		if(sports == "") interest.push('sports');
+		if(healthcare == "") interest.push('healthcare');
+
+		const event = {
+			title: title,
+			description: detail,
+			// holder: req.body.holder,
+			recruitmentStartDate: recruitmentStartDate,
+			recruitmentEndDate: recruitmentEndDate,
+			eventStartDate: startDate,
+			eventEndDate: endDate,
+			// thumbnail: req.body.thumbnail,
+			image: fileURL,
+			address: address,
+			interests: interest,
+			point: point,
+			timeSlots: applyDay,
+		}
+		console.log(interest)
 	}
 
 	React.useEffect(() => {
@@ -155,7 +188,7 @@ export default function workupload() {
 			setEndDate(sd);
 			return;
 		}
-		const dateArray = new Array(daysBetween).fill({ date: sd, time: "00:00", occupy: 0, register: 0 });
+		const dateArray = new Array(daysBetween).fill({ date: sd, time: "00:00", occupy: 0, register: [] });
 		setApplyDate(dateArray);
 	}, [startDate, endDate]);
 
@@ -242,7 +275,7 @@ export default function workupload() {
 						<div className="text-[25px] font-bold font-sans" style={{ display: "flex", justifyContent: "center", alignItems: "center", margin: "10px" }}>
 							Files
 						</div>
-						<input type="file" style={{ display: "flex", justifyContent: "center", alignSelf: "center" }} />
+						<input type="file" style={{ display: "flex", justifyContent: "center", alignSelf: "center" }} onChange={handleFiile}/>
 					</div>
 
 					<div style={{ display: "flex", flexDirection: "column", justifyContent: "left", maxWidth: "90vw", marginBottom: "20px" }}>
@@ -259,34 +292,53 @@ export default function workupload() {
 					</div>
 
 					<div>
+						<div className="text-[25px] font-bold font-sans">Time Slots</div>
 						{applyDay.map((arr, i) => (
-							<div style={{ display: "flex", flexWrap: "wrap", flexDirection: "row", justifyContent: "left" }} onChange={(event) => handleFormDate(event, i)}>
+							<div style={{ display: "flex", flexWrap: "wrap", flexDirection: "row", justifyContent: "left", border: "1px solid black", borderRadius: "10px", marginBottom: '10px'}} onChange={(event) => handleFormDate(event, i)}>
 								<input
 									id="date"
 									type="date"
 									value={dateFormat2(new Date(arr.date), i)}
-									style={{ display: "flex", justifyContent: "center", alignSelf: "center" }}
+									style={{ display: "flex", justifyContent: "center", alignSelf: "center", marginRight: '10px'}}
 								/>
-								<input id="time" type="time" value={arr.time} style={{ display: "flex", justifyContent: "center", alignSelf: "center" }} />
-								<input
-									id="occupy"
-									type="number"
-									value={arr.occupy}
-									style={{ display: "flex", justifyContent: "center", alignSelf: "center", border: "1px solid black", borderRadius: "10px", width: "100px" }}
-								/>
+								<input id="time" type="time" value={arr.time} style={{ display: "flex", justifyContent: "center", alignSelf: "center", marginRight: '10px'}}/>
 								<div style={{ display: "flex", flexDirection: "row", justifyContent: "left", margin: "10px" }}>
-									<Typography>Registered Users:</Typography>
+									<Typography style={{marginRight: '10px'}}>Occupy:</Typography>
 									<input
 										id="occupy"
 										type="number"
-										value={arr.register}
+										value={arr.occupy}
+										style={{ paddingLeft: '10px', display: "flex", justifyContent: "center", alignSelf: "center", border: "1px solid black", borderRadius: "10px", width: "100px", marginRight: '10px'}}
+									/>
+								</div>
+								<div style={{ display: "flex", flexDirection: "row", justifyContent: "left", margin: "10px" }}>
+									<Typography style={{marginRight: '10px'}}>Registered Users:</Typography>
+									<input
+										id="occupy"
+										type="number"
+										value={0}
+										// value will change to register.length when we will be getting data, this may be needed to be done in useEffects
 										disabled
-										style={{ display: "flex", justifyContent: "center", alignSelf: "center", border: "1px solid black", borderRadius: "10px", width: "100px" }}
+										style={{ paddingLeft: '10px', display: "flex", justifyContent: "center", alignSelf: "center", border: "1px solid black", borderRadius: "10px", width: "100px" }}
 									/>
 								</div>
 							</div>
 						))}
 					</div>
+
+					<div style={{ display: "flex", flexDirection: "row", justifyContent: "left", maxWidth: "90vw", marginTop: "20px", marginBottom: "20px" }}>
+						<div className="text-[20px] font-bold font-sans" style={{ display: "flex", justifyContent: "center", alignItems: "center", margin: "10px" }}>
+							Points
+						</div>
+						<input
+							className="text-[20px] font-bold font-sans"
+							type="text"
+							style={{ border: "1px solid black", borderRadius: "10px", padding: "15px", maxWidth: "100px"}}
+							value={point}
+							onChange={handlePoint}
+						/>
+					</div>
+
 					<Button type="submit" variant="contained" style={{ backgroundColor: "skyblue", marginTop: "20px", marginBottom: "20px", width: "200px"}} onClick={handleSubmit}>
 						<Typography
 							variant={{ md: "h5", sm: "body1" }}
