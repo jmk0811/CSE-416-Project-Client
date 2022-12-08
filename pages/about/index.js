@@ -26,7 +26,7 @@ function About() {
 					</Typography>
 					<ul className="mt-[30px]">
 						<li>1. Make a platform that has various volunteer events. </li> <li>2. Show and provide well design displayed schedule of volunteer record. </li>
-						<li>3. Store volunteer work histories online</li> <li>4. Add rewards when the users participate in the volunteer works</li>
+						<li>3. Store volunteer work records online</li> <li>4. Add rewards when the users participate in the volunteer works</li>
 					</ul>{" "}
 				</div>
 				<div className="p-[10px] mt-[10px] border rounded">

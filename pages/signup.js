@@ -110,74 +110,54 @@ export default function SignUp(props) {
 	};
 
 	return (
-		// 	<div>
-		// 		<form>
-		// 			<div style={{ display: "flex", justifyContent: "space-between" }}>
-		// 				<h2>Sign Up</h2>
-		// 			</div>
-
-		// 			<p style={{ margin: 0 }}>Name</p>
-		// 			<input type="text" id="iName" name="Name" value={name} style={{ width: "100%", alignItems: "center" }} onChange={handleChange("name")} />
-
-		// 			<p style={{ margin: 0 }}>Email</p>
-		// 			<input type="text" id="iEmail" name="Email" value={email} style={{ width: "100%", alignItems: "center" }} onChange={handleChange("email")} />
-
-		// 			<p style={{ margin: 0 }}>Password</p>
-		// 			<input type="password" id="iPw" name="pw" value={pw} style={{ width: "100%", alignItems: "center" }} onChange={handleChange("pw")} />
-
-		// 			<p style={{ margin: 0 }}>Address 1</p>
-		// 			<input type="text" id="iAddr1" name="addr1" value={addr1} style={{ width: "100%", alignItems: "center" }} onChange={handleChange("addr1")} />
-
-		// 			<p style={{ margin: 0 }}>Address 2</p>
-		// 			<input type="text" id="iAddr2" name="addr2" value={addr2} style={{ width: "100%", alignItems: "center" }} onChange={handleChange("addr2")} />
-
-		// 		</form>
-		// 	</div>
-
 		<div className="flex">
 			<div className="mx-auto mt-[100px] text-[30px]">
 				<div className="row-justify-content-center">
 					<div className="col-lg-8 min-w-[500px]">
 						<div className="p-5 shadow rounded content">
-							<h2 className="font-bold font-sans">Sign up</h2>
+							<h2 className="font-bold font-sans mb-[20px]">Sign up</h2>
 							<form method="POST" action="#">
 								<div>
-									<div className="form-group col-md-6">
-										<label for="image" className="text-[15px]">
+									<div className="flex form-group items-center jusitfy-center h-100% col-md-6 border m-[3px]">
+										<label
+											for="image"
+											className="flex justify-center border items-center w-[120px] h-[70px] font-bold text-[15px] border bg-slate-200 mr-[10px]"
+										>
 											Profile Image
 										</label>
-										<img className="avatar" src={profileUrl} style={{ width: "80px", borderRadius: "50%" }} />
-										<input
-											id="file-upload"
-											className="custom-file-upload"
-											placeholder="Choose New Image"
-											type="file"
-											name="image"
-											accept="image/*"
-											id="cloudinary"
-											onChange={handleChange("profileUrl")}
-											className="bg-transparent h-[40px] w-full px-10 pr-4 text-base border-[#4EA1D3]"
-										/>
+										<div className="flex flex-row justify-center items-center" style={{ width: "300px" }}>
+											<img className="avatar" src={profileUrl} style={{ width: "70px", borderRadius: "50%" }} />
+											<input
+												id="file-upload"
+												className="custom-file-upload"
+												placeholder="Choose New Image"
+												type="file"
+												name="image"
+												accept="image/*"
+												id="cloudinary"
+												onChange={handleChange("profileUrl")}
+												className="flex items-center bg-transparent h-[30px]  px-8 text-base border-[#4EA1D3]"
+											/>
+										</div>
 									</div>
-									<div className="form-group col-md-6">
-										<label for="iName " className="text-[15px]">
+									<div className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
+										<label for="iName " className="flex justify-center items-center w-[120px] h-[70px] font-bold text-[15px] border bg-slate-200 mr-[10px]">
 											Name*
 										</label>
 
-										<br />
 										<input
-											className="bg-transparent h-[40px] w-full px-10 pr-4 text-base border-[#4EA1D3]"
+											className="bg-transparent h-[40px]  px-10 pr-4 text-base border-[#4EA1D3]"
 											placeholder="Please enter your name"
 											type="text"
 											id="iName"
 											name="Name"
 											value={name}
-											style={{ width: "100%", alignItems: "center" }}
+											style={{ alignItems: "center" }}
 											onChange={handleChange("name")}
 										/>
 									</div>
-									<div className="form-group col-md-6">
-										<label for="Email" className="text-[15px]">
+									<div className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
+										<label for="Email" className="flex justify-center items-center w-[120px] h-[70px] font-bold text-[15px] border bg-slate-200 mr-[10px]">
 											Email{" "}
 										</label>
 
@@ -187,56 +167,45 @@ export default function SignUp(props) {
 											name="Email"
 											placeholder="Please enter your Email address"
 											value={email}
-											className="bg-transparent h-[40px] w-full px-10 pr-4 text-base border-[#4EA1D3]"
+											className="bg-transparent h-[40px]  px-10 pr-4 text-base border-[#4EA1D3]"
 											onChange={handleChange("email")}
 										/>
 									</div>
-									{/* <div className={"form-group col-md-6"}>
-										<label for="userId" className={"text-[15px]"}>
-											ID*
-										</label>
-										<br />
-										<input
-											type="text"
-											name="userId"
-											placeholder="Please enter your ID"
-											// onChange={handleId}
-											onChange={handleChange("ID")}
-											className={"bg-transparent h-[40px] w-full px-10 pr-4 text-base border-[#4EA1D3]"}
-											required
-										/>
-									</div> */}
-									<div className="form-group col-md-6">
-										<label for="userPassword" className="text-[15px]">
+
+									<div className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
+										<label
+											for="userPassword"
+											className="flex justify-center items-center w-[120px] h-[70px] font-bold text-[15px] border bg-slate-200 mr-[10px]"
+										>
 											Password*
 										</label>
-										<br />
+
 										<input
 											type="password"
 											name="userPassword"
-											placeholder="enter your password"
+											placeholder="Please enter your password"
 											onChange={handleChange("pw")}
-											className="text-left bg-transparent w-full h-[40px] px-10 text-base border-[#4EA1D3] "
+											className="text-left bg-transparent  h-[40px] px-10 text-base border-[#4EA1D3] "
 											required
 										/>
 									</div>
-									<div className="form-group col-md-6">
-										<label for="userGender" className="text-[15px]">
+									<div className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
+										<label for="userGender" className="flex justify-center items-center w-[120px] h-[70px] font-bold text-[15px] border bg-slate-200 mr-[10px]">
 											Gender
 										</label>
-										<br />
-										<select class="form-select form-select-sm bg-white font-sans text-[16px]" name="userGender" onChange={handleChange("gender")}>
+
+										<select className="form-select form-select-sm bg-white font-sans text-[16px]" name="userGender" onChange={handleChange("gender")}>
 											<option value="male" selected>
 												Male
 											</option>
 											<option value="female">Female</option>
 										</select>
 									</div>
-									<div className="form-group col-md-6">
-										<label for="userType" className="text-[15px]">
+									<div className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
+										<label for="userType" className="flex justify-center items-center w-[120px] h-[70px] font-bold text-[15px] border bg-slate-200 mr-[10px]">
 											Type
 										</label>
-										<br />
+
 										<select class="form-select form-select-sm bg-white font-sans text-[16px]" name="userType" onChange={handleChange("userType")}>
 											<option value="User" selected>
 												User
@@ -244,11 +213,14 @@ export default function SignUp(props) {
 											<option value="Organization">Organization</option>
 										</select>
 									</div>
-									<div className="form-group col-md-6">
-										<label for="userDateOfBirth" className="text-[15px]">
+									<div className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
+										<label
+											for="userDateOfBirth"
+											className="flex justify-center items-center w-[120px] h-[70px] font-bold text-[15px] border bg-slate-200 mr-[10px]"
+										>
 											Date of Birth
 										</label>
-										<br />
+
 										<input
 											className="text-[16px] font-sans bg-white"
 											type="date"
@@ -258,14 +230,18 @@ export default function SignUp(props) {
 											onChange={handleChange("DOB")}
 										/>
 									</div>
-									<div className="form-group col-md-6">
-										<label for="userOhoneNumber" className="text-[15px]">
+									<div className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
+										<label
+											for="userOhoneNumber"
+											className="flex justify-center items-center w-[120px] h-[70px] font-bold text-[15px] border bg-slate-200 mr-[10px]"
+										>
 											Phone number*
 										</label>
-										<br />
+
 										<PhoneInput
 											country="us"
 											// value={this.state.phone}
+											style={{ width: "300px" }}
 											name="phoneNumber"
 											onChange={handleChange("phoneNumber")}
 										/>
