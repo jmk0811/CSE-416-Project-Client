@@ -54,6 +54,15 @@ export const getCurrentUserAPIMethod = () => {
 		.then(parseJSON);
 };
 
+// get user by id
+export const getUserByIdAPIMethod = (userId) => {
+	return fetch(`/api/users/${userId}`, {
+		...defaultHeaders,
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+};
+
 // update user
 export const updateUserAPIMethod = (user, nUser) => {
 	return fetch(`/api/users/${user._id}`, {

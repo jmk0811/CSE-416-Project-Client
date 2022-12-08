@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getEventByIdAPIMethod, getEventsAPIMethod } from "../../api/client";
+import { getEventByIdAPIMethod, getEventsAPIMethod, getUserByIdAPIMethod, getUsersAPIMethod } from "../../api/client";
 
 export default function index(props) {
 	const [page, setPage] = useState("home");
@@ -28,7 +28,7 @@ export default function index(props) {
 	const loadEvents = async () => {
 		const tempEvents = [];
 
-		//TODO: refactor
+		// TODO: refactor
 		if (props.currUser.type === "User") {
 			Promise.all(
 				props.currUser.events.map(async (id) => {
@@ -41,8 +41,8 @@ export default function index(props) {
 				console.log(tempEvents);
 				setEvents(tempEvents);
 			});
-		}
-		else {
+		} else {
+			//TODO: get participants list
 			Promise.all(
 				props.currUser.events.map(async (id) => {
 					console.log(id);
@@ -100,8 +100,8 @@ export default function index(props) {
 				{page === "events" && (
 					<div className="flex flex-col">
 						{events.map((item) => (
-							<div className={"flex flex-col mb-[20px]"}>
-								<div className={"font-semibold"}>{item.title}</div>
+							<div className="flex flex-col mb-[20px]">
+								<div className="font-semibold">{item.title}</div>
 							</div>
 						))}
 					</div>
