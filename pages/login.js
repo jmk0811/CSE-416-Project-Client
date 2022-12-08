@@ -25,9 +25,11 @@ export default function Login(props) {
 				setError("");
 				props.setLogin(true);
 				router.push("/");
+				handleClose();
 			} else {
 				setError("login failed");
 				props.setLogin(false);
+				alert("Invalid email address or password");
 			}
 		});
 	};
