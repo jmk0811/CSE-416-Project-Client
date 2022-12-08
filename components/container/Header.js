@@ -61,24 +61,25 @@ export default function Header(props) {
 	};
 
 	return (
-		<div className="z-50 w-full h-[60px] bg-main1 sticky top-0 flex flex-col px-[20px]">
+		<div className="z-50 w-full h-[60px] bg-main1 sticky top-0 flex flex-col px-[30px] hidescroll" style={{minWidth: '100vw', display: 'flex', flexWrap: 'wrap', overflow: 'scroll'}}>
 			{openLogin ? <Login status={openLogin} close={handleCloseLogin} setLogin={props.setLogin} /> : null}
-			<div className="flex flex-row my-auto mx-auto w-full px-[20px]">
+			<div className="flex flex-row my-auto mx-auto w-full px-[20px]"> 
 				<Link href="/">
 					<a>
-						<div className="mr-auto my-auto font-bold text-white text-22">Platform Logo</div>
+						<div className="mr-auto my-auto font-bold text-white"> Platform Logo</div>
 					</a>
 				</Link>
 				{props.currUser?.type === "Organization" && (
-					<button className={"mx-auto my-auto text-white font-semibold"}>
+					<button className={"mx-auto my-auto text-white font-semibold"} style={{marginLeft: '30px'}}>
 						<Link href={"/create"}>
 							<a>Create Event</a>
 						</Link>
 					</button>
 				)}
-				<div className="flex flex-row ml-auto">
+				<div className="flex flex-row mx-auto" style={{justifyContent: 'center', alignSelf: 'center'}}>
 					<form onSubmit={getItemsDataWithQuery}>
-						<div className="flex flex-row bg-main2 rounded-[10px] min-w-[400px] w-full px-[10px] py-[2px]">
+						<div className="flex flex-row bg-main2 rounded-[10px] px-[10px] py-[2px]" 
+								style={{display: 'flex', width: '40vw', marginLeft: '20px', marginRight: '20px'}}>
 							<button>
 								<SearchIcon className="mt-[4px]" sx={{ color: "white" }} />
 							</button>
@@ -104,7 +105,7 @@ export default function Header(props) {
 								<a>PROFILE</a>
 							</Link>
 						</button>
-						<button onClick={logout}>LOGOUT</button>
+						<button onClick={logout} style={{marginRight: '30px'}}>LOGOUT</button>
 					</div>
 				) : (
 					<div className="ml-auto my-auto flex flex-row gap-x-[20px] font-semibold text-white text-14">
@@ -114,12 +115,9 @@ export default function Header(props) {
 							</Link>
 						</button>
 						<button className="" onClick={handleClickLogIn}>
-							{/* <Link href="/login">
-								<a>LOGIN</a>
-							</Link> */}
 							LOGIN
 						</button>
-						<button className="">
+						<button className="" style={{marginRight: '30px'}}>
 							<Link href="/signup">
 								<a>SIGN UP</a>
 							</Link>
