@@ -65,9 +65,11 @@ export default function SignUp(props) {
 				});
 			} else {
 				setError("Invalid email format");
+				alert("Invalid email format");
 			}
 		} else {
 			setError("Invalid password format");
+			alert("Invalid password format");
 		}
 	};
 

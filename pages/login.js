@@ -24,7 +24,7 @@ export default function Login(props) {
 			if (status) {
 				setError("");
 				props.setLogin(true);
-				router.push("/");
+				//router.push("/");
 				handleClose();
 			} else {
 				setError("login failed");
