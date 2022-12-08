@@ -76,10 +76,10 @@ export default function Header(props) {
 						</Link>
 					</button>
 				)}
-				<div className="flex flex-row mx-auto" style={{justifyContent: 'center', alignSelf: 'center'}}>
+				<div className="flex flex-row mx-auto" style={{justifyContent: 'center', alignItems: 'center'}}>
 					<form onSubmit={getItemsDataWithQuery}>
 						<div className="flex flex-row bg-main2 rounded-[10px] px-[10px] py-[2px]" 
-								style={{display: 'flex', width: '40vw', marginLeft: '20px', marginRight: '20px'}}>
+								style={{display: 'flex', width: '40vw', marginLeft: '20px', marginRight: '10px'}}>
 							<button>
 								<SearchIcon className="mt-[4px]" sx={{ color: "white" }} />
 							</button>
@@ -92,6 +92,13 @@ export default function Header(props) {
 							/>
 						</div>
 					</form>
+					<div className="ml-auto my-auto flex flex-row gap-x-[20px] font-semibold text-white text-14" style={{border: '1px solid white', borderRadius: '10px', padding: '5px', marginRight: '20px'}}>
+						<button className="">
+							<Link href="/events?query=">
+								<a>SEE MORE</a>
+							</Link>
+						</button>
+					</div>
 				</div>
 				{props.login ? (
 					<div className="ml-auto my-auto flex flex-row gap-x-[20px] font-semibold text-white text-14">
