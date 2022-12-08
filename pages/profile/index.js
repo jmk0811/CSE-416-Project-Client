@@ -100,8 +100,16 @@ export default function index(props) {
 				{page === "events" && (
 					<div className="flex flex-col">
 						{events.map((item) => (
-							<div className="flex flex-col mb-[20px]">
+							<div className="max-w-[400px] flex flex-col mb-[20px] bg-gray-200 rounded-2xl px-[30px] py-[20px]">
 								<div className="font-semibold">{item.title}</div>
+								{/*TODO: remove hard-coded parts*/}
+								{props.currUser.type === "Organization" && (
+									<div className={"flex flex-row gap-x-[20px]"}>
+										<div>Minki</div>
+										<div>user@test.com</div>
+										<div>123123123</div>
+									</div>
+								)}
 							</div>
 						))}
 					</div>
