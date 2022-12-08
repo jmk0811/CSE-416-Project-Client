@@ -9,6 +9,7 @@ import List from "@mui/joy/List";
 import ListItem from "@mui/joy/ListItem";
 import Sheet from "@mui/joy/Sheet";
 import Done from "@mui/icons-material/Done";
+import { useRouter } from "next/router";
 
 export default function SignUp(props) {
 	const [profileUrl, setProfileUrl] = useState("");
@@ -16,6 +17,7 @@ export default function SignUp(props) {
 	const [email, setEmail] = useState();
 	const [userId, setUserId] = useState("");
 	const [pw, setPw] = useState();
+	const router = useRouter();
 
 	//	const [addr1, setAddr1] = useState();
 	//	const [addr2, setAddr2] = useState();
@@ -60,8 +62,12 @@ export default function SignUp(props) {
 					if (ret) {
 						// props.setShowSignup(false);
 						props.setLogin(true);
+						router.push({
+							pathname: "/",
+						});
 					} else {
 						setError("Invalid information. Properly fill out the information");
+						alert("Invalid information. Properly fill out the information");
 					}
 				});
 			} else {
@@ -70,7 +76,7 @@ export default function SignUp(props) {
 			}
 		} else {
 			setError("Invalid password format");
-			alert("Invalid password format");
+			alert("Invalid password format -- at least 1 upper case, lower case, and numbers "); //verification 이게 맞는지 확인 부탁드려요
 		}
 	};
 
@@ -136,7 +142,7 @@ export default function SignUp(props) {
 										>
 											Profile Image
 										</label>
-										<div className="flex flex-row justify-center items-center" style={{ width: "300px" }}>
+										<div className="flex flex-row justify-center items-center">
 											<img className="avatar" src={profileUrl} style={{ width: "70px", borderRadius: "50%" }} />
 											<input
 												id="file-upload"
@@ -147,7 +153,7 @@ export default function SignUp(props) {
 												accept="image/*"
 												id="cloudinary"
 												onChange={handleChange("profileUrl")}
-												className="flex items-center bg-transparent h-[30px]  px-8 text-base border-[#4EA1D3]"
+												className="flex  items-center bg-transparent h-[30px]  px-8 text-base border-[#4EA1D3]"
 											/>
 										</div>
 									</div>
@@ -335,8 +341,10 @@ export default function SignUp(props) {
 								</div>
 								<div className="flex flex-col items-center w-full justify-center p-[30px]">
 									<div className="bg-[#4EA1D3] w-full rounded">
-										<button onClick={testRegister} type="submit">
-											<div className="w-[400px] text-[25px] font-sans text-white text-center text-center decoration-8">Create an Account</div>
+										<button onClick={testRegister} type="submit" className="w-full">
+											<div className="w-[400px] text-[25px] font-sans text-white text-center text-center decoration-8" style={{ margin: "auto" }}>
+												Create an Account
+											</div>
 										</button>
 									</div>
 								</div>
