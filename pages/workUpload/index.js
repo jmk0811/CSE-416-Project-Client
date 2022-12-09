@@ -6,8 +6,9 @@ import { createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@mui/styles";
 // import AsyncImageUpload from "./AsyncImageUpload";
 import { convertToRaw } from "draft-js";
+import { createEventAPIMethod } from "../../api/client";
 
-export default function workupload() {
+export default function workupload(props) {
 	function dateFormat(date) {
 		let day = date.getDate();
 		let month = date.getMonth() + 1;
@@ -125,8 +126,6 @@ export default function workupload() {
 
 	const [fileURL, setfileURL] = React.useState("");
 	const handleFiile = (e) => {
-		// 여기 파일 url부탁드립니다
-		// 아래 return에서는 file이라 검색하시면 찾기 편하실거에요
 
 		if (e.target.files && e.target.files[0]) {
 			const selectedFile = e.target.files[0];
@@ -141,7 +140,6 @@ export default function workupload() {
 			uploadImageToCloudinaryAPIMethod(formData).then((response) => {
 				console.log(response.url);
 				setfileURL(response.url);
-				//setProfileUrl(response.url);
 			});
 		}
 	};
@@ -170,7 +168,7 @@ export default function workupload() {
 	};
 
 	const handleSubmit = () => {
-		//api here createEventAPIMethod
+		//api: createEventAPIMethod
 		const interest = [];
 		if (animal == "") interest.push("animal");
 		if (education == "") interest.push("education");
@@ -181,19 +179,19 @@ export default function workupload() {
 		const event = {
 			title: title,
 			description: detail,
-			// holder: req.body.holder,
+			holder: props.currUser._id,
 			recruitmentStartDate: recruitmentStartDate,
 			recruitmentEndDate: recruitmentEndDate,
 			eventStartDate: startDate,
 			eventEndDate: endDate,
-			// thumbnail: req.body.thumbnail,
+			thumbnail: fileURL,
 			image: fileURL,
 			address: address,
 			interests: interest,
 			point: point,
 			timeSlots: applyDay,
 		};
-		console.log(interest);
+		createEventAPIMethod(event);
 	};
 
 	React.useEffect(() => {

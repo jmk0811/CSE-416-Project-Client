@@ -75,7 +75,7 @@ export default function Header(props) {
 				</Link>
 				{props.currUser?.type === "Organization" && (
 					<button className={"mx-auto my-auto text-white font-semibold"} style={{ marginLeft: "30px" }}>
-						<Link href={"/create"}>
+						<Link href={"/workUpload"}>
 							<a>Create Event</a>
 						</Link>
 					</button>

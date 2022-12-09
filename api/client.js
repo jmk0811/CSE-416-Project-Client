@@ -101,7 +101,6 @@ export const uploadImageToCloudinaryAPIMethod = (formData) => {
 
 // create event
 export const createEventAPIMethod = (event) => {
-	console.log(event);
 	return fetch(`/api/events`, {
 		...defaultHeaders,
 		method: "POST",
