@@ -1,18 +1,13 @@
 import { useState, useEffect } from "react";
 import { getEventByIdAPIMethod, getEventsAPIMethod, getUserByIdAPIMethod, getUsersAPIMethod, updateUserAPIMethod } from "../../api/client";
-import Box from "@mui/joy/Box";
-import Checkbox from "@mui/joy/Checkbox";
-import List from "@mui/joy/List";
-import ListItem from "@mui/joy/ListItem";
-import Sheet from "@mui/joy/Sheet";
-import Done from "@mui/icons-material/Done";
-import PhoneInput from "react-phone-input-2";
+
+import ProfileCustomer from "../../components/profileCustomer";
 
 export default function index(props) {
 	const [page, setPage] = useState("home");
 	const [events, setEvents] = useState([]);
 	const [user, setUser] = useState(props.currUser);
-	const [value, setValue] = useState([]);
+	//const [value, setValue] = useState([]);
 	const [editMode, setEditMode] = useState(false);
 
 	useEffect(() => {
@@ -24,17 +19,17 @@ export default function index(props) {
 			setPage("home");
 		}
 		setUser(props.currUser);
-		setValue(props.currUser.interests);
+		//setValue(props.currUser.interests);
 	}, [props.currUser]);
 
-	const handleEdit = (e) => {
+	const handleEdit = (e, user) => {
 		e.preventDefault();
 		setEditMode(false);
 		updateUserAPIMethod(user, user).then((res) => {
 			console.log(res);
 		});
 	};
-
+	/*
 	const handleChangeValue = (prop) => (event) => {
 		if (prop == "profile_url") {
 			if (event.target.files && event.target.files[0]) {
@@ -55,7 +50,7 @@ export default function index(props) {
 		} else {
 			setUser({ ...user, [prop]: event.target.value });
 		}
-	};
+	};*/
 	const handlePageChange = (page) => {
 		const pages = {
 			home() {
@@ -151,8 +146,34 @@ export default function index(props) {
 				)}
 			</div>
 			<div className="w-full bg-white m-[20px] py-[30px] px-[40px] rounded-[20px]">
-				{page === "home" && (
+				{page === "home" && <ProfileCustomer user={user} handleEdit={handleEdit} />}
+				{page === "events" && (
 					<div className="flex flex-col">
+						{events.map((item) => (
+							<div className="max-w-[400px] flex flex-col mb-[20px] bg-gray-200 rounded-2xl px-[30px] py-[20px]">
+								<div className="font-semibold">{item.title}</div>
+								{/*TODO: remove hard-coded parts*/}
+								{props.currUser.type === "Organization" && (
+									<div className={"flex flex-row gap-x-[20px]"}>
+										<div>Minki</div>
+										<div>user@test.com</div>
+										<div>123123123</div>
+									</div>
+								)}
+							</div>
+						))}
+					</div>
+				)}
+				{page === "points" && <div className="flex flex-col"></div>}
+				{page === "certificates" && <div className="flex flex-col" />}
+			</div>
+		</div>
+	);
+}
+
+/*
+
+				<div className="flex flex-col">
 						{" "}
 						<div className="flex">
 							<div className="text-[30px]">
@@ -378,27 +399,4 @@ export default function index(props) {
 							</div>
 						</div>
 					</div>
-				)}
-				{page === "events" && (
-					<div className="flex flex-col">
-						{events.map((item) => (
-							<div className="max-w-[400px] flex flex-col mb-[20px] bg-gray-200 rounded-2xl px-[30px] py-[20px]">
-								<div className="font-semibold">{item.title}</div>
-								{/*TODO: remove hard-coded parts*/}
-								{props.currUser.type === "Organization" && (
-									<div className={"flex flex-row gap-x-[20px]"}>
-										<div>Minki</div>
-										<div>user@test.com</div>
-										<div>123123123</div>
-									</div>
-								)}
-							</div>
-						))}
-					</div>
-				)}
-				{page === "points" && <div className="flex flex-col" />}
-				{page === "certificates" && <div className="flex flex-col" />}
-			</div>
-		</div>
-	);
-}
+*/
