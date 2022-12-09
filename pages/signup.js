@@ -19,8 +19,8 @@ export default function SignUp(props) {
 	const [pw, setPw] = useState();
 	const router = useRouter();
 
-	//	const [addr1, setAddr1] = useState();
-	//	const [addr2, setAddr2] = useState();
+	const [addr1, setAddr1] = useState("");
+	const [addr2, setAddr2] = useState("");
 	const [type, setType] = useState("User");
 	const [gender, setGender] = useState("");
 	const [dateOfBirth, setDateOfBirth] = useState("");
@@ -47,13 +47,14 @@ export default function SignUp(props) {
 					name,
 					email,
 					password: pw,
-					profile_url: profileUrl,
-					id: userId,
 					type,
+					address1: addr1,
+					address2: addr2,
+					profileUrl,
 					gender,
 					dateOfBirth,
 					phoneNumber,
-					SSN,
+					events: [],
 					interests: value,
 				};
 
