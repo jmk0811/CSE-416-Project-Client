@@ -20,6 +20,7 @@ function ProfileCustomer(props) {
 
 	const handleClick = (e) => {
 		props.handleEdit(e, user);
+		setEditMode(false);
 	};
 
 	const handleChangeValue = (prop) => (event) => {
@@ -160,7 +161,7 @@ function ProfileCustomer(props) {
 												country={"us"}
 												name="phoneNumber"
 												value={user.phoneNumber ? user.phoneNumber.toString() : ""}
-												className="w-[50px] px-10"
+												className="w-[50px] px-10 bg-white"
 												onChange={(v) => setUser({ ...user, phoneNumber: v })}
 												disabled={editMode ? false : true}
 											/>
