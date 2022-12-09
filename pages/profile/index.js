@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getEventByIdAPIMethod, getEventsAPIMethod, getUserByIdAPIMethod, getUsersAPIMethod } from "../../api/client";
+import { getEventByIdAPIMethod, getEventsAPIMethod, getUserByIdAPIMethod, getUsersAPIMethod, updateUserAPIMethod } from "../../api/client";
 import Box from "@mui/joy/Box";
 import Checkbox from "@mui/joy/Checkbox";
 import List from "@mui/joy/List";
@@ -30,7 +30,10 @@ export default function index(props) {
 	const handleEdit = (e) => {
 		e.preventDefault();
 		console.log(user);
-		//post user 업데이트 해야 됨
+		setEditMode(false);
+		updateUserAPIMethod(user).then((res) => {
+			console.log(res);
+		});
 	};
 
 	const handleChangeValue = (prop) => (event) => {

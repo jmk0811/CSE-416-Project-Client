@@ -57,29 +57,35 @@ export default function Header(props) {
 		setOpenLogin(true);
 	};
 	const handleCloseLogin = () => {
+		localStorage.removeItem("page");
 		setOpenLogin(false);
 	};
 
 	return (
-		<div className="z-50 w-full h-[60px] bg-main1 sticky top-0 flex flex-col px-[30px] hidescroll" style={{minWidth: '100vw', display: 'flex', flexWrap: 'wrap', overflow: 'scroll'}}>
+		<div
+			className="z-50 w-full h-[60px] bg-main1 sticky top-0 flex flex-col px-[30px] hidescroll"
+			style={{ minWidth: "100vw", display: "flex", flexWrap: "wrap", overflow: "scroll" }}
+		>
 			{openLogin ? <Login status={openLogin} close={handleCloseLogin} setLogin={props.setLogin} /> : null}
-			<div className="flex flex-row my-auto mx-auto w-full px-[20px]"> 
+			<div className="flex flex-row my-auto mx-auto w-full px-[20px]">
 				<Link href="/">
 					<a>
 						<div className="mr-auto my-auto font-bold text-white"> Platform Logo</div>
 					</a>
 				</Link>
 				{props.currUser?.type === "Organization" && (
-					<button className={"mx-auto my-auto text-white font-semibold"} style={{marginLeft: '30px'}}>
+					<button className={"mx-auto my-auto text-white font-semibold"} style={{ marginLeft: "30px" }}>
 						<Link href={"/create"}>
 							<a>Create Event</a>
 						</Link>
 					</button>
 				)}
-				<div className="flex flex-row mx-auto" style={{justifyContent: 'center', alignItems: 'center'}}>
+				<div className="flex flex-row mx-auto" style={{ justifyContent: "center", alignItems: "center" }}>
 					<form onSubmit={getItemsDataWithQuery}>
-						<div className="flex flex-row bg-main2 rounded-[10px] px-[10px] py-[2px]" 
-								style={{display: 'flex', width: '40vw', marginLeft: '20px', marginRight: '10px'}}>
+						<div
+							className="flex flex-row bg-main2 rounded-[10px] px-[10px] py-[2px]"
+							style={{ display: "flex", width: "40vw", marginLeft: "20px", marginRight: "10px" }}
+						>
 							<button>
 								<SearchIcon className="mt-[4px]" sx={{ color: "white" }} />
 							</button>
@@ -92,7 +98,10 @@ export default function Header(props) {
 							/>
 						</div>
 					</form>
-					<div className="ml-auto my-auto flex flex-row gap-x-[20px] font-semibold text-white text-14" style={{border: '1px solid white', borderRadius: '10px', padding: '5px', marginRight: '20px'}}>
+					<div
+						className="ml-auto my-auto flex flex-row gap-x-[20px] font-semibold text-white text-14"
+						style={{ border: "1px solid white", borderRadius: "10px", padding: "5px", marginRight: "20px" }}
+					>
 						<button className="">
 							<Link href="/events?query=">
 								<a>SEE MORE</a>
@@ -112,7 +121,9 @@ export default function Header(props) {
 								<a>PROFILE</a>
 							</Link>
 						</button>
-						<button onClick={logout} style={{marginRight: '30px'}}>LOGOUT</button>
+						<button onClick={logout} style={{ marginRight: "30px" }}>
+							LOGOUT
+						</button>
 					</div>
 				) : (
 					<div className="ml-auto my-auto flex flex-row gap-x-[20px] font-semibold text-white text-14">
@@ -124,7 +135,7 @@ export default function Header(props) {
 						<button className="" onClick={handleClickLogIn}>
 							LOGIN
 						</button>
-						<button className="" style={{marginRight: '30px'}}>
+						<button className="" style={{ marginRight: "30px" }}>
 							<Link href="/signup">
 								<a>SIGN UP</a>
 							</Link>
