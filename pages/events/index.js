@@ -9,6 +9,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { DesktopDatePicker } from "@mui/x-date-pickers";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import Table from "./Table";
 
 export default function Index(props) {
 	const [events, setEvents] = useState([]);
@@ -22,16 +23,16 @@ export default function Index(props) {
     const [point, setPoint] = useState('');
     const handleChangePoint = (e) => { setPoint(e.target.value) };
 
-    const [recruitmentStartDate, setRecruitmentStartDate] = useState(undefined);
+    const [recruitmentStartDate, setRecruitmentStartDate] = useState(new Date('2021-01-01'));
     const handleRecruitmentStartDate = (e) => { setRecruitmentStartDate(e) }
 
-    const [recruitmentEndDate, setRecruitmentEndDate] = useState(undefined);
+    const [recruitmentEndDate, setRecruitmentEndDate] = useState(new Date('2031-01-01'));
     const handleRecruitmentEndDate= (e) => { setRecruitmentEndDate(e) }
 
-    const [startDate, setStartDate] = useState(undefined);
+    const [startDate, setStartDate] = useState(new Date('2021-01-01'));
     const handleStartDateChange = (e) => { setStartDate(e) }
 
-    const [endDate, setEndDate] = useState(undefined); //dayjs(Date.now())
+    const [endDate, setEndDate] = useState(new Date('2031-01-01')); //dayjs(Date.now())
     const handleEndDateChange = (e) => { setEndDate(e) }
 
     //Tags: outlined (선택안함)
@@ -52,7 +53,7 @@ export default function Index(props) {
 
 	useEffect(() => {
 		getEventsAPIMethod().then((res) => {
-			console.log(res);
+			console.log('getEvent', res);
 			setEvents(res);
 		});
 	}, []);
@@ -78,9 +79,9 @@ export default function Index(props) {
                                                 label="Location"
                                                 onChange={handleChangeLocation}
                                             >
-                                                <MenuItem value={1}> Seoul </MenuItem>
-                                                <MenuItem value={2}> Gyeonggi-do</MenuItem>
-                                                <MenuItem value={3}> Incheon </MenuItem>
+                                                <MenuItem value={1}> Comming Soon </MenuItem>
+                                                {/* <MenuItem value={2}> Gyeonggi-do</MenuItem>
+                                                <MenuItem value={3}> Incheon </MenuItem> */}
                                             </Select>
                                     </FormControl>
 
@@ -171,11 +172,11 @@ export default function Index(props) {
                         </AccordionDetails>
                     </Accordion>
 				<div>
-					{events
+					{/* {events
 						.filter((item) => item.title.toLowerCase().includes(query))
 						.map((item, i) => (
 							<div key={i + 1}>
-								{/* TODO: change to dynamic route */}
+
 								<Link
 									href={{
 										pathname: "/events/details",
@@ -190,7 +191,21 @@ export default function Index(props) {
 									</a>
 								</Link>
 							</div>
-						))}
+						))} */}
+
+                    <Typography variant={"h3"} style={{alignContent: 'center', fontWeight: 'bolder'}}>Volunteer Works</Typography>
+                    <Table events={events} 
+                        keyword = {query}
+                        recruitmentStartDate = {recruitmentStartDate}
+                        recruitmentEndDate = {recruitmentEndDate}
+                        startDate = {startDate}
+                        endDate = {endDate}
+                        point = {point}
+                        animal = {animal}
+                        education = {education}
+                        environment = {environment}
+                        healthcare = {healthcare}
+                        sports = {sports}/>
 				</div>
 			</div>
 		</div>
