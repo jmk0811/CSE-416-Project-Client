@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Footer() {
 	return (
-		<div className="bg-main1 h-[100px]" style={{ color: "white"}}>
+		<div className="bg-main1 w-full h-[100px]" style={{ color: "white"}}>
 			<Box style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
 				<Box style={{ display: "flex", justifyContent: "center", flexDirection: "row", alignItems: "center" , marginTop: '20px'}}>
 					<button className="" style={{ marginRight: "20px" }}>

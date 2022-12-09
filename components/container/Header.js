@@ -64,7 +64,7 @@ export default function Header(props) {
 	return (
 		<div
 			className="z-50 w-full h-[60px] bg-main1 sticky top-0 flex flex-col px-[30px] hidescroll"
-			style={{ minWidth: "100vw", display: "flex", flexWrap: "wrap", overflow: "scroll" }}
+			style={{ minWidth: "98vw", display: "flex", flexWrap: "wrap", overflow: "scroll" }}
 		>
 			{openLogin ? <Login status={openLogin} close={handleCloseLogin} setLogin={props.setLogin} /> : null}
 			<div className="flex flex-row my-auto mx-auto w-full px-[20px]">
