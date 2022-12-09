@@ -29,9 +29,8 @@ export default function index(props) {
 
 	const handleEdit = (e) => {
 		e.preventDefault();
-		console.log(user);
 		setEditMode(false);
-		updateUserAPIMethod(user).then((res) => {
+		updateUserAPIMethod(user, user).then((res) => {
 			console.log(res);
 		});
 	};
