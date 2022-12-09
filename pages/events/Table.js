@@ -95,8 +95,8 @@ React.useEffect(() => {
         onRowClick={handleEvent}
         columns={[
           { field: 'title',  width: 200, headerName: 'Title' },
-          { field: 'recruitmentStartDate', width: 200, headerName: 'Apply Start' },
-          { field: 'recruitmentEndDate', width: 200, headerName: 'Apply End' },
+          { field: 'recruitmentStartDate', width: 200, headerName: 'Recruitment Start' },
+          { field: 'recruitmentEndDate', width: 200, headerName: 'Recruitment End' },
           { field: 'eventStartDate', width: 200, headerName: 'Work Start' },
           { field: 'eventEndDate', width: 200, headerName: 'Work End' },
           { field: 'point', headerName: 'Points' },
