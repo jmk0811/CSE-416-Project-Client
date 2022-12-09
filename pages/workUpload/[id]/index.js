@@ -9,7 +9,6 @@ import { convertToRaw } from "draft-js";
 import { createEventAPIMethod } from "../../api/client";
 import { useRouter } from "next/router";
 
-
 export default function workupload(props) {
 	const router = useRouter();
 
@@ -227,6 +226,13 @@ export default function workupload(props) {
 			return;
 		}
 	}, [recruitmentStartDate, recruitmentEndDate]);
+
+	React.useEffect(() => {
+
+		//get event from id here 
+		//put info to useState
+
+	}, []);
 
 	return (
 		<Box display="flex" flexDirection="column">
