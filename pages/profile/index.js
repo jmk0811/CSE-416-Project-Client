@@ -335,7 +335,7 @@ export default function index(props) {
 																					} else {
 																						setValue((val) => val.filter((text) => text !== item));
 
-																						setUser({ ...user, interests: [...value, value.filter((text) => text !== item)] });
+																						setUser({ ...user, interests: value.filter((text) => text !== item) });
 																					}
 																				}}
 																				componentsProps={{
