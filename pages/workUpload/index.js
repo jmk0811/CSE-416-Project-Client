@@ -7,8 +7,12 @@ import { ThemeProvider } from "@mui/styles";
 // import AsyncImageUpload from "./AsyncImageUpload";
 import { convertToRaw } from "draft-js";
 import { createEventAPIMethod } from "../../api/client";
+import { useRouter } from "next/router";
 
 export default function workupload(props) {
+	const router = useRouter();
+
+
 	function dateFormat(date) {
 		let day = date.getDate();
 		let month = date.getMonth() + 1;
@@ -191,7 +195,12 @@ export default function workupload(props) {
 			point: point,
 			timeSlots: applyDay,
 		};
-		createEventAPIMethod(event);
+		createEventAPIMethod(event).then((response) => {
+			alert('Your event has been successfully uploaded!')
+			router.push({
+				pathname: "/",
+			});
+		 })
 	};
 
 	React.useEffect(() => {
@@ -373,7 +382,7 @@ export default function workupload(props) {
 						</div>
 						<input
 							className="text-[20px] font-bold font-sans"
-							type="text"
+							type="number"
 							style={{ border: "1px solid black", borderRadius: "10px", padding: "15px", maxWidth: "100px" }}
 							value={point}
 							onChange={handlePoint}
