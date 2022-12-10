@@ -67,7 +67,7 @@ export default function Index(props) {
                         expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content">
                         <Typography style={{marginLeft: '15px', fontFamily: "'Noto Sans KR', sans-serif",}}>Advanced Search</Typography>
                         </AccordionSummary>
-                        <AccordionDetails>
+                        <AccordionDetails style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                             <Box>
                                 <div>
                                     <FormControl fullWidth style={{width: "300px", margin: '10px'}}>
@@ -160,12 +160,12 @@ export default function Index(props) {
                                 </div>
                                 <div> 
                                     <Typography style={{margin: '10px'}}>Interests</Typography>
-                                    <Stack direction="row" spacing={1}>
-                                        <Chip label="Animal" variant={animal} onClick={handleAnimal}/>
-                                        <Chip label="Education" variant={education} onClick={handleEducation}/>
-                                        <Chip label="Environment" variant={environment} onClick={handleEnviroment}/> 
-                                        <Chip label="Healthcare" variant={healthcare} onClick={handleHealthcare}/> 
-                                        <Chip label="Sports" variant={sports} onClick={handleSports}/> 
+                                    <Stack direction="row" spacing={1} style={{display: 'flex', flexWrap: 'wrap'}}>
+                                        <Chip label="Animal" variant={animal} onClick={handleAnimal} style={{marginBottom: '10px'}}/>
+                                        <Chip label="Education" variant={education} onClick={handleEducation}  style={{marginBottom: '10px'}}/>
+                                        <Chip label="Environment" variant={environment} onClick={handleEnviroment}  style={{marginBottom: '10px'}}/> 
+                                        <Chip label="Healthcare" variant={healthcare} onClick={handleHealthcare}  style={{marginBottom: '10px'}}/> 
+                                        <Chip label="Sports" variant={sports} onClick={handleSports}  style={{marginBottom: '10px'}}/> 
                                     </Stack>
                                 </div>
                             </Box>
