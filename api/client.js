@@ -159,8 +159,7 @@ export const createCertificateAPIMethod = (certificate) => {
 		method: "POST",
 		body: JSON.stringify(certificate),
 	})
-		.then(checkStatus)
-		.then(parseJSON);
+		.then(checkStatus);
 };
 
 // update certificate

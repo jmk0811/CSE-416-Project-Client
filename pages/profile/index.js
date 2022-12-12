@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
+	createCertificateAPIMethod, getCertificatesAPIMethod,
 	getEventByIdAPIMethod,
 	getEventsAPIMethod,
 	getUserByIdAPIMethod,
@@ -13,6 +14,7 @@ import ProfileCustomer from "../../components/profileCustomer";
 export default function index(props) {
 	const [page, setPage] = useState("home");
 	const [events, setEvents] = useState([]);
+	const [certificates, setCertificates] = useState([]);
 	const [user, setUser] = useState(props.currUser);
 	// const [value, setValue] = useState([]);
 	const [editMode, setEditMode] = useState(false);
@@ -54,6 +56,7 @@ export default function index(props) {
 				localStorage.setItem("page", "points");
 			},
 			certificates() {
+				loadCertificates();
 				setPage("certificates");
 				localStorage.setItem("page", "certificates");
 			},
@@ -101,6 +104,12 @@ export default function index(props) {
 		}
 	};
 
+	const loadCertificates = () => {
+		getCertificatesAPIMethod().then((res) => {
+			setCertificates(res.filter((cert) => cert.owner === props.currUser._id));
+		});
+	}
+
 	const cancelEvent = () => {
 		const temp = [...props.currUser.events];
 		temp.splice(temp.indexOf(currEvent._id), 1);
@@ -147,6 +156,20 @@ export default function index(props) {
 
 		alert("Successfully cancelled");
 	};
+
+	const approveUser = (userId) => {
+		const certificate = {
+			issueDate: new Date(),
+			owner: userId,
+			event: currEvent._id,
+			contractAddress: "",
+		}
+
+		createCertificateAPIMethod(certificate).then((res) => {
+			console.log();
+			alert("Successfully approved the user and granted a certificate");
+		});
+	}
 
 	return (
 		<div className="relative flex flex-row min-h-screen bg-bg1">
@@ -241,16 +264,21 @@ export default function index(props) {
 						<div>{currEvent?.image}</div>
 						<div className="flex flex-col mt-[30px]">
 							<div className="flex flex-row">
-								<div>Participants:</div>
+								<div className={"font-bold"}>Participants:</div>
 								<div className="ml-[10px]">{currEvent?.timeSlots.length}</div>
 							</div>
 							<div className="ml-[30px]">
 								{currEvent?.timeSlots.map((slot) => (
-									<div className="mt-[20px]">
-										<div>{slot.startTime}</div>
-										{slot.registeredUsers.map((user) => (
-											<div>{user}</div>
-										))}
+									<div className="mt-[30px]">
+										<div className={"flex flex-col"}>
+											<div className={"mr-[20px] font-semibold"}>{slot.startTime}:</div>
+											{slot.registeredUsers.map((user) => (
+												<div className={"flex flex-row"}>
+													<div className={"mr-[20px]"}>{user}</div>
+													<button className={"bg-green-500 px-[10px] py-[2px] rounded-[10px] my-auto text-white text-[14px]"} onClick={() => approveUser(user)}>Approve</button>
+												</div>
+											))}
+										</div>
 									</div>
 								))}
 							</div>
@@ -258,7 +286,21 @@ export default function index(props) {
 					</div>
 				)}
 				{page === "points" && <div className="flex flex-col" />}
-				{page === "certificates" && <div className="flex flex-col" />}
+				{page === "certificates" && <div className="flex flex-col">
+					<div className="flex flex-col">
+						<div className="font-bold text-30">My Certificates</div>
+						<div className={"mt-[30px]"}>
+							{certificates.map((cert) => (
+								<div className={"mt-[20px] flex flex-col"}>
+									<div className={"flex flex-row"}>
+										<div className={"font-bold"}>certificate id:</div>
+										<div className={"ml-[10px]"}>{cert._id}</div>
+									</div>
+								</div>
+							))}
+						</div>
+					</div>
+				</div>}
 			</div>
 		</div>
 	);
