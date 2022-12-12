@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
-	createCertificateAPIMethod,
+	createCertificateAPIMethod, getCertificatesAPIMethod,
 	getEventByIdAPIMethod,
 	getEventsAPIMethod,
 	getUserByIdAPIMethod,
@@ -14,6 +14,7 @@ import ProfileCustomer from "../../components/profileCustomer";
 export default function index(props) {
 	const [page, setPage] = useState("home");
 	const [events, setEvents] = useState([]);
+	const [certificates, setCertificates] = useState([]);
 	const [user, setUser] = useState(props.currUser);
 	// const [value, setValue] = useState([]);
 	const [editMode, setEditMode] = useState(false);
@@ -55,6 +56,7 @@ export default function index(props) {
 				localStorage.setItem("page", "points");
 			},
 			certificates() {
+				loadCertificates();
 				setPage("certificates");
 				localStorage.setItem("page", "certificates");
 			},
@@ -101,6 +103,12 @@ export default function index(props) {
 			});
 		}
 	};
+
+	const loadCertificates = () => {
+		getCertificatesAPIMethod().then((res) => {
+			setCertificates(res.filter((cert) => cert.owner === props.currUser._id));
+		});
+	}
 
 	const cancelEvent = () => {
 		const temp = [...props.currUser.events];
@@ -278,7 +286,21 @@ export default function index(props) {
 					</div>
 				)}
 				{page === "points" && <div className="flex flex-col" />}
-				{page === "certificates" && <div className="flex flex-col" />}
+				{page === "certificates" && <div className="flex flex-col">
+					<div className="flex flex-col">
+						<div className="font-bold text-30">My Certificates</div>
+						<div className={"mt-[30px]"}>
+							{certificates.map((cert) => (
+								<div className={"mt-[20px] flex flex-col"}>
+									<div className={"flex flex-row"}>
+										<div className={"font-bold"}>certificate id:</div>
+										<div className={"ml-[10px]"}>{cert._id}</div>
+									</div>
+								</div>
+							))}
+						</div>
+					</div>
+				</div>}
 			</div>
 		</div>
 	);
