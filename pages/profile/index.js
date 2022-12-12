@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
+	createCertificateAPIMethod,
 	getEventByIdAPIMethod,
 	getEventsAPIMethod,
 	getUserByIdAPIMethod,
@@ -148,6 +149,20 @@ export default function index(props) {
 		alert("Successfully cancelled");
 	};
 
+	const approveUser = (userId) => {
+		const certificate = {
+			issueDate: new Date(),
+			owner: userId,
+			event: currEvent._id,
+			contractAddress: "",
+		}
+
+		createCertificateAPIMethod(certificate).then((res) => {
+			console.log();
+			alert("Successfully approved the user and granted a certificate");
+		});
+	}
+
 	return (
 		<div className="relative flex flex-row min-h-screen bg-bg1">
 			<div className="w-[256px] pr-[20px] py-[20px]">
@@ -241,16 +256,21 @@ export default function index(props) {
 						<div>{currEvent?.image}</div>
 						<div className="flex flex-col mt-[30px]">
 							<div className="flex flex-row">
-								<div>Participants:</div>
+								<div className={"font-bold"}>Participants:</div>
 								<div className="ml-[10px]">{currEvent?.timeSlots.length}</div>
 							</div>
 							<div className="ml-[30px]">
 								{currEvent?.timeSlots.map((slot) => (
-									<div className="mt-[20px]">
-										<div>{slot.startTime}</div>
-										{slot.registeredUsers.map((user) => (
-											<div>{user}</div>
-										))}
+									<div className="mt-[30px]">
+										<div className={"flex flex-col"}>
+											<div className={"mr-[20px] font-semibold"}>{slot.startTime}:</div>
+											{slot.registeredUsers.map((user) => (
+												<div className={"flex flex-row"}>
+													<div className={"mr-[20px]"}>{user}</div>
+													<button className={"bg-green-500 px-[10px] py-[2px] rounded-[10px] my-auto text-white text-[14px]"} onClick={() => approveUser(user)}>Approve</button>
+												</div>
+											))}
+										</div>
 									</div>
 								))}
 							</div>
