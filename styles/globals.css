@@ -29,6 +29,10 @@ div[name="customerInfoFormValue"] {
 		width: 300px;
 		flex-direction: column;
 	}
+	div[name="SignUpcustomerInfoForm"] {
+		flex-direction: column;
+		width: 350px;
+	}
 	div[name="customerInfoFormValue"] > input {
 		font-size: 10px;
 	}
@@ -50,10 +54,19 @@ div[name="customerInfoFormValue"] {
 		padding: 0px;
 		width: 300px;
 	}
-	#ConfirmButton,
-	#SignupButton {
+	#ConfirmButton {
 		width: 5px;
 		font-size: 20px;
+	}
+	div[name="formSubmit"] {
+		width: 100px;
+	}
+	div[name="formSubmitContainer"] {
+		width: 100px;
+		padding: 0px;
+	}
+	#SignupButton {
+		width: 100px;
 	}
 }
 a {
