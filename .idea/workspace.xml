@@ -4,11 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe09c4a4-1171-4842-81c6-27082dd963f8" name="Changes" comment="" />
+    <list default="true" id="fe09c4a4-1171-4842-81c6-27082dd963f8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/container/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/container/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/create.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/create.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/events/Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/events/Table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/events/details/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/events/details/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/events/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/events/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/profile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/profile/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/workUpload/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/workUpload/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -42,6 +62,7 @@
       <option name="presentableId" value="Default" />
       <updated>1670525114157</updated>
       <workItem from="1670525115584" duration="136000" />
+      <workItem from="1670836185600" duration="19606000" />
     </task>
     <servers />
   </component>

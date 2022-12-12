@@ -11,38 +11,38 @@ export default function index(props) {
 
 		// TODO: remove hardcoded parts
 
-		const testTimeSlots = [
-			{
-				startTime: Temporal.PlainDateTime.from("2022-12-12T09:00:00"),
-				endTime: Temporal.PlainDateTime.from("2022-12-12T18:00:00"),
-				registerLimit: 6,
-				registeredUsers: [],
-			},
-			{
-				startTime: Temporal.PlainDateTime.from("2022-12-13T09:00:00"),
-				endTime: Temporal.PlainDateTime.from("2022-12-13T18:00:00"),
-				registerLimit: 7,
-				registeredUsers: [],
-			},
-			{
-				startTime: Temporal.PlainDateTime.from("2022-12-14T09:00:00"),
-				endTime: Temporal.PlainDateTime.from("2022-12-14T18:00:00"),
-				registerLimit: 10,
-				registeredUsers: [],
-			},
-			{
-				startTime: Temporal.PlainDateTime.from("2022-12-15T09:00:00"),
-				endTime: Temporal.PlainDateTime.from("2022-12-15T18:00:00"),
-				registerLimit: 3,
-				registeredUsers: [],
-			},
-			{
-				startTime: Temporal.PlainDateTime.from("2022-12-16T09:00:00"),
-				endTime: Temporal.PlainDateTime.from("2022-12-16T18:00:00"),
-				registerLimit: 5,
-				registeredUsers: [],
-			},
-		];
+		// const testTimeSlots = [
+		// 	{
+		// 		startTime: Temporal.PlainDateTime.from("2022-12-12T09:00:00"),
+		// 		endTime: Temporal.PlainDateTime.from("2022-12-12T18:00:00"),
+		// 		registerLimit: 6,
+		// 		registeredUsers: [],
+		// 	},
+		// 	{
+		// 		startTime: Temporal.PlainDateTime.from("2022-12-13T09:00:00"),
+		// 		endTime: Temporal.PlainDateTime.from("2022-12-13T18:00:00"),
+		// 		registerLimit: 7,
+		// 		registeredUsers: [],
+		// 	},
+		// 	{
+		// 		startTime: Temporal.PlainDateTime.from("2022-12-14T09:00:00"),
+		// 		endTime: Temporal.PlainDateTime.from("2022-12-14T18:00:00"),
+		// 		registerLimit: 10,
+		// 		registeredUsers: [],
+		// 	},
+		// 	{
+		// 		startTime: Temporal.PlainDateTime.from("2022-12-15T09:00:00"),
+		// 		endTime: Temporal.PlainDateTime.from("2022-12-15T18:00:00"),
+		// 		registerLimit: 3,
+		// 		registeredUsers: [],
+		// 	},
+		// 	{
+		// 		startTime: Temporal.PlainDateTime.from("2022-12-16T09:00:00"),
+		// 		endTime: Temporal.PlainDateTime.from("2022-12-16T18:00:00"),
+		// 		registerLimit: 5,
+		// 		registeredUsers: [],
+		// 	},
+		// ];
 
 		const event = {
 			title,

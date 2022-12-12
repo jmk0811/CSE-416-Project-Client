@@ -70,7 +70,9 @@ export default function Header(props) {
 			<div className="flex flex-row my-auto mx-auto w-full px-[20px]">
 				<Link href="/">
 					<a>
-						<div className="mr-auto my-auto font-bold text-white"> Platform Logo</div>
+						<div className="mr-auto my-auto font-bold text-white">
+							<img className={"w-[50px] h-[50px]"} src={"/asset/logo.png"} />
+						</div>
 					</a>
 				</Link>
 				{props.currUser?.type === "Organization" && (

@@ -1,18 +1,15 @@
 import React from "react";
 import { Box, Typography, Button, Stack, Chip } from "@mui/material";
-import { uploadImageToCloudinaryAPIMethod } from "../../api/client";
 import MUIRichTextEditor from "mui-rte";
 import { createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@mui/styles";
 // import AsyncImageUpload from "./AsyncImageUpload";
 import { convertToRaw } from "draft-js";
-import { createEventAPIMethod } from "../../api/client";
 import { useRouter } from "next/router";
-
+import { createEventAPIMethod, uploadImageToCloudinaryAPIMethod } from "../../api/client";
 
 export default function workupload(props) {
 	const router = useRouter();
-
 
 	function dateFormat(date) {
 		let day = date.getDate();
@@ -131,7 +128,6 @@ export default function workupload(props) {
 
 	const [fileURL, setfileURL] = React.useState("");
 	const handleFiile = (e) => {
-
 		if (e.target.files && e.target.files[0]) {
 			const selectedFile = e.target.files[0];
 
@@ -173,7 +169,7 @@ export default function workupload(props) {
 	};
 
 	const handleSubmit = () => {
-		//api: createEventAPIMethod
+		// api: createEventAPIMethod
 		const interest = [];
 		if (animal == "") interest.push("animal");
 		if (education == "") interest.push("education");
@@ -181,27 +177,62 @@ export default function workupload(props) {
 		if (sports == "") interest.push("sports");
 		if (healthcare == "") interest.push("healthcare");
 
+		console.log(applyDay);
+
+		let temp = [];
+
+		applyDay.map((item) => {
+			const hr = item.time.split(":")[0];
+			const min = item.time.split(":")[1];
+			let tempDate = new Date(item.date);
+			tempDate.setHours(hr);
+			tempDate.setMinutes(min);
+			temp = [...temp, { startTime: tempDate, endTime: "", registerLimit: item.occupy, registeredUsers: [] }];
+		});
+
 		const event = {
-			title: title,
+			title,
 			description: detail,
 			holder: props.currUser._id,
-			recruitmentStartDate: recruitmentStartDate,
-			recruitmentEndDate: recruitmentEndDate,
+			recruitmentStartDate,
+			recruitmentEndDate,
 			eventStartDate: startDate,
 			eventEndDate: endDate,
 			thumbnail: fileURL,
 			image: fileURL,
-			address: address,
+			address,
 			interests: interest,
-			point: point,
-			timeSlots: applyDay,
+			point,
+			timeSlots: temp,
 		};
-		createEventAPIMethod(event).then((response) => {
-			alert('Your event has been successfully uploaded!')
-			router.push({
-				pathname: "/",
-			});
-		 })
+
+		createEventAPIMethod(event).then((res) => {
+			console.log(res);
+
+			let tempEvents = [...props.currUser.events];
+			tempEvents.push();
+
+			// const newUser = {
+			// 	name: props.currUser.name,
+			// 	email: props.currUser.email,
+			// 	password: props.currUser.password,
+			// 	type: props.currUser.type,
+			// 	address1: props.currUser.address1,
+			// 	address2: props.currUser.address2,
+			// 	profileUrl: props.currUser.profileUrl,
+			// 	gender: props.currUser.gender,
+			// 	dateOfBirth: props.currUser.dateOfBirth,
+			// 	phoneNumber: props.currUser.phoneNumber,
+			// 	events: [...props.currUser.events, eventId],
+			// };
+
+			//TODO: add event id to current org user
+
+			alert("Your event has been successfully uploaded!");
+			// router.push({
+			// 	pathname: "/",
+			// });
+		});
 	};
 
 	React.useEffect(() => {
@@ -224,7 +255,6 @@ export default function workupload(props) {
 		if (daysBetween <= 0) {
 			alert("please make the start date before the end date");
 			setRecruitmentEndDate(sd);
-			return;
 		}
 	}, [recruitmentStartDate, recruitmentEndDate]);
 

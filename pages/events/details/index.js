@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Typography, TextField, Button, Grid, Paper, Checkbox, FormControlLabel } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useRouter } from "next/router";
-import {useEffect, useState} from "react";
-import {getEventByIdAPIMethod, updateEventAPIMethod, updateUserAPIMethod} from "../../../api/client";
+import { getEventByIdAPIMethod, updateEventAPIMethod, updateUserAPIMethod } from "../../../api/client";
 
 export default function Index(props) {
 	const [data, setDate] = useState();
 	const [eventId, setEventId] = useState(props.query.query);
 	const [timeSlots, setTimeSlots] = useState([]);
+	const router = useRouter();
 
 	useEffect(() => {
 		getEventByIdAPIMethod(props.query.query).then((res) => {
+			console.log(res);
 			setEventId(props.query.query);
 			setDate(res);
 			setTimeSlots(res.timeSlots);
@@ -77,7 +78,7 @@ export default function Index(props) {
 		if (isChecked.indexOf(true) === -1) {
 			return alert("Please select the time slot");
 		}
-		//TODO
+		// TODO
 		// 완료 페이지로 이동
 		// 서버에서 추가로 확인해야할 것 이 있어서 추후에 설명 드리겠습니다 use Queue
 
@@ -93,7 +94,7 @@ export default function Index(props) {
 			dateOfBirth: props.currUser.dateOfBirth,
 			phoneNumber: props.currUser.phoneNumber,
 			events: [...props.currUser.events, eventId],
-		}
+		};
 
 		updateUserAPIMethod(props.currUser, newUser).then((res) => {
 			console.log(res);
@@ -115,7 +116,7 @@ export default function Index(props) {
 			address: data?.address,
 			point: data?.point,
 			timeSlots: [...tempTimeSlots],
-		}
+		};
 
 		updateEventAPIMethod(data, newEvent).then((res) => {
 			console.log(res);
@@ -148,16 +149,17 @@ export default function Index(props) {
 		<Box display="flex" flexDirection="column">
 			<Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" alignSelf="center" width="md">
 				<Box display="flex" flexDirection="column" alignItems="left" justifyContent="center" maxWidth="md" width="md" p={{ xs: 1, sm: 2, md: 0 }}>
-					<div className={"flex flex-col"}>
-						<div className={"mx-auto text-28 font-bold my-[50px]"}>{data?.title}</div>
-						<div className={"mx-auto text-20 my-[20px] mb-[100px]"}>{data?.description}</div>
+					<div className="flex flex-col">
+						<div className="mx-auto text-28 font-bold my-[50px]">{data?.title}</div>
+						<div className="mx-auto text-20 my-[20px] mb-[100px]">{data?.description}</div>
+						<div className="">{data?.image && <img className="w-full h-full object-cover" src={data?.image} />}</div>
 					</div>
 					<Box width="80vw" maxWidth="md" height="40vh" maxHeight="75vh" overflow="scroll" style={{ marginTop: "20px" }}>
 						<Box sx={{ flexGrow: 1 }}>
 							<Grid container spacing={1} style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px" }}>
 								{timeSlots.map((item, i) => (
 									<Grid item xs={5} sm={1.7} md={0}>
-										{item.registerLimit > item.registeredUsers.length ? (
+										{item.registerLimit > item.registeredUsers?.length ? (
 											<Item style={dateStyle}>
 												<FormControlLabel
 													key={i + item.name}
@@ -239,6 +241,7 @@ export default function Index(props) {
 	);
 
 	function formatDate(input) {
+		console.log(input);
 		const date = new Date(input.startTime);
 		const full = input.registerLimit;
 		const occupy = input.registeredUsers.length;
