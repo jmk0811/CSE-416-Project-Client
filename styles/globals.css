@@ -14,6 +14,48 @@ body {
 .form-control {
 	background-color: white;
 }
+div[name="customerInfoFormValue"] {
+	width: 30%;
+	margin-left: 80px;
+}
+@media screen and (max-width: 600px) {
+	label[name="customerInfoFormLabel"] {
+		height: 40px;
+		width: 100%;
+		margin-right: 0px;
+	}
+	div[name="customerInfoFormValue"] {
+		height: 100px;
+		width: 300px;
+		flex-direction: column;
+	}
+	div[name="customerInfoFormValue"] > input {
+		font-size: 10px;
+	}
+
+	div[name="customerInfoForm"] > input,
+	select {
+		margin: 10px;
+	}
+	div[name="customerInfoForm"] {
+		flex-direction: column;
+		width: 200px;
+		margin-bottom: 10px;
+	}
+	.react-tel-input {
+		margin: 10px;
+		width: 200px;
+	}
+	button[name="formSubmit"] {
+		padding: 0px;
+		width: 300px;
+	}
+	#ConfirmButton,
+	#SignupButton {
+		width: 5px;
+		font-size: 20px;
+	}
+}
 a {
 	color: inherit;
 	text-decoration: none;

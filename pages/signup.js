@@ -136,14 +136,15 @@ export default function SignUp(props) {
 							<h2 className="font-bold font-sans mb-[20px]">Sign up</h2>
 							<form method="POST" action="#">
 								<div>
-									<div className="flex form-group items-center jusitfy-center h-100% col-md-6 border m-[3px]">
+									<div name="customerInfoForm" className="flex form-group items-center jusitfy-center h-100% col-md-6 border m-[3px]">
 										<label
+											name="customerInfoFormLabel"
 											for="image"
 											className="flex justify-center border items-center w-[120px] h-[70px] font-bold text-[15px] border bg-slate-200 mr-[10px]"
 										>
 											Profile Image
 										</label>
-										<div className="flex flex-row justify-center items-center">
+										<div name="customerInfoFormValue" className="flex flex-row justify-center items-center">
 											<img className="avatar" src={profileUrl} style={{ width: "70px", borderRadius: "50%" }} />
 											<input
 												id="file-upload"
@@ -158,8 +159,12 @@ export default function SignUp(props) {
 											/>
 										</div>
 									</div>
-									<div className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
-										<label for="iName " className="flex justify-center items-center w-[120px] h-[70px] font-bold text-[15px] border bg-slate-200 mr-[10px]">
+									<div name="customerInfoForm" className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
+										<label
+											name="customerInfoFormLabel"
+											for="iName "
+											className="flex justify-center items-center w-[120px] h-[70px] font-bold text-[15px] border bg-slate-200 mr-[10px]"
+										>
 											Name*
 										</label>
 
@@ -174,8 +179,12 @@ export default function SignUp(props) {
 											onChange={handleChange("name")}
 										/>
 									</div>
-									<div className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
-										<label for="Email" className="flex justify-center items-center w-[120px] h-[70px] font-bold text-[15px] border bg-slate-200 mr-[10px]">
+									<div name="customerInfoForm" className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
+										<label
+											name="customerInfoFormLabel"
+											for="Email"
+											className="flex justify-center items-center w-[120px] h-[70px] font-bold text-[15px] border bg-slate-200 mr-[10px]"
+										>
 											Email*{" "}
 										</label>
 
@@ -190,8 +199,9 @@ export default function SignUp(props) {
 										/>
 									</div>
 
-									<div className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
+									<div name="customerInfoForm" className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
 										<label
+											name="customerInfoFormLabel"
 											for="userPassword"
 											className="flex justify-center items-center w-[120px] h-[70px] font-bold text-[15px] border bg-slate-200 mr-[10px]"
 										>
@@ -207,8 +217,12 @@ export default function SignUp(props) {
 											required
 										/>
 									</div>
-									<div className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
-										<label for="userGender" className="flex justify-center items-center w-[120px] h-[70px] font-bold text-[15px] border bg-slate-200 mr-[10px]">
+									<div name="customerInfoForm" className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
+										<label
+											name="customerInfoFormLabel"
+											for="userGender"
+											className="flex justify-center items-center w-[120px] h-[70px] font-bold text-[15px] border bg-slate-200 mr-[10px]"
+										>
 											Gender
 										</label>
 
@@ -219,8 +233,12 @@ export default function SignUp(props) {
 											<option value="female">Female</option>
 										</select>
 									</div>
-									<div className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
-										<label for="userType" className="flex justify-center items-center w-[120px] h-[70px] font-bold text-[15px] border bg-slate-200 mr-[10px]">
+									<div name="customerInfoForm" className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
+										<label
+											name="customerInfoFormLabel"
+											for="userType"
+											className="flex justify-center items-center w-[120px] h-[70px] font-bold text-[15px] border bg-slate-200 mr-[10px]"
+										>
 											Type*
 										</label>
 
@@ -231,8 +249,9 @@ export default function SignUp(props) {
 											<option value="Organization">Organization</option>
 										</select>
 									</div>
-									<div className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
+									<div name="customerInfoForm" className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
 										<label
+											name="customerInfoFormLabel"
 											for="userDateOfBirth"
 											className="flex justify-center items-center w-[120px] h-[70px] font-bold text-[15px] border bg-slate-200 mr-[10px]"
 										>
@@ -248,8 +267,9 @@ export default function SignUp(props) {
 											onChange={handleChange("DOB")}
 										/>
 									</div>
-									<div className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
+									<div name="customerInfoForm" className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
 										<label
+											name="customerInfoFormLabel"
 											for="userOhoneNumber"
 											className="flex justify-center items-center w-[120px] h-[70px] font-bold text-[15px] border bg-slate-200 mr-[10px]"
 										>
@@ -265,8 +285,9 @@ export default function SignUp(props) {
 										/>
 									</div>
 
-									<div className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
+									<div name="customerInfoForm" className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
 										<label
+											name="customerInfoFormLabel"
 											for="userInterest"
 											className="flex justify-center items-center w-[120px] h-100% font-bold text-[15px] border bg-slate-200 mr-[10px]"
 											style={{ height: "16vh" }}
@@ -278,7 +299,7 @@ export default function SignUp(props) {
 										<Sheet
 											variant="outlined"
 											sx={{
-												width: 360,
+												width: 250,
 												p: 2,
 												borderRadius: "sm",
 												borderColor: "#CACACA",
@@ -340,10 +361,10 @@ export default function SignUp(props) {
 										</Sheet>
 									</div>
 								</div>
-								<div className="flex flex-col items-center w-full justify-center p-[30px]">
+								<div name="formSubmit" className="flex flex-col items-center w-full justify-center p-[30px]">
 									<div className="bg-[#4EA1D3] w-full rounded">
-										<button onClick={testRegister} type="submit" className="w-full">
-											<div className="w-[400px] text-[25px] font-sans text-white text-center text-center decoration-8" style={{ margin: "auto" }}>
+										<button id="SignupButton" onClick={testRegister} type="submit" className="flex w-full">
+											<div className=" text-[25px] font-sans text-white text-center text-center decoration-8" style={{ margin: "auto" }}>
 												Create an Account
 											</div>
 										</button>
