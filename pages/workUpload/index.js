@@ -267,7 +267,7 @@ export default function workupload(props) {
 							Title
 						</div>
 						<input
-							className="text-[25px] font-bold font-sans"
+							className="text-[25px] font-bold font-sans bg-white"
 							type="text"
 							style={{ border: "1px solid black", borderRadius: "10px", padding: "15px", width: "1000px", maxWidth: "70vw" }}
 							value={title}
@@ -279,7 +279,7 @@ export default function workupload(props) {
 						<div className="text-[25px] font-bold font-sans" style={{ display: "flex", justifyContent: "center", alignItems: "center", margin: "10px" }}>
 							Recruitment Period
 						</div>
-						<input className="text-[25px] font-sans" type="date" value={recruitmentStartDate} onChange={handleRecruitmentStartDate} />
+						<input className="text-[25px] font-sans bg-gray-300" type="date" value={recruitmentStartDate} onChange={handleRecruitmentStartDate} />
 						<div
 							className="text-[25px] font-sans"
 							style={{ display: "flex", justifyContent: "center", alignItems: "center", marginRight: "10px", marginLeft: "10px" }}
@@ -287,14 +287,14 @@ export default function workupload(props) {
 							{" "}
 							~{" "}
 						</div>
-						<input className="text-[25px] font-sans" type="date" value={recruitmentEndDate} onChange={handleRecruitmentEndDate} />
+						<input className="text-[25px] font-sans bg-gray-300" type="date" value={recruitmentEndDate} onChange={handleRecruitmentEndDate} />
 					</div>
 
 					<div style={{ display: "flex", flexDirection: "row", justifyContent: "left", maxWidth: "90vw", marginBottom: "20px" }}>
 						<div className="text-[25px] font-bold font-sans" style={{ display: "flex", justifyContent: "center", alignItems: "center", margin: "10px" }}>
 							Volunteering Period
 						</div>
-						<input className="text-[25px] font-sans" type="date" value={startDate} onChange={handleStartDate} />
+						<input className="text-[25px] font-sans bg-gray-300" type="date" value={startDate} onChange={handleStartDate} />
 						<div
 							className="text-[25px] font-sans"
 							style={{ display: "flex", justifyContent: "center", alignItems: "center", marginRight: "10px", marginLeft: "10px" }}
@@ -302,7 +302,7 @@ export default function workupload(props) {
 							{" "}
 							~{" "}
 						</div>
-						<input className="text-[25px] font-sans" type="date" value={endDate} onChange={handleEndDate} />
+						<input className="text-[25px] font-sans bg-gray-300" type="date" value={endDate} onChange={handleEndDate} />
 					</div>
 
 					<div style={{ display: "flex", flexDirection: "row", justifyContent: "left", maxWidth: "90vw", marginTop: "20px", marginBottom: "20px" }}>
@@ -310,7 +310,7 @@ export default function workupload(props) {
 							Address
 						</div>
 						<input
-							className="text-[20px] font-bold font-sans"
+							className="text-[20px] font-bold font-sans bg-white"
 							type="text"
 							style={{ border: "1px solid black", borderRadius: "10px", padding: "15px", width: "1000px", maxWidth: "65vw" }}
 							value={address}
@@ -360,15 +360,17 @@ export default function workupload(props) {
 								onChange={(event) => handleFormDate(event, i)}
 							>
 								<input
+									className={"bg-gray-300"}
 									id="date"
 									type="date"
 									value={dateFormat2(new Date(arr.date), i)}
 									style={{ display: "flex", justifyContent: "center", alignSelf: "center", marginRight: "10px" }}
 								/>
-								<input id="time" type="time" value={arr.time} style={{ display: "flex", justifyContent: "center", alignSelf: "center", marginRight: "10px" }} />
+								<input className={"bg-gray-300"} id="time" type="time" value={arr.time} style={{ display: "flex", justifyContent: "center", alignSelf: "center", marginRight: "10px" }} />
 								<div style={{ display: "flex", flexDirection: "row", justifyContent: "left", margin: "10px" }}>
 									<Typography style={{ marginRight: "10px" }}>Occupy:</Typography>
 									<input
+										className={"bg-gray-300"}
 										id="occupy"
 										type="number"
 										value={arr.occupy}
@@ -387,6 +389,7 @@ export default function workupload(props) {
 								<div style={{ display: "flex", flexDirection: "row", justifyContent: "left", margin: "10px" }}>
 									<Typography style={{ marginRight: "10px" }}>Registered Users:</Typography>
 									<input
+										className={"bg-gray-300"}
 										id="occupy"
 										type="number"
 										value={0}
@@ -412,7 +415,7 @@ export default function workupload(props) {
 							Points
 						</div>
 						<input
-							className="text-[20px] font-bold font-sans"
+							className="text-[20px] font-bold font-sans bg-gray-300"
 							type="number"
 							style={{ border: "1px solid black", borderRadius: "10px", padding: "15px", maxWidth: "100px" }}
 							value={point}
