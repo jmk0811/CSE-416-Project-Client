@@ -11,7 +11,7 @@ export default function Home(props) {
 				<div className="py-[60px]">
 					<div className="flex flex-row px-[30px]">
 						<div className="font-bold text-30 my-auto mb-[10px] mr-auto">Categories</div>
-						<Link href="/search/[id]">
+						<Link href="/events">
 							<a className="my-auto">
 								<div className="text-16 ml-auto underline">see all</div>
 							</a>

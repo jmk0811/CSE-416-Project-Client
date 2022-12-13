@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { createCertificateAPIMethod, getCertificatesAPIMethod, getEventByIdAPIMethod, updateEventAPIMethod, updateUserAPIMethod } from "../../api/client";
 import ProfileCustomer from "../../components/profileCustomer";
@@ -17,6 +17,7 @@ export default function index(props) {
 		const page_loc = localStorage.getItem("page");
 		if (page_loc) {
 			setPage(page_loc);
+			//handlePageChange(page_loc);
 		} else {
 			localStorage.setItem("page", "home");
 			setPage("home");
@@ -69,37 +70,41 @@ export default function index(props) {
 		const tempEvents = [];
 
 		// TODO: refactor
-		if (props.currUser.type === "User") {
-			Promise.all(
-				props.currUser.events.map(async (id) => {
-					console.log(id);
-					const res = await getEventByIdAPIMethod(id);
-					console.log(res);
-					tempEvents.push(res);
-				}),
-			).then(() => {
-				console.log(tempEvents);
-				setEvents(tempEvents);
-			});
+		if (props.currUser?.type === "User") {
+			if (props.currUser?.events !== undefined) {
+				Promise.all(
+					props.currUser?.events?.map(async (id) => {
+						console.log(id);
+						const res = await getEventByIdAPIMethod(id);
+						console.log(res);
+						tempEvents.push(res);
+					}),
+				).then(() => {
+					console.log(tempEvents);
+					setEvents(tempEvents);
+				});
+			}
 		} else {
 			// TODO: get participants list
-			Promise.all(
-				props.currUser.events.map(async (id) => {
-					console.log(id);
-					const res = await getEventByIdAPIMethod(id);
-					console.log(res);
-					tempEvents.push(res);
-				}),
-			).then(() => {
-				console.log(tempEvents);
-				setEvents(tempEvents);
-			});
+			if (props.currUser?.events !== undefined) {
+				Promise.all(
+					props.currUser?.events?.map(async (id) => {
+						console.log(id);
+						const res = await getEventByIdAPIMethod(id);
+						console.log(res);
+						tempEvents.push(res);
+					}),
+				).then(() => {
+					console.log(tempEvents);
+					setEvents(tempEvents);
+				});
+			}
 		}
 	};
 
 	const loadCertificates = () => {
 		getCertificatesAPIMethod().then((res) => {
-			setCertificates(res.filter((cert) => cert.owner === props.currUser._id));
+			setCertificates(res.filter((cert) => cert.owner === props.currUser?._id));
 		});
 	};
 
@@ -163,6 +168,40 @@ export default function index(props) {
 			alert("Successfully approved the user and granted a certificate");
 		});
 	};
+
+	const formatDate = (input) => {
+		console.log(input);
+		const date = new Date(input.startTime);
+		const occupy = input.registerLimit;
+		const registered = input.registeredUsers.length;
+		if (date.getMinutes() < 10)
+			return (
+				<div>
+					<div>
+						{" "}
+						{date.getMonth() + 1}/{date.getDate()}{" "}
+					</div>
+					<div>
+						{" "}
+						{date.getHours()}:0{date.getMinutes()}{" "}
+					</div>
+					<div> {occupy - registered} slots available </div>
+				</div>
+			);
+		return (
+			<div>
+				<div>
+					{" "}
+					{date.getMonth() + 1}/{date.getDate()}{" "}
+				</div>
+				<div>
+					{" "}
+					{date.getHours()}:{date.getMinutes()}{" "}
+				</div>
+				<div> {occupy - registered} slots available </div>
+			</div>
+		);
+	}
 
 	return (
 		<div className="relative flex flex-row min-h-screen bg-bg1">
@@ -241,7 +280,7 @@ export default function index(props) {
 									<div className="flex flex-col">
 										<div className="flex flex-row gap-x-[10px]">
 											<div>Starting date: </div>
-											<div>{item.startTime}</div>
+											<div>{(new Date(item.startTime)).toLocaleDateString()}</div>
 										</div>
 										{/* <div className={"flex flex-row"}> */}
 										{/*	<div>Ending date: </div> */}
@@ -271,7 +310,7 @@ export default function index(props) {
 								{currEvent?.timeSlots.map((slot) => (
 									<div className="mt-[30px]">
 										<div className="flex flex-col">
-											<div className="mr-[20px] font-semibold">{slot.startTime}:</div>
+											<div className="mr-[20px] font-semibold">{(new Date(slot.startTime)).toLocaleDateString()}:</div>
 											{slot.registeredUsers.map((user) => (
 												<div className="flex flex-row">
 													<div className="mr-[20px]">{user}</div>
@@ -287,7 +326,7 @@ export default function index(props) {
 						</div>
 					</div>
 				)}
-				{page === "points" && <div className="flex flex-col" />}
+				{/* {page === "points" && <div className="flex flex-col" />} */}
 				{page === "certificates" && (
 					<div className="flex flex-col">
 						<div className="flex flex-col">
