@@ -246,12 +246,13 @@ export default function Index(props) {
 									display: "flex",
 									justifyContent: "center",
 									alignSelf: "center",
-									backgroundColor: "skyblue",
+									backgroundColor: props.currUser.type == "Organization" ? "grey" : "skyblue",
 									marginTop: "20px",
 									marginBotton: "20px",
 									maxWidth: "100px",
 								}}
 								onClick={handleApply}
+								disabled={props.currUser.type == "Organization" ? true : false}
 							>
 								<Typography
 									variant={{ md: "h5", sm: "body1" }}
