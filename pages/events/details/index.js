@@ -236,7 +236,7 @@ export default function Index(props) {
 						<div style={{ display: "flex", flexDirection: "column" }}>
 							<Box style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
 								<Checkbox checked={term} onChange={handleTermClick} />{" "}
-								<Typography>Check the box to indicate that you have read and agree to the terms presented by Nanum</Typography>
+								<Typography>Check the box to indicate that you have read and agreed to the terms presented by Nanum</Typography>
 							</Box>
 
 							<Button
@@ -284,7 +284,7 @@ export default function Index(props) {
 						{" "}
 						{date.getHours()}:0{date.getMinutes()}{" "}
 					</div>
-					<div> {occupy - registered} slots available </div>
+						{occupy-registered == 1 ? <div> {occupy - registered} slot available </div> : <div> {occupy - registered} slots available </div> }
 				</div>
 			);
 		return (
@@ -297,7 +297,7 @@ export default function Index(props) {
 					{" "}
 					{date.getHours()}:{date.getMinutes()}{" "}
 				</div>
-				<div> {occupy - registered} slots available </div>
+					{occupy-registered == 1 ? <div> {occupy - registered} slot available </div> : <div> {occupy - registered} slots available </div> }
 			</div>
 		);
 	}
