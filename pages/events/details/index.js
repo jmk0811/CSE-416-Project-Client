@@ -101,7 +101,11 @@ export default function Index(props) {
 		});
 
 		const tempTimeSlots = [...timeSlots];
-		tempTimeSlots[isChecked.indexOf(true)].registeredUsers.push(props.currUser._id);
+		isChecked.map((bool, i) => {
+			if (bool) {
+				tempTimeSlots[i].registeredUsers.push(props.currUser._id);
+			}
+		});
 
 		const newEvent = {
 			title: data?.title,
@@ -282,20 +286,19 @@ export default function Index(props) {
 					<div> {occupy - registered} slots available </div>
 				</div>
 			);
-		else
-			return (
+		return (
+			<div>
 				<div>
-					<div>
-						{" "}
-						{date.getMonth() + 1}/{date.getDate()}{" "}
-					</div>
-					<div>
-						{" "}
-						{date.getHours()}:{date.getMinutes()}{" "}
-					</div>
-					<div> {occupy - registered} slots available </div>
+					{" "}
+					{date.getMonth() + 1}/{date.getDate()}{" "}
 				</div>
-			);
+				<div>
+					{" "}
+					{date.getHours()}:{date.getMinutes()}{" "}
+				</div>
+				<div> {occupy - registered} slots available </div>
+			</div>
+		);
 	}
 }
 
