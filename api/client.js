@@ -106,7 +106,8 @@ export const createEventAPIMethod = (event) => {
 		method: "POST",
 		body: JSON.stringify(event),
 	})
-		.then(checkStatus);
+		.then(checkStatus)
+		.then(parseJSON);
 };
 
 // update event

@@ -208,7 +208,7 @@ export default function workupload(props) {
 		};
 
 		createEventAPIMethod(event).then((res) => {
-			console.log(res);
+			console.log('res', res);
 
 			let tempEvents = [...props.currUser.events];
 			tempEvents.push();
