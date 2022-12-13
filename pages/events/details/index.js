@@ -285,20 +285,19 @@ export default function Index(props) {
 					<div> {occupy - registered} slots available </div>
 				</div>
 			);
-		else
-			return (
+		return (
+			<div>
 				<div>
-					<div>
-						{" "}
-						{date.getMonth() + 1}/{date.getDate()}{" "}
-					</div>
-					<div>
-						{" "}
-						{date.getHours()}:{date.getMinutes()}{" "}
-					</div>
-					<div> {occupy - registered} slots available </div>
+					{" "}
+					{date.getMonth() + 1}/{date.getDate()}{" "}
 				</div>
-			);
+				<div>
+					{" "}
+					{date.getHours()}:{date.getMinutes()}{" "}
+				</div>
+				<div> {occupy - registered} slots available </div>
+			</div>
+		);
 	}
 }
 
