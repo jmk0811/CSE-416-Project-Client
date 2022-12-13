@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { createCertificateAPIMethod, getCertificatesAPIMethod, getEventByIdAPIMethod, updateEventAPIMethod, updateUserAPIMethod } from "../../api/client";
 import ProfileCustomer from "../../components/profileCustomer";
+import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 
 export default function index(props) {
 	const [page, setPage] = useState("home");
@@ -48,6 +49,7 @@ export default function index(props) {
 				localStorage.setItem("page", "points");
 			},
 			certificates() {
+				loadEvents();
 				loadCertificates();
 				setPage("certificates");
 				localStorage.setItem("page", "certificates");
@@ -285,10 +287,22 @@ export default function index(props) {
 							<div className="font-bold text-30">My Certificates</div>
 							<div className="mt-[30px]">
 								{certificates.map((cert) => (
-									<div className="mt-[20px] flex flex-col">
+									<div className="mt-[20px] flex flex-col w-[400px] h-[200px] rounded-[10px] px-[20px] py-[20px] bg-main2">
+										<div className={"mx-auto font-bold mb-[20px]"}>Completion Certificate</div>
 										<div className="flex flex-row">
-											<div className="font-bold">certificate id:</div>
+											<div className="font-bold">Certificate ID:</div>
 											<div className="ml-[10px]">{cert._id}</div>
+										</div>
+										<div className={"flex flex-row"}>
+											<div className="font-bold">Event name:</div>
+											<div className="ml-[10px]">{events.filter((e) => e._id === cert.event)[0]?.title}</div>
+										</div>
+										<div className={"flex flex-row"}>
+											<div className="font-bold">Owner:</div>
+											<div className="ml-[10px]">Me</div>
+										</div>
+										<div className={"mt-auto ml-auto scale-[1.5]"}>
+											<WorkspacePremiumIcon />
 										</div>
 									</div>
 								))}
