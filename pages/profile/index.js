@@ -17,6 +17,7 @@ export default function index(props) {
 		const page_loc = localStorage.getItem("page");
 		if (page_loc) {
 			setPage(page_loc);
+			handlePageChange(page_loc);
 		} else {
 			localStorage.setItem("page", "home");
 			setPage("home");
@@ -69,37 +70,41 @@ export default function index(props) {
 		const tempEvents = [];
 
 		// TODO: refactor
-		if (props.currUser.type === "User") {
-			Promise.all(
-				props.currUser.events.map(async (id) => {
-					console.log(id);
-					const res = await getEventByIdAPIMethod(id);
-					console.log(res);
-					tempEvents.push(res);
-				}),
-			).then(() => {
-				console.log(tempEvents);
-				setEvents(tempEvents);
-			});
+		if (props.currUser?.type === "User") {
+			if (props.currUser?.events !== undefined) {
+				Promise.all(
+					props.currUser?.events?.map(async (id) => {
+						console.log(id);
+						const res = await getEventByIdAPIMethod(id);
+						console.log(res);
+						tempEvents.push(res);
+					}),
+				).then(() => {
+					console.log(tempEvents);
+					setEvents(tempEvents);
+				});
+			}
 		} else {
 			// TODO: get participants list
-			Promise.all(
-				props.currUser.events.map(async (id) => {
-					console.log(id);
-					const res = await getEventByIdAPIMethod(id);
-					console.log(res);
-					tempEvents.push(res);
-				}),
-			).then(() => {
-				console.log(tempEvents);
-				setEvents(tempEvents);
-			});
+			if (props.currUser?.events !== undefined) {
+				Promise.all(
+					props.currUser?.events?.map(async (id) => {
+						console.log(id);
+						const res = await getEventByIdAPIMethod(id);
+						console.log(res);
+						tempEvents.push(res);
+					}),
+				).then(() => {
+					console.log(tempEvents);
+					setEvents(tempEvents);
+				});
+			}
 		}
 	};
 
 	const loadCertificates = () => {
 		getCertificatesAPIMethod().then((res) => {
-			setCertificates(res.filter((cert) => cert.owner === props.currUser._id));
+			setCertificates(res.filter((cert) => cert.owner === props.currUser?._id));
 		});
 	};
 
