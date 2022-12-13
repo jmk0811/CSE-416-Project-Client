@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { createCertificateAPIMethod, getCertificatesAPIMethod, getEventByIdAPIMethod, updateEventAPIMethod, updateUserAPIMethod } from "../../api/client";
 import ProfileCustomer from "../../components/profileCustomer";
@@ -10,7 +10,6 @@ export default function index(props) {
 	const [certificates, setCertificates] = useState([]);
 	const [user, setUser] = useState(props.currUser);
 	// const [value, setValue] = useState([]);
-	var today = new Date();
 	const [editMode, setEditMode] = useState(false);
 	const [currEvent, setCurrEvent] = useState();
 
@@ -18,7 +17,7 @@ export default function index(props) {
 		const page_loc = localStorage.getItem("page");
 		if (page_loc) {
 			setPage(page_loc);
-			handlePageChange(page_loc);
+			//handlePageChange(page_loc);
 		} else {
 			localStorage.setItem("page", "home");
 			setPage("home");
@@ -170,6 +169,40 @@ export default function index(props) {
 		});
 	};
 
+	const formatDate = (input) => {
+		console.log(input);
+		const date = new Date(input.startTime);
+		const occupy = input.registerLimit;
+		const registered = input.registeredUsers.length;
+		if (date.getMinutes() < 10)
+			return (
+				<div>
+					<div>
+						{" "}
+						{date.getMonth() + 1}/{date.getDate()}{" "}
+					</div>
+					<div>
+						{" "}
+						{date.getHours()}:0{date.getMinutes()}{" "}
+					</div>
+					<div> {occupy - registered} slots available </div>
+				</div>
+			);
+		return (
+			<div>
+				<div>
+					{" "}
+					{date.getMonth() + 1}/{date.getDate()}{" "}
+				</div>
+				<div>
+					{" "}
+					{date.getHours()}:{date.getMinutes()}{" "}
+				</div>
+				<div> {occupy - registered} slots available </div>
+			</div>
+		);
+	}
+
 	return (
 		<div className="relative flex flex-row min-h-screen bg-bg1">
 			<div className="w-[256px] pr-[20px] py-[20px]">
@@ -247,7 +280,7 @@ export default function index(props) {
 									<div className="flex flex-col">
 										<div className="flex flex-row gap-x-[10px]">
 											<div>Starting date: </div>
-											<div>{item.startTime}</div>
+											<div>{(new Date(item.startTime)).toLocaleDateString()}</div>
 										</div>
 										{/* <div className={"flex flex-row"}> */}
 										{/*	<div>Ending date: </div> */}
@@ -256,14 +289,9 @@ export default function index(props) {
 									</div>
 								))}
 						</div>
-
-						{today < new Date(currEvent?.eventStartDate) ? (
-							<button className="w-[100px] h-[40px] rounded-[10px] bg-red-600 text-white mt-[200px]" onClick={cancelEvent}>
-								Cancel
-							</button>
-						) : (
-							<div></div>
-						)}
+						<button className="w-[100px] h-[40px] rounded-[10px] bg-red-600 text-white mt-[200px]" onClick={cancelEvent}>
+							Cancel
+						</button>
 					</div>
 				)}
 				{page === "eventDetails" && props.currUser.type === "Organization" && (
@@ -282,7 +310,7 @@ export default function index(props) {
 								{currEvent?.timeSlots.map((slot) => (
 									<div className="mt-[30px]">
 										<div className="flex flex-col">
-											<div className="mr-[20px] font-semibold">{slot.startTime}:</div>
+											<div className="mr-[20px] font-semibold">{(new Date(slot.startTime)).toLocaleDateString()}:</div>
 											{slot.registeredUsers.map((user) => (
 												<div className="flex flex-row">
 													<div className="mr-[20px]">{user}</div>
