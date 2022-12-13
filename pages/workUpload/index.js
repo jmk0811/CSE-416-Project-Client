@@ -6,7 +6,7 @@ import { ThemeProvider } from "@mui/styles";
 // import AsyncImageUpload from "./AsyncImageUpload";
 import { convertToRaw } from "draft-js";
 import { useRouter } from "next/router";
-import { createEventAPIMethod, uploadImageToCloudinaryAPIMethod } from "../../api/client";
+import {createEventAPIMethod, updateUserAPIMethod, uploadImageToCloudinaryAPIMethod} from "../../api/client";
 
 export default function workupload(props) {
 	const router = useRouter();
@@ -210,29 +210,28 @@ export default function workupload(props) {
 		createEventAPIMethod(event).then((res) => {
 			console.log('res', res);
 
-			let tempEvents = [...props.currUser.events];
-			tempEvents.push();
+			const newUser = {
+				name: props.currUser.name,
+				email: props.currUser.email,
+				password: props.currUser.password,
+				type: props.currUser.type,
+				address1: props.currUser.address1,
+				address2: props.currUser.address2,
+				profileUrl: props.currUser.profileUrl,
+				gender: props.currUser.gender,
+				dateOfBirth: props.currUser.dateOfBirth,
+				phoneNumber: props.currUser.phoneNumber,
+				events: [...props.currUser.events, res],
+			};
 
-			// const newUser = {
-			// 	name: props.currUser.name,
-			// 	email: props.currUser.email,
-			// 	password: props.currUser.password,
-			// 	type: props.currUser.type,
-			// 	address1: props.currUser.address1,
-			// 	address2: props.currUser.address2,
-			// 	profileUrl: props.currUser.profileUrl,
-			// 	gender: props.currUser.gender,
-			// 	dateOfBirth: props.currUser.dateOfBirth,
-			// 	phoneNumber: props.currUser.phoneNumber,
-			// 	events: [...props.currUser.events, eventId],
-			// };
-
-			//TODO: add event id to current org user
+			updateUserAPIMethod(props.currUser, newUser).then((res) => {
+				console.log(res);
+			});
 
 			alert("Your event has been successfully uploaded!");
-			// router.push({
-			// 	pathname: "/",
-			// });
+			router.push({
+				pathname: "/",
+			});
 		});
 	};
 
