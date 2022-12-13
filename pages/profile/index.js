@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { createCertificateAPIMethod, getCertificatesAPIMethod, getEventByIdAPIMethod, updateEventAPIMethod, updateUserAPIMethod } from "../../api/client";
 import ProfileCustomer from "../../components/profileCustomer";
-import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
+import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 
 export default function index(props) {
 	const [page, setPage] = useState("home");
@@ -22,7 +22,6 @@ export default function index(props) {
 			setPage("home");
 		}
 		setUser(props.currUser);
-		// setValue(props.currUser.interests);
 	}, [props.currUser]);
 
 	const handleEdit = (e, user) => {
