@@ -95,7 +95,7 @@ function ProfileCustomer(props) {
 												accept="image/*"
 												id="cloudinary"
 												onChange={handleChangeValue("profile_url")}
-												className="flex  items-center bg-transparent h-[30px]  px-8 text-base border-[#4EA1D3]"
+												className="max-w-[300px] flex items-center bg-transparent h-[30px] px-8 text-base border-[#4EA1D3]"
 											/>
 										) : (
 											""
@@ -260,7 +260,7 @@ function ProfileCustomer(props) {
 										<button onClick={handleClick} type="submit" className="w-full">
 											<div
 												id="ConfirmButton"
-												className="w-[400px] text-[25px] font-sans text-white text-center text-center decoration-8"
+												className="text-[25px] font-sans text-white text-center decoration-8"
 												style={{ margin: "auto" }}
 											>
 												Confirm
