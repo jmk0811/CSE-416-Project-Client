@@ -12,7 +12,6 @@ import { useRouter } from "next/router";
 export default function workupload(props) {
 	const router = useRouter();
 
-
 	function dateFormat(date) {
 		let day = date.getDate();
 		let month = date.getMonth() + 1;
@@ -130,7 +129,6 @@ export default function workupload(props) {
 
 	const [fileURL, setfileURL] = React.useState("");
 	const handleFiile = (e) => {
-
 		if (e.target.files && e.target.files[0]) {
 			const selectedFile = e.target.files[0];
 
@@ -153,6 +151,7 @@ export default function workupload(props) {
 	const handleDetail = (e) => {
 		const plainText = e.getCurrentContent().getPlainText(); // for plain text
 		const rContent = convertToRaw(e.getCurrentContent()); // for rte content with text formating
+		console.log("handle detail", plainText);
 		rContent && setDetail(JSON.stringify(rContent)); // store your rteContent to state
 	};
 
@@ -196,11 +195,11 @@ export default function workupload(props) {
 			timeSlots: applyDay,
 		};
 		createEventAPIMethod(event).then((response) => {
-			alert('Your event has been successfully uploaded!')
+			alert("Your event has been successfully uploaded!");
 			router.push({
 				pathname: "/",
 			});
-		 })
+		});
 	};
 
 	React.useEffect(() => {
@@ -228,10 +227,8 @@ export default function workupload(props) {
 	}, [recruitmentStartDate, recruitmentEndDate]);
 
 	React.useEffect(() => {
-
-		//get event from id here 
+		//get event from id here
 		//put info to useState
-
 	}, []);
 
 	return (
@@ -297,7 +294,7 @@ export default function workupload(props) {
 					<div style={{ border: "1px solid black" }}>
 						<ThemeProvider theme={myTheme}>
 							{/* <AsyncImageUpload detail = {detail} handleDetail = {handleDetail}/> */}
-							<MUIRichTextEditor label="Start Here..." controls={["title", "bold", "underline"]} value={detail.text} onChange={handleDetail} />
+							<MUIRichTextEditor label="Start Here..." controls={["title", "bold", "underline"]} value={detail.text} onChange={(e) => handleDetail} />
 						</ThemeProvider>
 					</div>
 					<div style={{ display: "flex", flexDirection: "row", justifyContent: "left", maxWidth: "90vw", marginBottom: "20px" }}>
