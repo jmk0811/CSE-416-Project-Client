@@ -10,6 +10,7 @@ export default function index(props) {
 	const [certificates, setCertificates] = useState([]);
 	const [user, setUser] = useState(props.currUser);
 	// const [value, setValue] = useState([]);
+	var today = new Date();
 	const [editMode, setEditMode] = useState(false);
 	const [currEvent, setCurrEvent] = useState();
 
@@ -250,9 +251,14 @@ export default function index(props) {
 									</div>
 								))}
 						</div>
-						<button className="w-[100px] h-[40px] rounded-[10px] bg-red-600 text-white mt-[200px]" onClick={cancelEvent}>
-							Cancel
-						</button>
+
+						{today < new Date(currEvent?.eventStartDate) ? (
+							<button className="w-[100px] h-[40px] rounded-[10px] bg-red-600 text-white mt-[200px]" onClick={cancelEvent}>
+								Cancel
+							</button>
+						) : (
+							<div></div>
+						)}
 					</div>
 				)}
 				{page === "eventDetails" && props.currUser.type === "Organization" && (
