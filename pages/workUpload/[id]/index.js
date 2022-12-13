@@ -149,9 +149,11 @@ export default function workupload(props) {
 
 	const [detail, setDetail] = React.useState("");
 	const handleDetail = (e) => {
+		//		const content = JSON.stringify(convertToRaw(e.getCurrentContent()));
+
 		const plainText = e.getCurrentContent().getPlainText(); // for plain text
 		const rContent = convertToRaw(e.getCurrentContent()); // for rte content with text formating
-		console.log("handle detail", plainText);
+
 		rContent && setDetail(JSON.stringify(rContent)); // store your rteContent to state
 	};
 
@@ -294,7 +296,7 @@ export default function workupload(props) {
 					<div style={{ border: "1px solid black" }}>
 						<ThemeProvider theme={myTheme}>
 							{/* <AsyncImageUpload detail = {detail} handleDetail = {handleDetail}/> */}
-							<MUIRichTextEditor label="Start Here..." controls={["title", "bold", "underline"]} value={detail.text} onChange={(e) => handleDetail} />
+							<MUIRichTextEditor label="Start Here..." controls={["title", "bold", "underline"]} value={detail.text} onChange={handleDetail} />
 						</ThemeProvider>
 					</div>
 					<div style={{ display: "flex", flexDirection: "row", justifyContent: "left", maxWidth: "90vw", marginBottom: "20px" }}>

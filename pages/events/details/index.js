@@ -163,7 +163,7 @@ export default function Index(props) {
 				<Box display="flex" flexDirection="column" alignItems="left" justifyContent="center" maxWidth="md" width="md" p={{ xs: 1, sm: 2, md: 0 }}>
 					<div className="flex flex-col">
 						<div className="mx-auto text-28 font-bold my-[50px]">{data?.title}</div>
-						{/* <div className="mx-auto text-20 my-[20px] mb-[100px]">{data?.description}</div> */}
+						<div className="mx-auto text-20 my-[20px] mb-[100px]">{data?.description}</div>
 						<div className="">{data?.image && <img className="w-full h-full object-cover" src={data?.image} />}</div>
 					</div>
 					<Box width="80vw" maxWidth="md" height="40vh" maxHeight="75vh" overflow="scroll" style={{ marginTop: "20px" }}>
@@ -285,19 +285,20 @@ export default function Index(props) {
 					<div> {occupy - registered} slots available </div>
 				</div>
 			);
-		return (
-			<div>
+		else
+			return (
 				<div>
-					{" "}
-					{date.getMonth() + 1}/{date.getDate()}{" "}
+					<div>
+						{" "}
+						{date.getMonth() + 1}/{date.getDate()}{" "}
+					</div>
+					<div>
+						{" "}
+						{date.getHours()}:{date.getMinutes()}{" "}
+					</div>
+					<div> {occupy - registered} slots available </div>
 				</div>
-				<div>
-					{" "}
-					{date.getHours()}:{date.getMinutes()}{" "}
-				</div>
-				<div> {occupy - registered} slots available </div>
-			</div>
-		);
+			);
 	}
 }
 

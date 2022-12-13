@@ -149,8 +149,9 @@ export default function workupload(props) {
 	const [detail, setDetail] = React.useState("");
 	const handleDetail = (e) => {
 		const plainText = e.getCurrentContent().getPlainText(); // for plain text
+		//console.log(plainText);
 		const rContent = convertToRaw(e.getCurrentContent()); // for rte content with text formating
-		rContent && setDetail(JSON.stringify(rContent)); // store your rteContent to state
+		rContent && setDetail(JSON.stringify(plainText)); // store your rteContent to state
 	};
 
 	const handleFormDate = (e, i) => {
