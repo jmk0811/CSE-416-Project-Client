@@ -79,7 +79,7 @@ export default function Login(props) {
 													name="userId"
 													placeholder="Please enter your ID"
 													onChange={handleId}
-													className="bg-transparent h-[40px] w-full px-10 pr-4 text-base border-[#4EA1D3]"
+													className="h-[40px] w-full px-10 pr-4 text-base border-[#4EA1D3] bg-white"
 													required
 												/>
 											</div>
@@ -93,7 +93,7 @@ export default function Login(props) {
 													name="userPassword"
 													placeholder="enter your password"
 													onChange={handlePassword}
-													className="text-left bg-transparent w-full h-[40px] px-10 text-base border-[#4EA1D3] "
+													className="text-left w-full h-[40px] px-10 text-base border-[#4EA1D3] bg-white"
 													required
 												/>
 											</div>

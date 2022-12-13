@@ -209,6 +209,7 @@ export default function index(props) {
 				{page === "home" && <ProfileCustomer user={user} handleEdit={handleEdit} />}
 				{page === "events" && (
 					<div className="flex flex-col">
+						<div className="font-bold text-30 mb-[30px]">Events List</div>
 						{events.map((item) => (
 							<div className="max-w-[400px] flex flex-col mb-[20px] bg-gray-200 rounded-2xl px-[30px] py-[20px]">
 								<button onClick={() => handlePageChange("eventDetails", item._id)}>
@@ -216,6 +217,13 @@ export default function index(props) {
 								</button>
 							</div>
 						))}
+						{props.currUser.type === "Organization" && (
+							<button className={"max-w-[200px] px-[20px] py-[5px] rounded-[10px] bg-blue-600 text-white font-semibold"}>
+								<Link href={"/workUpload"}>
+									<a>Create Event</a>
+								</Link>
+							</button>
+						)}
 					</div>
 				)}
 				{page === "eventDetails" && props.currUser.type === "User" && (
