@@ -117,7 +117,7 @@ function ProfileCustomer(props) {
 										id="iName"
 										name="Name"
 										value={user.name ? user.name : ""}
-										style={{ alignItems: "center" }}
+										style={{ alignItems: "center", width: "150px" }}
 										onChange={handleChangeValue("name")}
 										disabled={editMode ? false : true}
 									/>
@@ -165,7 +165,10 @@ function ProfileCustomer(props) {
 										country={"us"}
 										name="phoneNumber"
 										value={user.phoneNumber ? user.phoneNumber.toString() : ""}
-										className="w-[50px] px-10 bg-white"
+										className="w-[30px] bg-white"
+										style={{
+											width: "150px",
+										}}
 										onChange={(v) => setUser({ ...user, phoneNumber: v })}
 										disabled={editMode ? false : true}
 									/>
@@ -258,11 +261,7 @@ function ProfileCustomer(props) {
 								<div className="flex flex-col items-center w-full justify-center p-[30px]">
 									<div className="bg-[#4EA1D3] w-full rounded">
 										<button onClick={handleClick} type="submit" className="w-full">
-											<div
-												id="ConfirmButton"
-												className="text-[25px] font-sans text-white text-center decoration-8"
-												style={{ margin: "auto" }}
-											>
+											<div id="ConfirmButton" className="text-[25px] font-sans text-white text-center decoration-8" style={{ margin: "auto" }}>
 												Confirm
 											</div>
 										</button>

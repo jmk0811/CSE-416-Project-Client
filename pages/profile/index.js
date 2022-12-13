@@ -326,7 +326,7 @@ export default function index(props) {
 						</div>
 					</div>
 				)}
-				{page === "points" && <div className="flex flex-col" />}
+				{/* {page === "points" && <div className="flex flex-col" />} */}
 				{page === "certificates" && (
 					<div className="flex flex-col">
 						<div className="flex flex-col">
