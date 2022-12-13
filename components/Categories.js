@@ -1,16 +1,16 @@
 export default function Categories() {
 	return (
-		<div className="grid grid-cols-4 gap-y-[30px] mx-auto text-black" style={{ display:'flex', flexDirection: 'row', flexWrap: 'wrap', maxWidth: '100vw'}}> 
-			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200" style={{minWidth: '300px'}}>
+		<div className="grid grid-cols-4 gap-y-[30px] mx-auto text-black" style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", maxWidth: "100vw" }}>
+			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200" style={{ minWidth: "300px" }}>
 				<div className="relative w-full h-[200px]">
 					<div className="absolute bottom-0 w-full h-[50px] rounded-b-[10px] bg-white/90">
-						<div className="text-center mx-auto font-semibold text-20 mt-[8px]">Plogging</div>
+						<div className="text-center mx-auto font-semibold text-20 mt-[8px]">Environment</div>
 					</div>
 					<img className="w-full h-full object-cover rounded-[10px]" src="/asset/img (1).png" />
 				</div>
 			</div>
 
-			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200" style={{minWidth: '300px'}}>
+			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200" style={{ minWidth: "300px" }}>
 				<div className="relative w-full h-[200px]">
 					<div className="absolute bottom-0 w-full h-[50px] rounded-b-[10px] bg-white/90">
 						<div className="text-center mx-auto font-semibold text-20 mt-[8px]">Animal Care</div>
@@ -19,16 +19,16 @@ export default function Categories() {
 				</div>
 			</div>
 
-			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200" style={{minWidth: '300px'}}>
+			{/* <div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200" style={{ minWidth: "300px" }}>
 				<div className="relative w-full h-[200px]">
 					<div className="absolute bottom-0 w-full h-[50px] rounded-b-[10px] bg-white/90">
 						<div className="text-center mx-auto font-semibold text-20 mt-[8px]">Education</div>
 					</div>
 					<img className="w-full h-full object-cover rounded-[10px]" src="/asset/img (7).png" />
 				</div>
-			</div>
-
-			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200" style={{minWidth: '300px'}}>
+			</div> */}
+			{/* 
+			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200" style={{ minWidth: "300px" }}>
 				<div className="relative w-full h-[200px]">
 					<div className="absolute bottom-0 w-full h-[50px] rounded-b-[10px] bg-white/90">
 						<div className="text-center mx-auto font-semibold text-20 mt-[8px]">Beautification</div>
@@ -37,37 +37,46 @@ export default function Categories() {
 				</div>
 			</div>
 
-			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200" style={{minWidth: '300px'}}>
+			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200" style={{ minWidth: "300px" }}>
 				<div className="relative w-full h-[200px]">
 					<div className="absolute bottom-0 w-full h-[50px] rounded-b-[10px] bg-white/90">
 						<div className="text-center mx-auto font-semibold text-20 mt-[8px]">Service</div>
 					</div>
 					<img className="w-full h-full object-cover rounded-[10px]" src="/asset/img (8).png" />
 				</div>
-			</div>
-
-			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200" style={{minWidth: '300px'}}>
+			</div> */}
+			{/* 
+			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200" style={{ minWidth: "300px" }}>
 				<div className="relative w-full h-[200px]">
 					<div className="absolute bottom-0 w-full h-[50px] rounded-b-[10px] bg-white/90">
 						<div className="text-center mx-auto font-semibold text-20 mt-[8px]">Disaster Relief</div>
 					</div>
 					<img className="w-full h-full object-cover rounded-[10px]" src="/asset/img (13).png" />
 				</div>
-			</div>
+			</div> */}
 
-			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200" style={{minWidth: '300px'}}>
+			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200" style={{ minWidth: "300px" }}>
 				<div className="relative w-full h-[200px]">
 					<div className="absolute bottom-0 w-full h-[50px] rounded-b-[10px] bg-white/90">
-						<div className="text-center mx-auto font-semibold text-20 mt-[8px]">Medical</div>
+						<div className="text-center mx-auto font-semibold text-20 mt-[8px]">Sports</div>
+					</div>
+					<img className="w-full h-full object-cover rounded-[10px]" src="/asset/img(18).png" />
+				</div>
+			</div>
+
+			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200" style={{ minWidth: "300px" }}>
+				<div className="relative w-full h-[200px]">
+					<div className="absolute bottom-0 w-full h-[50px] rounded-b-[10px] bg-white/90">
+						<div className="text-center mx-auto font-semibold text-20 mt-[8px]">Healthcare</div>
 					</div>
 					<img className="w-full h-full object-cover rounded-[10px]" src="/asset/img (16).png" />
 				</div>
 			</div>
 
-			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200" style={{minWidth: '300px'}}>
+			<div className="w-[300px] h-[200px] rounded-[10px] shadow-2xl mx-auto cursor-pointer hover:scale-[1.05] duration-200" style={{ minWidth: "300px" }}>
 				<div className="relative w-full h-[200px]">
 					<div className="absolute bottom-0 w-full h-[50px] rounded-b-[10px] bg-white/90">
-						<div className="text-center mx-auto font-semibold text-20 mt-[8px]">Mentoring</div>
+						<div className="text-center mx-auto font-semibold text-20 mt-[8px]">Education</div>
 					</div>
 					<img className="w-full h-full object-cover rounded-[10px]" src="/asset/img (17).png" />
 				</div>
