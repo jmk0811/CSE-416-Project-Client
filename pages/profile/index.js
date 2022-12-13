@@ -1,15 +1,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import {
-	createCertificateAPIMethod, getCertificatesAPIMethod,
-	getEventByIdAPIMethod,
-	getEventsAPIMethod,
-	getUserByIdAPIMethod,
-	getUsersAPIMethod,
-	updateEventAPIMethod,
-	updateUserAPIMethod,
-} from "../../api/client";
+import { createCertificateAPIMethod, getCertificatesAPIMethod, getEventByIdAPIMethod, updateEventAPIMethod, updateUserAPIMethod } from "../../api/client";
 import ProfileCustomer from "../../components/profileCustomer";
+import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 
 export default function index(props) {
 	const [page, setPage] = useState("home");
@@ -56,6 +49,7 @@ export default function index(props) {
 				localStorage.setItem("page", "points");
 			},
 			certificates() {
+				loadEvents();
 				loadCertificates();
 				setPage("certificates");
 				localStorage.setItem("page", "certificates");
@@ -108,7 +102,7 @@ export default function index(props) {
 		getCertificatesAPIMethod().then((res) => {
 			setCertificates(res.filter((cert) => cert.owner === props.currUser._id));
 		});
-	}
+	};
 
 	const cancelEvent = () => {
 		const temp = [...props.currUser.events];
@@ -163,13 +157,13 @@ export default function index(props) {
 			owner: userId,
 			event: currEvent._id,
 			contractAddress: "",
-		}
+		};
 
 		createCertificateAPIMethod(certificate).then((res) => {
 			console.log();
 			alert("Successfully approved the user and granted a certificate");
 		});
-	}
+	};
 
 	return (
 		<div className="relative flex flex-row min-h-screen bg-bg1">
@@ -264,18 +258,19 @@ export default function index(props) {
 						<div>{currEvent?.image}</div>
 						<div className="flex flex-col mt-[30px]">
 							<div className="flex flex-row">
-								<div className={"font-bold"}>Participants:</div>
-								<div className="ml-[10px]">{currEvent?.timeSlots.length}</div>
+								<div className="font-bold">Participants</div>
 							</div>
 							<div className="ml-[30px]">
 								{currEvent?.timeSlots.map((slot) => (
 									<div className="mt-[30px]">
-										<div className={"flex flex-col"}>
-											<div className={"mr-[20px] font-semibold"}>{slot.startTime}:</div>
+										<div className="flex flex-col">
+											<div className="mr-[20px] font-semibold">{slot.startTime}:</div>
 											{slot.registeredUsers.map((user) => (
-												<div className={"flex flex-row"}>
-													<div className={"mr-[20px]"}>{user}</div>
-													<button className={"bg-green-500 px-[10px] py-[2px] rounded-[10px] my-auto text-white text-[14px]"} onClick={() => approveUser(user)}>Approve</button>
+												<div className="flex flex-row">
+													<div className="mr-[20px]">{user}</div>
+													<button className="bg-green-500 px-[10px] py-[2px] rounded-[10px] my-auto text-white text-[14px]" onClick={() => approveUser(user)}>
+														Approve
+													</button>
 												</div>
 											))}
 										</div>
@@ -286,21 +281,35 @@ export default function index(props) {
 					</div>
 				)}
 				{page === "points" && <div className="flex flex-col" />}
-				{page === "certificates" && <div className="flex flex-col">
+				{page === "certificates" && (
 					<div className="flex flex-col">
-						<div className="font-bold text-30">My Certificates</div>
-						<div className={"mt-[30px]"}>
-							{certificates.map((cert) => (
-								<div className={"mt-[20px] flex flex-col"}>
-									<div className={"flex flex-row"}>
-										<div className={"font-bold"}>certificate id:</div>
-										<div className={"ml-[10px]"}>{cert._id}</div>
+						<div className="flex flex-col">
+							<div className="font-bold text-30">My Certificates</div>
+							<div className="mt-[30px]">
+								{certificates.map((cert) => (
+									<div className="mt-[20px] flex flex-col w-[400px] h-[200px] rounded-[10px] px-[20px] py-[20px] bg-main2">
+										<div className={"mx-auto font-bold mb-[20px]"}>Completion Certificate</div>
+										<div className="flex flex-row">
+											<div className="font-bold">Certificate ID:</div>
+											<div className="ml-[10px]">{cert._id}</div>
+										</div>
+										<div className={"flex flex-row"}>
+											<div className="font-bold">Event name:</div>
+											<div className="ml-[10px]">{events.filter((e) => e._id === cert.event)[0]?.title}</div>
+										</div>
+										<div className={"flex flex-row"}>
+											<div className="font-bold">Owner:</div>
+											<div className="ml-[10px]">Me</div>
+										</div>
+										<div className={"mt-auto ml-auto scale-[1.5]"}>
+											<WorkspacePremiumIcon />
+										</div>
 									</div>
-								</div>
-							))}
+								))}
+							</div>
 						</div>
 					</div>
-				</div>}
+				)}
 			</div>
 		</div>
 	);
