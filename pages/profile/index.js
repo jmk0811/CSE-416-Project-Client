@@ -218,7 +218,7 @@ export default function index(props) {
 							</div>
 						))}
 						{props.currUser.type === "Organization" && (
-							<button className={"max-w-[200px] px-[20px] py-[5px] rounded-[10px] bg-blue-600 text-white font-semibold"}>
+							<button className={"mt-[60px] max-w-[200px] px-[20px] py-[5px] rounded-[10px] bg-blue-600 text-white font-semibold"}>
 								<Link href={"/workUpload"}>
 									<a>Create Event</a>
 								</Link>

@@ -101,7 +101,11 @@ export default function Index(props) {
 		});
 
 		const tempTimeSlots = [...timeSlots];
-		tempTimeSlots[isChecked.indexOf(true)].registeredUsers.push(props.currUser._id);
+		isChecked.map((bool, i) => {
+			if (bool) {
+				tempTimeSlots[i].registeredUsers.push(props.currUser._id);
+			}
+		});
 
 		const newEvent = {
 			title: data?.title,
@@ -143,7 +147,15 @@ export default function Index(props) {
 		color: theme.palette.text.secondary,
 	}));
 
-	const dateStyle = { display: "flex", flexWrap: "wrap", flexDirection: 'row', justifyContent: "center", alignItems: "center", width: '200px', border: "1px solid red" };
+	const dateStyle = {
+		display: "flex",
+		flexWrap: "wrap",
+		flexDirection: "row",
+		justifyContent: "center",
+		alignItems: "center",
+		width: "200px",
+		border: "1px solid red",
+	};
 
 	return (
 		<Box display="flex" flexDirection="column">
@@ -156,9 +168,9 @@ export default function Index(props) {
 					</div>
 					<Box width="80vw" maxWidth="md" height="40vh" maxHeight="75vh" overflow="scroll" style={{ marginTop: "20px" }}>
 						<Box sx={{ flexGrow: 1 }}>
-							<Grid container spacing={1} style={{ display: "flex", flexWrap: 'wrap', justifyContent: "center", alignItems: "center", marginTop: "20px" }}>
+							<Grid container spacing={1} style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", marginTop: "20px" }}>
 								{timeSlots.map((item, i) => (
-									<Grid item xs={5} sm={1.7} md={0} style={{display: 'flex', flexWrap: 'wrap', minWidth: '200px'}}>
+									<Grid item xs={5} sm={1.7} md={0} style={{ display: "flex", flexWrap: "wrap", minWidth: "200px" }}>
 										{item.registerLimit > item.registeredUsers?.length ? (
 											<Item style={dateStyle}>
 												<FormControlLabel
@@ -184,9 +196,9 @@ export default function Index(props) {
 						// height="50vh"
 						// maxHeight="75vh"
 					>
-						<Typography style={{ fontSize: "30px"}}> Application Information </Typography>
+						<Typography style={{ fontSize: "30px" }}> Application Information </Typography>
 
-						<div style={{ display: "flex", flexWrap: "wrap", maxWidth: "md"}}>
+						<div style={{ display: "flex", flexWrap: "wrap", maxWidth: "md" }}>
 							<div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginRight: "20px", width: "250px" }}>
 								<Typography style={{ fontSize: "20px", marginRight: "10px" }}> Name: </Typography>
 								<TextField
@@ -221,13 +233,25 @@ export default function Index(props) {
 							</div>
 						</div>
 
-						<div style={{display: 'flex', flexDirection: 'column'}}>
+						<div style={{ display: "flex", flexDirection: "column" }}>
 							<Box style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
 								<Checkbox checked={term} onChange={handleTermClick} />{" "}
 								<Typography>Check the box to indicate that you have read and agree to the terms presented by Nanum</Typography>
 							</Box>
 
-							<Button variant="contained" style={{ display: 'flex', justifyContent: 'center', alignSelf: 'center',backgroundColor: "skyblue", marginTop: "20px", marginBotton: "20px", maxWidth: '100px' }} onClick={handleApply}>
+							<Button
+								variant="contained"
+								style={{
+									display: "flex",
+									justifyContent: "center",
+									alignSelf: "center",
+									backgroundColor: "skyblue",
+									marginTop: "20px",
+									marginBotton: "20px",
+									maxWidth: "100px",
+								}}
+								onClick={handleApply}
+							>
 								<Typography
 									variant={{ md: "h5", sm: "body1" }}
 									style={{ display: "flex", justifyContent: "center", flexDirection: "column", color: "black", width: "100px", height: "30px" }}
@@ -236,7 +260,6 @@ export default function Index(props) {
 								</Typography>
 							</Button>
 						</div>
-						
 					</Box>
 				</Box>
 			</Box>
@@ -248,21 +271,33 @@ export default function Index(props) {
 		const date = new Date(input.startTime);
 		const occupy = input.registerLimit;
 		const registered = input.registeredUsers.length;
-		if(date.getMinutes() < 10) return(
+		if (date.getMinutes() < 10)
+			return (
+				<div>
+					<div>
+						{" "}
+						{date.getMonth() + 1}/{date.getDate()}{" "}
+					</div>
+					<div>
+						{" "}
+						{date.getHours()}:0{date.getMinutes()}{" "}
+					</div>
+					<div> {occupy - registered} slots available </div>
+				</div>
+			);
+		return (
 			<div>
-				<div> {date.getMonth() + 1}/{date.getDate()} </div>
-				<div> {date.getHours()}:0{date.getMinutes()} </div>
+				<div>
+					{" "}
+					{date.getMonth() + 1}/{date.getDate()}{" "}
+				</div>
+				<div>
+					{" "}
+					{date.getHours()}:{date.getMinutes()}{" "}
+				</div>
 				<div> {occupy - registered} slots available </div>
 			</div>
-			
-		)
-		else return(
-			<div>
-				<div> {date.getMonth() + 1}/{date.getDate()} </div>
-				<div> {date.getHours()}:{date.getMinutes()} </div>
-				<div> {occupy - registered} slots available </div>
-			</div>	
-		)
+		);
 	}
 }
 
