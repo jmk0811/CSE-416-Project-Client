@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { createCertificateAPIMethod, getCertificatesAPIMethod, getEventByIdAPIMethod, updateEventAPIMethod, updateUserAPIMethod, getCurrentUserAPIMethod } from "../../api/client";
+import {
+	createCertificateAPIMethod,
+	getCertificatesAPIMethod,
+	getEventByIdAPIMethod,
+	updateEventAPIMethod,
+	updateUserAPIMethod,
+	getCurrentUserAPIMethod,
+	getUserByIdAPIMethod,
+} from "../../api/client";
 import ProfileCustomer from "../../components/profileCustomer";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import ConfirmationModal from "../../components/ConfirmationModal";
@@ -15,6 +23,7 @@ export default function index(props) {
 	// const [value, setValue] = useState([]);
 	const [editMode, setEditMode] = useState(false);
 	const [currEvent, setCurrEvent] = useState();
+	const [certificateUser, setCertificateUser] = useState({});
 
 	useEffect(() => {
 		const page_loc = localStorage.getItem("page");
@@ -30,11 +39,11 @@ export default function index(props) {
 
 	useEffect(() => {
 		getCurrentUserAPIMethod().then((res) => {
-			if(res === null){
-				alert('Please Login First')
-				router.push('/')
+			if (res === null) {
+				alert("Please Login First");
+				router.push("/");
 			}
-		})
+		});
 	}, []);
 
 	const handleEdit = (e, user) => {
@@ -80,7 +89,6 @@ export default function index(props) {
 
 	const loadEvents = async () => {
 		const tempEvents = [];
-
 		// TODO: refactor
 		if (props.currUser?.type === "User") {
 			if (props.currUser?.events !== undefined) {
@@ -108,7 +116,22 @@ export default function index(props) {
 					}),
 				).then(() => {
 					console.log(tempEvents);
+					for (let i = 0; i < tempEvents.length; i++) {
+						if (tempEvents[i].timeSlots.length != 0) {
+							for (let j = 0; j < tempEvents[i].timeSlots.length; j++) {
+								for (let k = 0; k < tempEvents[i].timeSlots[j].registeredUsers.length; k++) {
+									let id = tempEvents[i].timeSlots[j].registeredUsers[k];
+									getUserByIdAPIMethod(id).then((res) => {
+										console.log(">>", res);
+										let user = { name: res.name, email: res.email, phoneNumber: res.phoneNumber };
+										tempEvents[i].timeSlots[j].registeredUsers[k] = user;
+									});
+								}
+							}
+						}
+					}
 					setEvents(tempEvents);
+					console.log(tempEvents);
 				});
 			}
 		}
@@ -221,7 +244,7 @@ export default function index(props) {
 			</div>
 
 			{/* page contents */}
-			<div className="w-full bg-white m-[20px] py-[30px]  rounded-[20px]"  style={{paddingLeft: '10px', paddingRight: '10px'}}>
+			<div className="w-full bg-white m-[20px] py-[30px]  rounded-[20px]" style={{ paddingLeft: "10px", paddingRight: "10px" }}>
 				{page === "home" && <ProfileCustomer user={user} handleEdit={handleEdit} />}
 				{page === "events" && (
 					<div className="flex flex-col">
@@ -235,13 +258,15 @@ export default function index(props) {
 						))}
 						{props.currUser.type === "Organization" && (
 							<>
-							<button className={"mt-[60px] max-w-[200px] px-[20px] py-[5px] rounded-[10px] bg-blue-600 text-white font-semibold"}>
-								<Link href={"/workUpload"}>
-									<a>Create Event</a>
-								</Link>
-							</button>
+								<button className={"mt-[60px] max-w-[200px] px-[20px] py-[5px] rounded-[10px] bg-blue-600 text-white font-semibold"}>
+									<Link href={"/workUpload"}>
+										<a>Create Event</a>
+									</Link>
+								</button>
 
-							<div className="text-5" style={{marginTop: '20px'}}>To cancle or modify an event, please contact nanum.orghelp@gmail.com </div>
+								<div className="text-5" style={{ marginTop: "20px" }}>
+									To cancle or modify an event, please contact nanum.orghelp@gmail.com{" "}
+								</div>
 							</>
 						)}
 					</div>
@@ -293,7 +318,8 @@ export default function index(props) {
 											<div className="mr-[20px] font-semibold">{new Date(slot.startTime).toLocaleDateString()}:</div>
 											{slot.registeredUsers.map((user) => (
 												<div className="flex flex-row">
-													<div className="mr-[20px]">{user}</div>
+													<div className="mr-[20px]"></div>
+													<div className="mr-[20px]"> name: {user.name}</div>
 													<button className="bg-green-500 px-[10px] py-[2px] rounded-[10px] my-auto text-white text-[14px]" onClick={() => approveUser(user)}>
 														Approve
 													</button>
@@ -319,6 +345,7 @@ export default function index(props) {
 											<div className="font-bold">Certificate ID:</div>
 											<div className="ml-[10px]">{cert._id}</div>
 										</div>
+
 										<div className={"flex flex-row"}>
 											<div className="font-bold">Event name:</div>
 											<div className="ml-[10px]">{events.filter((e) => e._id === cert.event)[0]?.title}</div>
