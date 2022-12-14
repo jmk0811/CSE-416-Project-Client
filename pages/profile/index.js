@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { createCertificateAPIMethod, getCertificatesAPIMethod, getEventByIdAPIMethod, updateEventAPIMethod, updateUserAPIMethod, getCurrentUserAPIMethod } from "../../api/client";
-import ProfileCustomer from "../../components/profileCustomer";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
+import {
+	createCertificateAPIMethod,
+	getCertificatesAPIMethod,
+	getEventByIdAPIMethod,
+	updateEventAPIMethod,
+	updateUserAPIMethod,
+	getCurrentUserAPIMethod,
+} from "../../api/client";
+import ProfileCustomer from "../../components/profileCustomer";
 import ConfirmationModal from "../../components/ConfirmationModal";
 
 export default function index(props) {
@@ -20,7 +27,7 @@ export default function index(props) {
 		const page_loc = localStorage.getItem("page");
 		if (page_loc) {
 			setPage(page_loc);
-			//handlePageChange(page_loc);
+			handlePageChange(page_loc, -1);
 		} else {
 			localStorage.setItem("page", "home");
 			setPage("home");
@@ -30,11 +37,11 @@ export default function index(props) {
 
 	useEffect(() => {
 		getCurrentUserAPIMethod().then((res) => {
-			if(res === null){
-				alert('Please Login First')
-				router.push('/')
+			if (res === null) {
+				alert("Please Login First");
+				router.push("/");
 			}
-		})
+		});
 	}, []);
 
 	const handleEdit = (e, user) => {
@@ -46,6 +53,8 @@ export default function index(props) {
 	};
 
 	const handlePageChange = (page, value) => {
+		if (page === "eventDetails" && value === -1) page = "events";
+
 		const pages = {
 			home() {
 				setPage("home");
@@ -221,7 +230,7 @@ export default function index(props) {
 			</div>
 
 			{/* page contents */}
-			<div className="w-full bg-white m-[20px] py-[30px]  rounded-[20px]"  style={{paddingLeft: '10px', paddingRight: '10px'}}>
+			<div className="w-full bg-white m-[20px] py-[30px]  rounded-[20px]" style={{ paddingLeft: "10px", paddingRight: "10px" }}>
 				{page === "home" && <ProfileCustomer user={user} handleEdit={handleEdit} />}
 				{page === "events" && (
 					<div className="flex flex-col">
@@ -235,13 +244,15 @@ export default function index(props) {
 						))}
 						{props.currUser.type === "Organization" && (
 							<>
-							<button className={"mt-[60px] max-w-[200px] px-[20px] py-[5px] rounded-[10px] bg-blue-600 text-white font-semibold"}>
-								<Link href={"/workUpload"}>
-									<a>Create Event</a>
-								</Link>
-							</button>
+								<button className="mt-[60px] max-w-[200px] px-[20px] py-[5px] rounded-[10px] bg-blue-600 text-white font-semibold">
+									<Link href="/workUpload">
+										<a>Create Event</a>
+									</Link>
+								</button>
 
-							<div className="text-5" style={{marginTop: '20px'}}>To cancle or modify an event, please contact nanum.orghelp@gmail.com </div>
+								<div className="text-5" style={{ marginTop: "20px" }}>
+									To cancle or modify an event, please contact nanum.orghelp@gmail.com{" "}
+								</div>
 							</>
 						)}
 					</div>
@@ -314,20 +325,20 @@ export default function index(props) {
 							<div className="mt-[30px]">
 								{certificates.map((cert) => (
 									<div className="mt-[20px] flex flex-col w-[400px] h-[200px] rounded-[10px] px-[20px] py-[20px] bg-main2">
-										<div className={"mx-auto font-bold mb-[20px]"}>Completion Certificate</div>
+										<div className="mx-auto font-bold mb-[20px]">Completion Certificate</div>
 										<div className="flex flex-row">
 											<div className="font-bold">Certificate ID:</div>
 											<div className="ml-[10px]">{cert._id}</div>
 										</div>
-										<div className={"flex flex-row"}>
+										<div className="flex flex-row">
 											<div className="font-bold">Event name:</div>
 											<div className="ml-[10px]">{events.filter((e) => e._id === cert.event)[0]?.title}</div>
 										</div>
-										<div className={"flex flex-row"}>
+										<div className="flex flex-row">
 											<div className="font-bold">Owner:</div>
 											<div className="ml-[10px]">Me</div>
 										</div>
-										<div className={"mt-auto ml-auto scale-[1.5]"}>
+										<div className="mt-auto ml-auto scale-[1.5]">
 											<WorkspacePremiumIcon />
 										</div>
 									</div>
