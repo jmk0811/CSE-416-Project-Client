@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import {
+	createCertificateAPIMethod,
+	getCertificatesAPIMethod,
+	getEventByIdAPIMethod,
+	updateEventAPIMethod,
+	updateUserAPIMethod,
+	getCurrentUserAPIMethod,
+	getUserByIdAPIMethod,
+} from "../../api/client";
+import ProfileCustomer from "../../components/profileCustomer";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import {
 	createCertificateAPIMethod,
@@ -22,6 +32,7 @@ export default function index(props) {
 	// const [value, setValue] = useState([]);
 	const [editMode, setEditMode] = useState(false);
 	const [currEvent, setCurrEvent] = useState();
+	const [certificateUser, setCertificateUser] = useState({});
 
 	useEffect(() => {
 		const page_loc = localStorage.getItem("page");
@@ -89,7 +100,6 @@ export default function index(props) {
 
 	const loadEvents = async () => {
 		const tempEvents = [];
-
 		// TODO: refactor
 		if (props.currUser?.type === "User") {
 			if (props.currUser?.events !== undefined) {
@@ -117,7 +127,22 @@ export default function index(props) {
 					}),
 				).then(() => {
 					console.log(tempEvents);
+					for (let i = 0; i < tempEvents.length; i++) {
+						if (tempEvents[i].timeSlots.length != 0) {
+							for (let j = 0; j < tempEvents[i].timeSlots.length; j++) {
+								for (let k = 0; k < tempEvents[i].timeSlots[j].registeredUsers.length; k++) {
+									let id = tempEvents[i].timeSlots[j].registeredUsers[k];
+									getUserByIdAPIMethod(id).then((res) => {
+										console.log(">>", res);
+										let user = { name: res.name, email: res.email, phoneNumber: res.phoneNumber };
+										tempEvents[i].timeSlots[j].registeredUsers[k] = user;
+									});
+								}
+							}
+						}
+					}
 					setEvents(tempEvents);
+					console.log(tempEvents);
 				});
 			}
 		}
@@ -304,7 +329,8 @@ export default function index(props) {
 											<div className="mr-[20px] font-semibold">{new Date(slot.startTime).toLocaleDateString()}:</div>
 											{slot.registeredUsers.map((user) => (
 												<div className="flex flex-row">
-													<div className="mr-[20px]">{user}</div>
+													<div className="mr-[20px]"></div>
+													<div className="mr-[20px]"> name: {user.name}</div>
 													<button className="bg-green-500 px-[10px] py-[2px] rounded-[10px] my-auto text-white text-[14px]" onClick={() => approveUser(user)}>
 														Approve
 													</button>

@@ -32,25 +32,19 @@ export default function Index(props) {
 		setName(props.currUser.name);
 	}, [props.currUser]);
 
-	const handleNameChange = (e) => {
-		setName(e.target.value);
-	};
+	const handleNameChange = (e) => {};
 	const [email, setEmail] = React.useState("");
 	useEffect(() => {
 		setEmail(props.currUser.email);
 	}, [props.currUser]);
 
-	const handleEmailChange = (e) => {
-		setEmail(e.target.value);
-	};
+	const handleEmailChange = (e) => {};
 	const [contactNumber, setContactNumber] = React.useState("");
 	useEffect(() => {
 		setContactNumber(props.currUser.phoneNumber);
 	}, [props.currUser]);
 
-	const handleNumberChange = (e) => {
-		setContactNumber(e.target.value);
-	};
+	const handleNumberChange = (e) => {};
 
 	const [term, setTerm] = React.useState(false);
 	const handleTermClick = (e) => {
@@ -182,6 +176,7 @@ export default function Index(props) {
 						// maxHeight="75vh"
 					>
 						<Typography style={{ fontSize: "30px" }}> Application Information </Typography>
+						<Typography>If your information does the match the following, please change the information on your profile page before applying</Typography>
 
 						<div style={{ display: "flex", flexWrap: "wrap", maxWidth: "md" }}>
 							<div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginRight: "20px", width: "250px" }}>
@@ -211,11 +206,12 @@ export default function Index(props) {
 								<TextField
 									id="outlined-basic"
 									variant="outlined"
-									style={{ marginBottom: "10px", marginTop: "10px" }}
+									style={{ marginBottom: "10px", marginTop: "10px"}}
 									value={contactNumber}
 									onChange={handleNumberChange}
 								/>
 							</div>
+							
 						</div>
 
 						<div style={{ display: "flex", flexDirection: "column" }}>
