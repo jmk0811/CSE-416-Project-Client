@@ -54,10 +54,13 @@ Nanum is a web platform that connects users and organizations in volunteering wo
 ## Step to run 
 
 ### STEP 1. Download or Git clone for client and server.
-**Make sure that you are using the prod branche**
+```diff
+- Make sure that you are using the prod branche
+```
 
 #### Download
 [Client](https://github.com/jmk0811/CSE-416-Project-Client/tree/prod)
+
 [Server](https://github.com/jmk0811/CSE-416-Project-Server/tree/prod)
 
 ####Git Clone
