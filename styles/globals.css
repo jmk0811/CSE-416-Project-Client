@@ -11,19 +11,36 @@ body {
 .special-label {
 	display: none;
 }
-.form-control {
+
+.phoneContainer > input {
 	background-color: white;
+	width: 250px;
 }
+
 /* div[name="customerInfoFormValue"] {
 	/* width: 30%;
 	margin-left: 80px; 
 } 
 */
+.phoneContainer {
+	width: 250px;
+}
 @media screen and (max-width: 600px) {
 	label[name="customerInfoFormLabel"] {
 		height: 40px;
 		width: 100%;
 		margin-right: 0px;
+	}
+	.phoneContainer {
+		width: 180px;
+	}
+	.phoneContainer > input {
+		background-color: white;
+		width: 180px;
+	}
+	.formControl {
+		background-color: white;
+		width: 180px;
 	}
 	div[name="customerInfoFormValue"] {
 		height: 100px;
