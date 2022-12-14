@@ -19,7 +19,6 @@ export default function Home(props) {
 					</div>
 					<Categories />
 				</div>
-				<div className="py-[300px]" />
 			</div>
 		</div>
 	);

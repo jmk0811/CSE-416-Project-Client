@@ -216,26 +216,6 @@ export default function Index(props) {
 					</AccordionDetails>
 				</Accordion>
 				<div>
-					{/* {events
-						.filter((item) => item.title.toLowerCase().includes(query))
-						.map((item, i) => (
-							<div key={i + 1}>
-
-								<Link
-									href={{
-										pathname: "/events/details",
-										query: { query: item._id },
-									}}
-								>
-									<a>
-										<div className="w-[300px] mb-[20px] bg-main2 rounded-[10px] py-[10px] px-[20px] hover:shadow-md">
-											<div className="font-bold">{item.title}</div>
-											<div>{item.description}</div>
-										</div>
-									</a>
-								</Link>
-							</div>
-						))} */}
 
 					<Typography variant="h3" style={{ alignContent: "center", fontWeight: "bolder" }}>
 						Volunteer Works
