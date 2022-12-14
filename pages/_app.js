@@ -22,7 +22,7 @@ export default function MyApp({ Component, pageProps }) {
 				setCurrUser({});
 				// console.log(currUser)
 			}
-		})
+		});
 	}, [login]);
 
 	return (
@@ -31,7 +31,7 @@ export default function MyApp({ Component, pageProps }) {
 
 			<main className="min-h-screen">
 				<div className="w-full min-h-screen mx-auto">
-					<Component {...pageProps} login={login} setLogin={setLogin} currUser={currUser} />
+					<Component {...pageProps} login={login} setLogin={setLogin} setCurrUser={setCurrUser} currUser={currUser} />
 				</div>
 			</main>
 
