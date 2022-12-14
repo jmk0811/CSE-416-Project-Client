@@ -23,7 +23,7 @@ export default function index(props) {
 	// const [value, setValue] = useState([]);
 	const [editMode, setEditMode] = useState(false);
 	const [currEvent, setCurrEvent] = useState();
-	const [certificateUser, setCertificateUser] = useState({});
+	const [certificateUser, setCertificateUser] = useState([]);
 
 	useEffect(() => {
 		const page_loc = localStorage.getItem("page");
@@ -79,6 +79,13 @@ export default function index(props) {
 				setPage("eventDetails");
 				getEventByIdAPIMethod(value).then((res) => {
 					setCurrEvent(res);
+					for (let i = 0; i < res.timeSlots.length; i++) {
+						for (let j = 0; j < res.timeSlots[i].registeredUsers.length; j++) {
+							getUserByIdAPIMethod(res.timeSlots[i].registeredUsers[j]).then((res) => {
+								console.log(">>", res);
+							});
+						}
+					}
 				});
 				localStorage.setItem("page", "eventDetails");
 			},
@@ -116,22 +123,7 @@ export default function index(props) {
 					}),
 				).then(() => {
 					console.log(tempEvents);
-					for (let i = 0; i < tempEvents.length; i++) {
-						if (tempEvents[i].timeSlots.length != 0) {
-							for (let j = 0; j < tempEvents[i].timeSlots.length; j++) {
-								for (let k = 0; k < tempEvents[i].timeSlots[j].registeredUsers.length; k++) {
-									let id = tempEvents[i].timeSlots[j].registeredUsers[k];
-									getUserByIdAPIMethod(id).then((res) => {
-										console.log(">>", res);
-										let user = { name: res.name, email: res.email, phoneNumber: res.phoneNumber };
-										tempEvents[i].timeSlots[j].registeredUsers[k] = user;
-									});
-								}
-							}
-						}
-					}
 					setEvents(tempEvents);
-					console.log(tempEvents);
 				});
 			}
 		}
@@ -318,8 +310,8 @@ export default function index(props) {
 											<div className="mr-[20px] font-semibold">{new Date(slot.startTime).toLocaleDateString()}:</div>
 											{slot.registeredUsers.map((user) => (
 												<div className="flex flex-row">
-													<div className="mr-[20px]"></div>
-													<div className="mr-[20px]"> name: {user.name}</div>
+													<div className="mr-[20px]">{user}</div>
+
 													<button className="bg-green-500 px-[10px] py-[2px] rounded-[10px] my-auto text-white text-[14px]" onClick={() => approveUser(user)}>
 														Approve
 													</button>
