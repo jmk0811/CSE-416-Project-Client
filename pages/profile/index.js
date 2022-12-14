@@ -112,12 +112,7 @@ export default function index(props) {
 				).then(() => {
 					console.log(tempEvents);
 					setEvents(tempEvents);
-					let sum = 0;
-					tempEvents.map((e) => {
-						console.log(e);
-						sum += e.point;
-					});
-					setPoints(sum);
+					return tempEvents;
 				});
 			}
 		} else {
@@ -133,6 +128,7 @@ export default function index(props) {
 				).then(() => {
 					console.log(tempEvents);
 					setEvents(tempEvents);
+					return tempEvents;
 				});
 			}
 		}
@@ -140,9 +136,20 @@ export default function index(props) {
 
 	const loadCertificates = () => {
 		getCertificatesAPIMethod().then((res) => {
-			setCertificates(res.filter((cert) => cert.owner === props.currUser?._id));
+			const tempList = res.filter((cert) => cert.owner === props.currUser?._id);
+			setCertificates(tempList);
+			let sum = 0;
+			tempList.map((cert) => {
+				sum += events.filter((e) => e._id === cert.event)[0]?.point;
+			});
+			console.log(sum);
+			setPoints(sum);
 		});
 	};
+
+	useEffect(() => {
+		loadCertificates();
+	}, [events]);
 
 	const cancelEvent = () => {
 		const temp = [...props.currUser.events];
@@ -239,13 +246,7 @@ export default function index(props) {
 				{page === "home" && <ProfileCustomer user={user} handleEdit={handleEdit} />}
 				{page === "events" && (
 					<div className="flex flex-col">
-						<div className={"flex flex-row mb-[30px]"}>
-							<div className="font-bold text-30">Events List</div>
-							<div className={"flex flex-row ml-auto my-auto mr-[30px]"}>
-								<div className="text-20">Earned points:</div>
-								<div className="text-20 font-bold ml-[10px]">{points}</div>
-							</div>
-						</div>
+						<div className="font-bold text-30 mb-[30px]">Events List</div>
 						{events.map((item) => (
 							<div className="max-w-[400px] flex flex-col mb-[20px] bg-gray-200 rounded-2xl px-[30px] py-[20px]">
 								<button onClick={() => handlePageChange("eventDetails", item._id)}>
@@ -275,7 +276,7 @@ export default function index(props) {
 						<div>{currEvent?.title}</div>
 						<div className="font-bold mt-[30px]">Description</div>
 						<div>{currEvent?.description}</div>
-						<img className={""} src={currEvent?.image} />
+						<img className="" src={currEvent?.image} />
 						<div className="flex flex-col mt-[30px]">
 							<div>MyTime Slots</div>
 							{currEvent?.timeSlots
@@ -303,7 +304,7 @@ export default function index(props) {
 						<div>{currEvent?.title}</div>
 						<div className="font-bold mt-[30px]">Description</div>
 						<div>{currEvent?.description}</div>
-						<img className={"w-[400px] mt-[30px]"} src={currEvent?.image} />
+						<img className="w-[400px] mt-[30px]" src={currEvent?.image} />
 						<div className="flex flex-col mt-[30px]">
 							<div className="flex flex-row">
 								<div className="font-bold">Participants</div>
@@ -335,7 +336,13 @@ export default function index(props) {
 				{page === "certificates" && (
 					<div className="flex flex-col">
 						<div className="flex flex-col">
-							<div className="font-bold text-30">My Certificates</div>
+							<div className="flex flex-row mb-[30px]">
+								<div className="font-bold text-30">My Certificates</div>
+								<div className="flex flex-row ml-auto my-auto mr-[30px]">
+									<div className="text-20">Earned points:</div>
+									<div className="text-20 font-bold ml-[10px]">{points}</div>
+								</div>
+							</div>
 							<div className="mt-[30px]">
 								{certificates.map((cert) => (
 									<div className="mt-[20px] flex flex-col w-[400px] h-[200px] rounded-[10px] px-[20px] py-[20px] bg-main2">
