@@ -92,6 +92,10 @@ Note: This step may not be necessary it's already changed.
 
 ### STEP 5. Run client side (npm run dev) 
 
+## Operating Systems
+
+The platform should run on any modern browser. However, our recommended browser is Chrome.
+
 
 ## API Design Documentation
 
