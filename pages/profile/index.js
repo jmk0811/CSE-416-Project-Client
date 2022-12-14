@@ -272,7 +272,7 @@ export default function index(props) {
 						<div>{currEvent?.title}</div>
 						<div className="font-bold mt-[30px]">Description</div>
 						<div>{currEvent?.description}</div>
-						<div>{currEvent?.image}</div>
+						<img className={""} src={currEvent?.image} />
 						<div className="flex flex-col mt-[30px]">
 							<div>MyTime Slots</div>
 							{currEvent?.timeSlots
@@ -300,7 +300,7 @@ export default function index(props) {
 						<div>{currEvent?.title}</div>
 						<div className="font-bold mt-[30px]">Description</div>
 						<div>{currEvent?.description}</div>
-						<div>{currEvent?.image}</div>
+						<img className={"w-[400px] mt-[30px]"} src={currEvent?.image} />
 						<div className="flex flex-col mt-[30px]">
 							<div className="flex flex-row">
 								<div className="font-bold">Participants</div>
