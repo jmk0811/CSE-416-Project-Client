@@ -7,7 +7,7 @@ import Sheet from "@mui/joy/Sheet";
 import Done from "@mui/icons-material/Done";
 import PhoneInput from "react-phone-input-2";
 import Typography from "@mui/material/Typography";
-
+import { uploadImageToCloudinaryAPIMethod } from "../api/client";
 function ProfileCustomer(props) {
 	const [user, setUser] = useState(props.user);
 	const [value, setValue] = useState([]);
@@ -76,7 +76,7 @@ function ProfileCustomer(props) {
 									>
 										Profile Image
 									</label>
-									<div name="customerInfoFormValue" className="flex flex-row justify-center items-center md:flex-col">
+									<div name="customerInfoFormValue" className="flex flex-row  justify-center items-center md:flex-col" style={{ width: "240px" }}>
 										<img
 											className="avatar"
 											src={
@@ -112,12 +112,12 @@ function ProfileCustomer(props) {
 									</label>
 
 									<input
-										className="bg-transparent h-[40px]  px-10 pr-4 text-base border-[#4EA1D3]"
+										className="bg-transparent h-[40px] text-base border-[#4EA1D3]"
 										type="text"
 										id="iName"
 										name="Name"
 										value={user.name ? user.name : ""}
-										style={{ alignItems: "center", width: "150px" }}
+										style={{ alignItems: "center" }}
 										onChange={handleChangeValue("name")}
 										disabled={editMode ? false : true}
 									/>
@@ -131,14 +131,7 @@ function ProfileCustomer(props) {
 										Email
 									</label>
 
-									<input
-										type="text"
-										id="iEmail"
-										name="Email"
-										value={user.email}
-										className="bg-transparent h-[40px]  px-10 pr-4 text-base border-[#4EA1D3]"
-										disabled
-									/>
+									<input type="text" id="iEmail" name="Email" value={user.email} className="bg-white h-[40px] text-base border-[#4EA1D3]" disabled />
 								</div>
 
 								<div name="customerInfoForm" className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
@@ -150,7 +143,14 @@ function ProfileCustomer(props) {
 										Date of Birth
 									</label>
 
-									<input className="text-[16px] font-sans bg-white" type="date" value={user.dateOfBirth} name="DOB" id="datepicker" disabled />
+									<input
+										className="bg-white w-[190px] h-[40px] text-base border-[#4EA1D3]"
+										type="date"
+										value={user.dateOfBirth}
+										name="DOB"
+										id="datepicker"
+										disabled
+									/>
 								</div>
 								<div name="customerInfoForm" className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
 									<label
@@ -166,9 +166,6 @@ function ProfileCustomer(props) {
 										name="phoneNumber"
 										value={user.phoneNumber ? user.phoneNumber.toString() : ""}
 										className="w-[30px] bg-white"
-										style={{
-											width: "150px",
-										}}
 										onChange={(v) => setUser({ ...user, phoneNumber: v })}
 										disabled={editMode ? false : true}
 									/>
@@ -258,10 +255,10 @@ function ProfileCustomer(props) {
 							{!editMode ? (
 								""
 							) : (
-								<div className="flex flex-col items-center w-full justify-center p-[30px]">
-									<div className="bg-[#4EA1D3] w-full rounded">
-										<button onClick={handleClick} type="submit" className="w-full">
-											<div id="ConfirmButton" className="text-[25px] font-sans text-white text-center decoration-8" style={{ margin: "auto" }}>
+								<div className="flex flex-col items-center justify-center p-[30px]">
+									<div className="bg-[#4EA1D3] w-[100px] rounded">
+										<button onClick={handleClick} type="submit">
+											<div id="ConfirmButton" className="flex text-[25px] font-sans text-white text-center decoration-8" style={{ margin: "auto" }}>
 												Confirm
 											</div>
 										</button>

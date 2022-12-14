@@ -201,7 +201,7 @@ export default function index(props) {
 				<div> {occupy - registered} slots available </div>
 			</div>
 		);
-	}
+	};
 
 	return (
 		<div className="relative flex flex-row min-h-screen bg-bg1">
@@ -220,7 +220,7 @@ export default function index(props) {
 				>
 					Events
 				</div>
-				{props.currUser.type === "User" && (
+				{/* {props.currUser.type === "User" && (
 					<div
 						className={`w-full duration-200 hover:bg-hover1 pl-[20px] py-[5px] rounded-r-full cursor-pointer ${
 							page === "points" && "bg-activate2 font-semibold"
@@ -229,7 +229,7 @@ export default function index(props) {
 					>
 						Points
 					</div>
-				)}
+				)} */}
 				{props.currUser.type === "User" && (
 					<div
 						className={`w-full duration-200 hover:bg-hover1 pl-[20px] py-[5px] rounded-r-full cursor-pointer ${
@@ -243,7 +243,7 @@ export default function index(props) {
 			</div>
 
 			{/* page contents */}
-			<div className="w-full bg-white m-[20px] py-[30px] px-[40px] rounded-[20px]">
+			<div className="w-full bg-white m-[20px] py-[30px]  rounded-[20px]">
 				{page === "home" && <ProfileCustomer user={user} handleEdit={handleEdit} />}
 				{page === "events" && (
 					<div className="flex flex-col">
@@ -280,7 +280,7 @@ export default function index(props) {
 									<div className="flex flex-col">
 										<div className="flex flex-row gap-x-[10px]">
 											<div>Starting date: </div>
-											<div>{(new Date(item.startTime)).toLocaleDateString()}</div>
+											<div>{new Date(item.startTime).toLocaleDateString()}</div>
 										</div>
 										{/* <div className={"flex flex-row"}> */}
 										{/*	<div>Ending date: </div> */}
@@ -310,7 +310,7 @@ export default function index(props) {
 								{currEvent?.timeSlots.map((slot) => (
 									<div className="mt-[30px]">
 										<div className="flex flex-col">
-											<div className="mr-[20px] font-semibold">{(new Date(slot.startTime)).toLocaleDateString()}:</div>
+											<div className="mr-[20px] font-semibold">{new Date(slot.startTime).toLocaleDateString()}:</div>
 											{slot.registeredUsers.map((user) => (
 												<div className="flex flex-row">
 													<div className="mr-[20px]">{user}</div>
