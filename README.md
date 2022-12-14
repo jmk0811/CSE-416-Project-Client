@@ -1,17 +1,17 @@
 # CSE-416-Project-Client
 
 
-## Team members
+## Team Members
 Minki Jeon  
 Sangwoo Park  
 Suhyun Chun  
 
 
-## Project statement
+## Project Statement
 Nanum is a web platform that connects users and organizations in volunteering works. Users can search, participate, and earn certificates and compensation in different kinds of volunteer works from various organizations. Organizations can recruit users easily to participate in their volunteer events.
 
 
-## Problem description
+## Problem Description
 
 1. Difficult to manage and keep track of lots of volunteer work records.
 2. These Records can be lost easily.
@@ -38,7 +38,7 @@ Nanum is a web platform that connects users and organizations in volunteering wo
   A.	Create contents and post articles (volunteer work opportunities).  
 
 
-## Main functionalities
+## Main Functionalities
 
 1.	Secure signup, login, and logout.
 2.  Able to search, sort, and filter volunteer works posted from organizations. 
@@ -96,6 +96,12 @@ Note: This step may not be necessary it's already changed.
 
 The platform should run on any modern browser. However, our recommended browser is Chrome.
 
+## Sample Accounts
+
+Volunteers: user@test.com
+Content Creators: org@test.com
+
+Password: Test!1234
 
 ## API Design Documentation
 
