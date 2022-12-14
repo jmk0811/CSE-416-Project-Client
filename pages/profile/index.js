@@ -20,6 +20,7 @@ export default function index(props) {
 	const [events, setEvents] = useState([]);
 	const [certificates, setCertificates] = useState([]);
 	const [user, setUser] = useState(props.currUser);
+	const [points, setPoints] = useState(0);
 	// const [value, setValue] = useState([]);
 	const [editMode, setEditMode] = useState(false);
 	const [currEvent, setCurrEvent] = useState();
@@ -104,6 +105,12 @@ export default function index(props) {
 				).then(() => {
 					console.log(tempEvents);
 					setEvents(tempEvents);
+					let sum = 0;
+					tempEvents.map((e) => {
+						console.log(e);
+						sum += e.point;
+					});
+					setPoints(sum);
 				});
 			}
 		} else {
@@ -223,16 +230,6 @@ export default function index(props) {
 				>
 					Events
 				</div>
-				{/* {props.currUser.type === "User" && (
-					<div
-						className={`w-full duration-200 hover:bg-hover1 pl-[20px] py-[5px] rounded-r-full cursor-pointer ${
-							page === "points" && "bg-activate2 font-semibold"
-						}`}
-						onClick={() => handlePageChange("points")}
-					>
-						Points
-					</div>
-				)} */}
 				{props.currUser.type === "User" && (
 					<div
 						className={`w-full duration-200 hover:bg-hover1 pl-[20px] py-[5px] rounded-r-full cursor-pointer ${
@@ -250,7 +247,13 @@ export default function index(props) {
 				{page === "home" && <ProfileCustomer user={user} handleEdit={handleEdit} />}
 				{page === "events" && (
 					<div className="flex flex-col">
-						<div className="font-bold text-30 mb-[30px]">Events List</div>
+						<div className={"flex flex-row mb-[30px]"}>
+							<div className="font-bold text-30">Events List</div>
+							<div className={"flex flex-row ml-auto my-auto mr-[30px]"}>
+								<div className="text-20">Earned points:</div>
+								<div className="text-20 font-bold ml-[10px]">{points}</div>
+							</div>
+						</div>
 						{events.map((item) => (
 							<div className="max-w-[400px] flex flex-col mb-[20px] bg-gray-200 rounded-2xl px-[30px] py-[20px]">
 								<button onClick={() => handlePageChange("eventDetails", item._id)}>
