@@ -190,16 +190,6 @@ export const getCertificateByIdAPIMethod = (certificateId) => {
 		.then(parseJSON);
 };
 
-// delete certificate
-export const deleteCertificateByIdAPIMethod = (certificateId) => {
-	return fetch(`/api/certificates/${certificateId}`, {
-		...defaultHeaders,
-		method: "DELETE",
-	})
-		.then(checkStatus)
-		.then(parseJSON);
-};
-
 // ************************************************** //
 
 function checkLoginStatus(response) {
