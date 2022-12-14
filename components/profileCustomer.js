@@ -84,7 +84,7 @@ function ProfileCustomer(props) {
 													? "https://s3.ap-northeast-2.amazonaws.com/wanted-public/profile_default.png"
 													: user.profile_url
 											}
-											style={{ width: "70px", borderRadius: "50%" }}
+											style={{ width: "70px", height: "70px", borderRadius: "50%" }}
 										/>
 										{editMode ? (
 											<input
