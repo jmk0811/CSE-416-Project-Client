@@ -4,6 +4,7 @@ import Link from "next/link";
 import { createCertificateAPIMethod, getCertificatesAPIMethod, getEventByIdAPIMethod, updateEventAPIMethod, updateUserAPIMethod, getCurrentUserAPIMethod } from "../../api/client";
 import ProfileCustomer from "../../components/profileCustomer";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
+import ConfirmationModal from "../../components/ConfirmationModal";
 
 export default function index(props) {
 	const router = useRouter();
@@ -270,9 +271,7 @@ export default function index(props) {
 									</div>
 								))}
 						</div>
-						<button className="w-[100px] h-[40px] rounded-[10px] bg-red-600 text-white mt-[200px]" onClick={cancelEvent}>
-							Cancel
-						</button>
+						<ConfirmationModal cancelEvent={cancelEvent} />
 					</div>
 				)}
 				{page === "eventDetails" && props.currUser.type === "Organization" && (
