@@ -171,6 +171,9 @@ export default function index(props) {
 
 		updateUserAPIMethod(props.currUser, newUser).then((res) => {
 			console.log(res);
+			router.push("/profile").then(() => {
+				location.reload();
+			});
 		});
 
 		const tempTimeSlots = [...currEvent.timeSlots];
@@ -263,7 +266,7 @@ export default function index(props) {
 								</button>
 
 								<div className="text-5" style={{ marginTop: "20px" }}>
-									To cancle or modify an event, please contact nanum.orghelp@gmail.com{" "}
+									To cancel or modify an event, please contact nanum.orghelp@gmail.com{" "}
 								</div>
 							</>
 						)}
