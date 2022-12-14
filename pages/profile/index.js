@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import {
 	createCertificateAPIMethod,
 	getCertificatesAPIMethod,
@@ -11,7 +12,6 @@ import {
 	getUserByIdAPIMethod,
 } from "../../api/client";
 import ProfileCustomer from "../../components/profileCustomer";
-import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import ConfirmationModal from "../../components/ConfirmationModal";
 
 export default function index(props) {
@@ -29,7 +29,7 @@ export default function index(props) {
 		const page_loc = localStorage.getItem("page");
 		if (page_loc) {
 			setPage(page_loc);
-			//handlePageChange(page_loc);
+			handlePageChange(page_loc, -1);
 		} else {
 			localStorage.setItem("page", "home");
 			setPage("home");
@@ -55,6 +55,8 @@ export default function index(props) {
 	};
 
 	const handlePageChange = (page, value) => {
+		if (page === "eventDetails" && value === -1) page = "events";
+
 		const pages = {
 			home() {
 				setPage("home");
@@ -123,6 +125,23 @@ export default function index(props) {
 					}),
 				).then(() => {
 					console.log(tempEvents);
+<<<<<<< HEAD
+=======
+					for (let i = 0; i < tempEvents.length; i++) {
+						if (tempEvents[i].timeSlots.length != 0) {
+							for (let j = 0; j < tempEvents[i].timeSlots.length; j++) {
+								for (let k = 0; k < tempEvents[i].timeSlots[j].registeredUsers.length; k++) {
+									const id = tempEvents[i].timeSlots[j].registeredUsers[k];
+									getUserByIdAPIMethod(id).then((res) => {
+										console.log(">>", res);
+										const user = { name: res.name, email: res.email, phoneNumber: res.phoneNumber };
+										tempEvents[i].timeSlots[j].registeredUsers[k] = user;
+									});
+								}
+							}
+						}
+					}
+>>>>>>> 449396ecafe53c71e7494b2314a514e0dd979921
 					setEvents(tempEvents);
 				});
 			}
@@ -250,8 +269,8 @@ export default function index(props) {
 						))}
 						{props.currUser.type === "Organization" && (
 							<>
-								<button className={"mt-[60px] max-w-[200px] px-[20px] py-[5px] rounded-[10px] bg-blue-600 text-white font-semibold"}>
-									<Link href={"/workUpload"}>
+								<button className="mt-[60px] max-w-[200px] px-[20px] py-[5px] rounded-[10px] bg-blue-600 text-white font-semibold">
+									<Link href="/workUpload">
 										<a>Create Event</a>
 									</Link>
 								</button>
@@ -310,8 +329,13 @@ export default function index(props) {
 											<div className="mr-[20px] font-semibold">{new Date(slot.startTime).toLocaleDateString()}:</div>
 											{slot.registeredUsers.map((user) => (
 												<div className="flex flex-row">
+<<<<<<< HEAD
 													<div className="mr-[20px]">{user}</div>
 
+=======
+													<div className="mr-[20px]" />
+													<div className="mr-[20px]"> name: {user.name}</div>
+>>>>>>> 449396ecafe53c71e7494b2314a514e0dd979921
 													<button className="bg-green-500 px-[10px] py-[2px] rounded-[10px] my-auto text-white text-[14px]" onClick={() => approveUser(user)}>
 														Approve
 													</button>
@@ -332,21 +356,20 @@ export default function index(props) {
 							<div className="mt-[30px]">
 								{certificates.map((cert) => (
 									<div className="mt-[20px] flex flex-col w-[400px] h-[200px] rounded-[10px] px-[20px] py-[20px] bg-main2">
-										<div className={"mx-auto font-bold mb-[20px]"}>Completion Certificate</div>
+										<div className="mx-auto font-bold mb-[20px]">Completion Certificate</div>
 										<div className="flex flex-row">
 											<div className="font-bold">Certificate ID:</div>
 											<div className="ml-[10px]">{cert._id}</div>
 										</div>
-
-										<div className={"flex flex-row"}>
+										<div className="flex flex-row">
 											<div className="font-bold">Event name:</div>
 											<div className="ml-[10px]">{events.filter((e) => e._id === cert.event)[0]?.title}</div>
 										</div>
-										<div className={"flex flex-row"}>
+										<div className="flex flex-row">
 											<div className="font-bold">Owner:</div>
 											<div className="ml-[10px]">Me</div>
 										</div>
-										<div className={"mt-auto ml-auto scale-[1.5]"}>
+										<div className="mt-auto ml-auto scale-[1.5]">
 											<WorkspacePremiumIcon />
 										</div>
 									</div>
