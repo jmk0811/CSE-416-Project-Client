@@ -7,22 +7,23 @@ import Sheet from "@mui/joy/Sheet";
 import Done from "@mui/icons-material/Done";
 import PhoneInput from "react-phone-input-2";
 import Typography from "@mui/material/Typography";
-import { uploadImageToCloudinaryAPIMethod } from "../api/client";
+import { updateUserAPIMethod, uploadImageToCloudinaryAPIMethod } from "../api/client";
 function ProfileCustomer(props) {
 	const [user, setUser] = useState(props.user);
 	const [value, setValue] = useState([]);
 	const [editMode, setEditMode] = useState(false);
-	console.log(user);
+
 	useEffect(() => {
 		setUser(props.user);
 		setValue(props.user.interests);
 	}, [props.user]);
 
-	console.log(user, value);
-
 	const handleClick = (e) => {
 		props.handleEdit(e, user);
 		setEditMode(false);
+		updateUserAPIMethod(user).then((res) => {
+			console.log(res);
+		});
 	};
 
 	const handleChangeValue = (prop) => (event) => {
@@ -39,7 +40,7 @@ function ProfileCustomer(props) {
 				console.log(formData.file);
 				uploadImageToCloudinaryAPIMethod(formData).then((response) => {
 					console.log(response);
-					setUser({ ...user, profile_url: response.url });
+					setUser({ ...user, profileUrl: response.url });
 				});
 			}
 		} else {
@@ -80,9 +81,9 @@ function ProfileCustomer(props) {
 										<img
 											className="avatar"
 											src={
-												user.profile_url == "" || user.profile_url == undefined
+												user.profileUrl == "" || user.profileUrl == undefined
 													? "https://s3.ap-northeast-2.amazonaws.com/wanted-public/profile_default.png"
-													: user.profile_url
+													: user.profileUrl
 											}
 											style={{ width: "70px", height: "70px", borderRadius: "50%" }}
 										/>
@@ -258,10 +259,14 @@ function ProfileCustomer(props) {
 							) : (
 								<div className="flex flex-col items-center justify-center p-[30px]">
 									<div className="bg-[#4EA1D3] w-[100px] rounded">
-										<button onClick={handleClick} type="submit">
-											<div id="ConfirmButton" className="flex text-[25px] font-sans text-white text-center decoration-8" style={{ margin: "auto" }}>
-												Confirm
-											</div>
+										<button
+											id="ConfirmButton"
+											className="flex text-[25px] font-sans text-white text-center decoration-8"
+											style={{ margin: "auto" }}
+											onClick={handleClick}
+											type="submit"
+										>
+											Confirm
 										</button>
 									</div>
 								</div>
