@@ -142,6 +142,10 @@ export default function Index(props) {
 				<Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" maxWidth="md" width="md" p={{ xs: 1, sm: 2, md: 0 }}>
 					<div className="flex flex-col">
 						<div className="mx-auto text-28 font-bold my-[50px]">{data?.title}</div>
+						<div className="mx-auto text-20">Recruitment Period: {new Date(data?.recruitmentStartDate).toLocaleDateString()} ~ {new Date(data?.recruitmentEndDate).toLocaleDateString()}</div>
+						<div className="mx-auto text-20">Volunteering Period: {new Date(data?.recruitmentStartDate).toLocaleDateString()} ~ {new Date(data?.recruitmentEndDate).toLocaleDateString()}</div>
+						<div className="mx-auto text-20" style={{marginTop: '20px'}}>Address: {data?.address} </div>
+						<div className="mx-auto text-20">Points: {data?.point} </div>
 						<div className="mx-auto text-20 my-[20px] mb-[100px]">{data?.description}</div>
 						<div className="">{data?.image && <img className="w-full h-full object-cover" src={data?.image} />}</div>
 					</div>
