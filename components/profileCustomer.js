@@ -160,15 +160,16 @@ function ProfileCustomer(props) {
 									>
 										Phone number
 									</label>
-
-									<PhoneInput
-										country={"us"}
-										name="phoneNumber"
-										value={user.phoneNumber ? user.phoneNumber.toString() : ""}
-										className="w-[30px] bg-white"
-										onChange={(v) => setUser({ ...user, phoneNumber: v })}
-										disabled={editMode ? false : true}
-									/>
+									<div className="phoneContainer">
+										<PhoneInput
+											country={"us"}
+											name="phoneNumber"
+											value={user.phoneNumber ? user.phoneNumber.toString() : ""}
+											className="w-[250px] bg-white"
+											onChange={(v) => setUser({ ...user, phoneNumber: v })}
+											disabled={editMode ? false : true}
+										/>
+									</div>
 								</div>
 
 								<div name="customerInfoForm" className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">
