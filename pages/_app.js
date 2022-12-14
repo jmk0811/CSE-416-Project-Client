@@ -22,7 +22,7 @@ export default function MyApp({ Component, pageProps }) {
 				setCurrUser({});
 				// console.log(currUser)
 			}
-		});
+		})
 	}, [login]);
 
 	return (

@@ -36,7 +36,7 @@ export const logoutUserAPIMethod = () => {
 	}).then(checkLoginStatus);
 };
 
-// get all users (admin)
+// get all users
 export const getUsersAPIMethod = () => {
 	return fetch(`/api/users`, {
 		...defaultHeaders,

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
-import { createCertificateAPIMethod, getCertificatesAPIMethod, getEventByIdAPIMethod, updateEventAPIMethod, updateUserAPIMethod } from "../../api/client";
+import { createCertificateAPIMethod, getCertificatesAPIMethod, getEventByIdAPIMethod, updateEventAPIMethod, updateUserAPIMethod, getCurrentUserAPIMethod } from "../../api/client";
 import ProfileCustomer from "../../components/profileCustomer";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 
 export default function index(props) {
+	const router = useRouter();
 	const [page, setPage] = useState("home");
 	const [events, setEvents] = useState([]);
 	const [certificates, setCertificates] = useState([]);
@@ -24,6 +26,15 @@ export default function index(props) {
 		}
 		setUser(props.currUser);
 	}, [props.currUser]);
+
+	useEffect(() => {
+		getCurrentUserAPIMethod().then((res) => {
+			if(res === null){
+				alert('Please Login First')
+				router.push('/')
+			}
+		})
+	}, []);
 
 	const handleEdit = (e, user) => {
 		e.preventDefault();

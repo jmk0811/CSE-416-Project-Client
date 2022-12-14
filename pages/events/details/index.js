@@ -16,26 +16,11 @@ export default function Index(props) {
 			setEventId(props.query.query);
 			setDate(res);
 			setTimeSlots(res.timeSlots);
+		}).catch((err) => {
+			alert('Please Login First')
+			router.push('/')
 		});
 	}, []);
-
-	/*
-	// 'Values' will be changed by connecting to database
-	const data = [
-		[new Date("2022-03-25 11:00"), 10, 20],
-		[new Date("2022-12-25 11:00"), 199, 200],
-		[new Date("2022-12-25 11:00"), 100, 200],
-		[new Date("2022-12-25 11:00"), 100, 200],
-		[new Date("2022-12-25 11:00"), 100, 200],
-		[new Date("2022-12-25 11:00"), 100, 200],
-		[new Date("2022-12-25 11:00"), 100, 200],
-		[new Date("2022-12-25 11:00"), 100, 200],
-		[new Date("2022-12-25 11:00"), 100, 200],
-		[new Date("2022-12-25 11:00"), 200, 200], // full
-		[new Date("2022-12-25 11:00"), 100, 200],
-		[new Date("2022-12-25 11:00"), 100, 200],
-	];
-	*/
 
 	const [isChecked, setIsChecked] = React.useState(() => timeSlots.map((i) => false));
 	useEffect(() => {
@@ -160,7 +145,7 @@ export default function Index(props) {
 	return (
 		<Box display="flex" flexDirection="column">
 			<Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" alignSelf="center" width="md">
-				<Box display="flex" flexDirection="column" alignItems="left" justifyContent="center" maxWidth="md" width="md" p={{ xs: 1, sm: 2, md: 0 }}>
+				<Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" maxWidth="md" width="md" p={{ xs: 1, sm: 2, md: 0 }}>
 					<div className="flex flex-col">
 						<div className="mx-auto text-28 font-bold my-[50px]">{data?.title}</div>
 						<div className="mx-auto text-20 my-[20px] mb-[100px]">{data?.description}</div>

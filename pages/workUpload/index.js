@@ -6,7 +6,7 @@ import { ThemeProvider } from "@mui/styles";
 // import AsyncImageUpload from "./AsyncImageUpload";
 import { convertToRaw } from "draft-js";
 import { useRouter } from "next/router";
-import {createEventAPIMethod, updateUserAPIMethod, uploadImageToCloudinaryAPIMethod} from "../../api/client";
+import {createEventAPIMethod, updateUserAPIMethod, uploadImageToCloudinaryAPIMethod, getCurrentUserAPIMethod} from "../../api/client";
 
 export default function workupload(props) {
 	const router = useRouter();
@@ -170,7 +170,6 @@ export default function workupload(props) {
 	};
 
 	const handleSubmit = () => {
-		// api: createEventAPIMethod
 		const interest = [];
 		if (animal == "") interest.push("animal");
 		if (education == "") interest.push("education");
@@ -257,6 +256,18 @@ export default function workupload(props) {
 			setRecruitmentEndDate(sd);
 		}
 	}, [recruitmentStartDate, recruitmentEndDate]);
+
+	React.useEffect(() => {
+		getCurrentUserAPIMethod().then((res) => {
+			if(res.type !== 'Organization' ){
+				alert('Unauthorized')
+				router.push('/')
+			}
+		}).catch((err) => {
+			alert('Unauthorized')
+			router.push('/')
+		})
+	}, [])
 
 	return (
 		<Box display="flex" flexDirection="column">
