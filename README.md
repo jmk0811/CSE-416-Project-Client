@@ -52,7 +52,15 @@ Nanum is a web platform that connects users and organizations in volunteering wo
 	Backend: https://cse-416-project-server.herokuapp.com/
 
 ## Step to run 
-### STEP 1. Git clone for client and server. 
+
+### STEP 1. Download or Git clone for client and server.
+**Make sure that you are using the prod branche**
+
+#### Download
+[Client](https://github.com/jmk0811/CSE-416-Project-Client/tree/prod)
+[Server](https://github.com/jmk0811/CSE-416-Project-Server/tree/prod)
+
+####Git Clone
 Client: 
 ```
 git clone https://github.com/jmk0811/CSE-416-Project-Client.git
@@ -63,6 +71,7 @@ git clone https://github.com/jmk0811/CSE-416-Project-Server.git
 ```
 
 ### STEP 2. Install all packages needed for both client and server (npm i)
+
 ### STEP 3. Change file content at index.js from mui-rte (node_modules > mui-rte >index.js)
 
 before:
@@ -77,6 +86,7 @@ const MUIRichTextEditor = require('./dist/MUIRichTextEditor'); module.exports = 
 Note: This step may not be necessary it's already changed.
 
 ### STEP 4. Run server-side (nodemon server.js or node server.js)
+
 ### STEP 5. Run client side (npm run dev) 
 
 
