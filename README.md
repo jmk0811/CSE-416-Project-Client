@@ -53,8 +53,14 @@ Nanum is a web platform that connects users and organizations in volunteering wo
 
 ## Step to run 
 ### STEP 1. Git clone for client and server. 
-Client: git clone https://github.com/jmk0811/CSE-416-Project-Client.git
-Server: git clone https://github.com/jmk0811/CSE-416-Project-Server.git
+Client: 
+```
+git clone https://github.com/jmk0811/CSE-416-Project-Client.git
+```
+Server: 
+```
+git clone https://github.com/jmk0811/CSE-416-Project-Server.git
+```
 
 ### STEP 2. Install all packages needed for both client and server (npm i)
 ### STEP 3. Change file content at index.js from mui-rte (node_modules > mui-rte >index.js)
