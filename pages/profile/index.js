@@ -169,40 +169,6 @@ export default function index(props) {
 		});
 	};
 
-	const formatDate = (input) => {
-		console.log(input);
-		const date = new Date(input.startTime);
-		const occupy = input.registerLimit;
-		const registered = input.registeredUsers.length;
-		if (date.getMinutes() < 10)
-			return (
-				<div>
-					<div>
-						{" "}
-						{date.getMonth() + 1}/{date.getDate()}{" "}
-					</div>
-					<div>
-						{" "}
-						{date.getHours()}:0{date.getMinutes()}{" "}
-					</div>
-					<div> {occupy - registered} slots available </div>
-				</div>
-			);
-		return (
-			<div>
-				<div>
-					{" "}
-					{date.getMonth() + 1}/{date.getDate()}{" "}
-				</div>
-				<div>
-					{" "}
-					{date.getHours()}:{date.getMinutes()}{" "}
-				</div>
-				<div> {occupy - registered} slots available </div>
-			</div>
-		);
-	};
-
 	return (
 		<div className="relative flex flex-row min-h-screen bg-bg1">
 			<div className="w-[256px] pr-[20px] py-[20px]">
@@ -243,7 +209,7 @@ export default function index(props) {
 			</div>
 
 			{/* page contents */}
-			<div className="w-full bg-white m-[20px] py-[30px]  rounded-[20px]">
+			<div className="w-full bg-white m-[20px] py-[30px]  rounded-[20px]"  style={{paddingLeft: '10px', paddingRight: '10px'}}>
 				{page === "home" && <ProfileCustomer user={user} handleEdit={handleEdit} />}
 				{page === "events" && (
 					<div className="flex flex-col">
@@ -256,11 +222,15 @@ export default function index(props) {
 							</div>
 						))}
 						{props.currUser.type === "Organization" && (
+							<>
 							<button className={"mt-[60px] max-w-[200px] px-[20px] py-[5px] rounded-[10px] bg-blue-600 text-white font-semibold"}>
 								<Link href={"/workUpload"}>
 									<a>Create Event</a>
 								</Link>
 							</button>
+
+							<div className="text-5" style={{marginTop: '20px'}}>To cancle or modify an event, please contact nanum.orghelp@gmail.com </div>
+							</>
 						)}
 					</div>
 				)}
