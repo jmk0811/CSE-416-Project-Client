@@ -14,10 +14,11 @@ body {
 .form-control {
 	background-color: white;
 }
-div[name="customerInfoFormValue"] {
-	width: 30%;
-	margin-left: 80px;
-}
+/* div[name="customerInfoFormValue"] {
+	/* width: 30%;
+	margin-left: 80px; 
+} 
+*/
 @media screen and (max-width: 600px) {
 	label[name="customerInfoFormLabel"] {
 		height: 40px;

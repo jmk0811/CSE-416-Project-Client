@@ -169,7 +169,7 @@ export default function SignUp(props) {
 										</label>
 
 										<input
-											className="bg-transparent h-[40px]  px-10 pr-4 text-base border-[#4EA1D3]"
+											className="bg-transparent h-[40px] pr-4 text-base border-[#4EA1D3]"
 											placeholder="Please enter your name"
 											type="text"
 											id="iName"
@@ -194,7 +194,7 @@ export default function SignUp(props) {
 											name="Email"
 											placeholder="Please enter your Email address"
 											value={email}
-											className="bg-transparent h-[40px]  px-10 pr-4 text-base border-[#4EA1D3]"
+											className="bg-transparent h-[40px]  pr-4 text-base border-[#4EA1D3]"
 											onChange={handleChange("email")}
 										/>
 									</div>
@@ -213,7 +213,7 @@ export default function SignUp(props) {
 											name="userPassword"
 											placeholder="Please enter your password"
 											onChange={handleChange("pw")}
-											className="text-left bg-transparent  h-[40px] px-10 text-base border-[#4EA1D3] "
+											className="text-left bg-transparent  h-[40px] text-base border-[#4EA1D3] "
 											required
 										/>
 									</div>
