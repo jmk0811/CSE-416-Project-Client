@@ -310,7 +310,7 @@ export default function index(props) {
 									<div className="mt-[30px]">
 										<div className="flex flex-col">
 											<div className="mr-[20px] font-semibold">
-												{new Date(slot.startTime).toLocaleDateString()} {new Date(slot.startTime).toTimeString()}:
+												{new Date(slot.startTime).toLocaleDateString()} {new Date(slot.startTime).toTimeString().slice(0, 9)}:
 											</div>
 											{slot.registeredUsers.map((user) => (
 												<div className="flex flex-row">
