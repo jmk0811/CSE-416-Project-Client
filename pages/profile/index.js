@@ -284,7 +284,9 @@ export default function index(props) {
 									<div className="flex flex-col">
 										<div className="flex flex-row gap-x-[10px]">
 											<div>Starting date: </div>
-											<div>{new Date(item.startTime).toLocaleDateString()}</div>
+											<div>
+												{new Date(item.startTime).toLocaleDateString()} {new Date(item.startTime).toTimeString().slice(0, 9)}
+											</div>
 										</div>
 										{/* <div className={"flex flex-row"}> */}
 										{/*	<div>Ending date: </div> */}
