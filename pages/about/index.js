@@ -15,9 +15,9 @@ function About() {
 						Problems We Want to Solve!
 					</Typography>
 					<ul className="mt-[30px]">
-						<li>1. Hard to get information about different kinds of volunteer works comprehensively. </li>
-						<li>2. Hard to manage and keep track of records</li> <li>3. Volunteer work records can be lost easily</li>{" "}
-						<li>4. Less motivation to join volunteer works</li>
+						<li>1. Difficult to manage and keep track of lots of volunteer work records.</li>
+						<li>2. These Records can be lost easily.</li> <li>3. Less motivation on volunteer work participation if there is no reward or compensation.</li>{" "}
+						<li>4. Companies have difficult time finding volunteers.</li>
 					</ul>
 				</div>
 				<div className="p-[10px] mt-[10px] border rounded">
@@ -25,8 +25,9 @@ function About() {
 						Solutions we have
 					</Typography>
 					<ul className="mt-[30px]">
-						<li>1. Make a platform that has various volunteer events. </li> <li>2. Show and provide well design displayed schedule of volunteer record. </li>
-						<li>3. Store volunteer work records online</li> <li>4. Add rewards when the users participate in the volunteer works</li>
+						<li>1. Records and certificates will be stored safely and be prevented from lost. </li> 
+						<li>2. Rewards (points) will be given to the users.</li>
+						<li>3. Companies can advertise and recruit volunteers easily.</li>
 					</ul>{" "}
 				</div>
 				<div className="p-[10px] mt-[10px] border rounded">

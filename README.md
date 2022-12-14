@@ -16,13 +16,13 @@ Nanum is a web platform that connects users and organizations in volunteering wo
 1. Difficult to manage and keep track of lots of volunteer work records.
 2. These Records can be lost easily.
 3. Less motivation on volunteer work participation if there is no reward or compensation.
-4. Companies have difficult time finding volunteers
+4. Companies have difficult time finding volunteers.
 
 
 ## Solution
 
-1. Records and certificates will be stored safely and be prevented from lost
-2. Rewards (points) will be given to the users
+1. Records and certificates will be stored safely and be prevented from lost.
+2. Rewards (points) will be given to the users.
 3. Companies can advertise and recruit volunteers easily.
 
 
