@@ -145,7 +145,7 @@ export default function SignUp(props) {
 											Profile Image
 										</label>
 										<div name="customerInfoFormValue" className="flex flex-row justify-center items-center">
-											<img className="avatar" src={profileUrl} style={{ width: "70px", borderRadius: "50%" }} />
+											<img className="avatar" src={profileUrl} style={{ width: "70px", height: "70px", borderRadius: "50%" }} />
 											<input
 												id="file-upload"
 												className="custom-file-upload"
