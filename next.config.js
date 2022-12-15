@@ -5,7 +5,7 @@ module.exports = () => {
 		return [
 			{
 				source: "/:path*",
-				destination: "http://localhost:3001/:path*",
+				destination: "https://cse-416-project-server.herokuapp.com/:path*",
 			},
 		];
 	};
