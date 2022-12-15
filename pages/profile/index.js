@@ -357,7 +357,7 @@ export default function index(props) {
 												{new Date(slot.startTime).toLocaleDateString()} {new Date(slot.startTime).toTimeString().slice(0, 9)}:
 											</div>
 											{slot.registeredUsers.map((user) => (
-												<div className="flex flex-row">
+												<div className="flex flex-row mb-[10px]">
 													<div className="mr-[20px]">{user}</div>
 
 													{approved.includes(user) ? (
