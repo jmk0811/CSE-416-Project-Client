@@ -116,7 +116,7 @@ export default function Header(props) {
 								<a>ABOUT US</a>
 							</Link>
 						</button>
-						<button className="">
+						<button className="" onClick={() => {localStorage.clear()}}>
 							<Link href="/profile">
 								<a>PROFILE</a>
 							</Link>
