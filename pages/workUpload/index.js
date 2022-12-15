@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Typography, Button, Stack, Chip } from "@mui/material";
-import MUIRichTextEditor from "mui-rte";
 import { createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@mui/styles";
 // import AsyncImageUpload from "./AsyncImageUpload";
@@ -34,35 +33,6 @@ export default function workupload(props) {
 
 		return `${year}-${month}-${day}`;
 	}
-
-	const myTheme = createTheme({});
-
-	Object.assign(myTheme, {
-		overrides: {
-			MUIRichTextEditor: {
-				root: {
-					"& pre": {
-						color: "#212121",
-					},
-				},
-				editor: {
-					padding: "20px",
-					height: "300px",
-					maxHeight: "60vh",
-					overflow: "auto",
-				},
-				placeHolder: {
-					paddingLeft: 20,
-					width: "inherit",
-					position: "static",
-				},
-				anchorLink: {
-					color: "#FFEB3B",
-					textDecoration: "underline",
-				},
-			},
-		},
-	});
 
 	// Tags: outlined (선택안함)
 	const [animal, setAnimal] = React.useState("outlined");
@@ -148,10 +118,7 @@ export default function workupload(props) {
 
 	const [detail, setDetail] = React.useState("");
 	const handleDetail = (e) => {
-		const plainText = e.getCurrentContent().getPlainText(); // for plain text
-		//console.log(plainText);
-		const rContent = convertToRaw(e.getCurrentContent()); // for rte content with text formating
-		rContent && setDetail(JSON.stringify(plainText)); // store your rteContent to state
+		setDetail(e.target.value);
 	};
 
 	const handleFormDate = (e, i) => {
@@ -170,14 +137,18 @@ export default function workupload(props) {
 	};
 
 	const handleSubmit = () => {
+
+		if(title === "") {
+			alert('title is required');
+			return;
+		}
+
 		const interest = [];
 		if (animal == "") interest.push("animal");
 		if (education == "") interest.push("education");
 		if (environment == "") interest.push("environment");
 		if (sports == "") interest.push("sports");
 		if (healthcare == "") interest.push("healthcare");
-
-		console.log(applyDay);
 
 		let temp = [];
 
@@ -330,9 +301,8 @@ export default function workupload(props) {
 					</div>
 
 					<div style={{ border: "1px solid black" }}>
-						<ThemeProvider theme={myTheme}>
-							{/* <AsyncImageUpload detail = {detail} handleDetail = {handleDetail}/> */}
-							<MUIRichTextEditor label="Start Here..." controls={["bold", "underline", "italic"]} value={detail.text} onChange={handleDetail} />
+						<ThemeProvider>
+							<textarea value={detail.text} onChange={handleDetail} style={{ padding: '10px', border: 'none', outline: 'none', minHeight: '500px', width: '100%'}}/>
 						</ThemeProvider>
 					</div>
 					<div style={{ display: "flex", flexDirection: "row", justifyContent: "left", maxWidth: "90vw", marginBottom: "20px" }}>
