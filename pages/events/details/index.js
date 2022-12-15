@@ -13,7 +13,6 @@ export default function Index(props) {
 	useEffect(() => {
 		getEventByIdAPIMethod(props.query.query)
 			.then((res) => {
-				//console.log(res);
 				setEventId(props.query.query);
 				setDate(res);
 				setTimeSlots(res.timeSlots);
@@ -59,9 +58,6 @@ export default function Index(props) {
 		if (isChecked.indexOf(true) === -1) {
 			return alert("Please select the time slot");
 		}
-		// TODO
-		// 완료 페이지로 이동
-		// 서버에서 추가로 확인해야할 것 이 있어서 추후에 설명 드리겠습니다 use Queue
 
 		const newUser = {
 			name: props.currUser.name,
@@ -176,17 +172,7 @@ export default function Index(props) {
 							</Grid>
 						</Box>
 					</Box>
-					<Box
-						display="flex"
-						flexWrap="wrap"
-						flexDirection="column"
-						justifyContent="center"
-						alignItems="center"
-						width="80vw"
-						maxWidth="md"
-						// height="50vh"
-						// maxHeight="75vh"
-					>
+					<Box display="flex" flexWrap="wrap" flexDirection="column" justifyContent="center" alignItems="center" width="80vw" maxWidth="md">
 						<Typography style={{ fontSize: "30px" }}> Application Information </Typography>
 						<Typography>If your information does the match the following, please change the information on your profile page before applying</Typography>
 
@@ -261,7 +247,6 @@ export default function Index(props) {
 	);
 
 	function formatDate(input) {
-		//console.log(input);
 		const date = new Date(input.startTime);
 		const occupy = input.registerLimit;
 		const registered = input.registeredUsers.length;

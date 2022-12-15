@@ -3,7 +3,7 @@ import { Box, Typography, Button, Stack, Chip } from "@mui/material";
 import MUIRichTextEditor from "mui-rte";
 import { createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@mui/styles";
-// import AsyncImageUpload from "./AsyncImageUpload";
+
 import { convertToRaw } from "draft-js";
 import { useRouter } from "next/router";
 import { createEventAPIMethod, updateUserAPIMethod, uploadImageToCloudinaryAPIMethod, getCurrentUserAPIMethod } from "../../api/client";
@@ -64,7 +64,6 @@ export default function workupload(props) {
 		},
 	});
 
-	// Tags: outlined (선택안함)
 	const [animal, setAnimal] = React.useState("outlined");
 	const handleAnimal = () => {
 		if (animal == "") setAnimal("outlined");
@@ -146,7 +145,7 @@ export default function workupload(props) {
 	const [detail, setDetail] = React.useState("");
 	const handleDetail = (e) => {
 		const plainText = e.getCurrentContent().getPlainText(); // for plain text
-		//console.log(plainText);
+
 		const rContent = convertToRaw(e.getCurrentContent()); // for rte content with text formating
 		rContent && setDetail(JSON.stringify(plainText)); // store your rteContent to state
 	};
@@ -326,7 +325,6 @@ export default function workupload(props) {
 
 					<div style={{ border: "1px solid black" }}>
 						<ThemeProvider theme={myTheme}>
-							{/* <AsyncImageUpload detail = {detail} handleDetail = {handleDetail}/> */}
 							<MUIRichTextEditor label="Start Here..." controls={["bold", "underline", "italic"]} value={detail.text} onChange={handleDetail} />
 						</ThemeProvider>
 					</div>

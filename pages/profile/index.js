@@ -22,7 +22,6 @@ export default function index(props) {
 	const [user, setUser] = useState(props.currUser);
 	const [points, setPoints] = useState(0);
 	var today = new Date();
-	// const [value, setValue] = useState([]);
 	const [editMode, setEditMode] = useState(false);
 	const [currEvent, setCurrEvent] = useState();
 	const [certificateUser, setCertificateUser] = useState([]);
@@ -93,7 +92,6 @@ export default function index(props) {
 								if (bool) {
 									tempList.push(user._id);
 									setApproved(tempList);
-									//console.log(tempList);
 								}
 							});
 						});
@@ -106,40 +104,33 @@ export default function index(props) {
 		pages[page]();
 	};
 
-	useEffect(() => {
-		console.log(approved);
-	}, [approved]);
+	useEffect(() => {}, [approved]);
 
 	const loadEvents = async () => {
 		const tempEvents = [];
-		// TODO: refactor
+
 		if (props.currUser?.type === "User") {
 			if (props.currUser?.events !== undefined) {
 				Promise.all(
 					props.currUser?.events?.map(async (id) => {
-						//console.log(id);
 						const res = await getEventByIdAPIMethod(id);
-						//console.log(res);
+
 						tempEvents.push(res);
 					}),
 				).then(() => {
-					//console.log(tempEvents);
 					setEvents(tempEvents);
 					return tempEvents;
 				});
 			}
 		} else {
-			// TODO: get participants list
 			if (props.currUser?.events !== undefined) {
 				Promise.all(
 					props.currUser?.events?.map(async (id) => {
-						//console.log(id);
 						const res = await getEventByIdAPIMethod(id);
-						//console.log(res);
+
 						tempEvents.push(res);
 					}),
 				).then(() => {
-					//console.log(tempEvents);
 					setEvents(tempEvents);
 					return tempEvents;
 				});
@@ -326,10 +317,6 @@ export default function index(props) {
 												{new Date(item.startTime).toLocaleDateString()} {new Date(item.startTime).toTimeString().slice(0, 9)}
 											</div>
 										</div>
-										{/* <div className={"flex flex-row"}> */}
-										{/*	<div>Ending date: </div> */}
-										{/*	<div>{item.endTime}</div> */}
-										{/* </div> */}
 									</div>
 								))}
 						</div>
@@ -375,7 +362,7 @@ export default function index(props) {
 						</div>
 					</div>
 				)}
-				{/* {page === "points" && <div className="flex flex-col" />} */}
+
 				{page === "certificates" && (
 					<div className="flex flex-col">
 						<div className="flex flex-col">

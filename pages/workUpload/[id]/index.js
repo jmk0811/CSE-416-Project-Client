@@ -4,7 +4,6 @@ import { uploadImageToCloudinaryAPIMethod } from "../../api/client";
 import MUIRichTextEditor from "mui-rte";
 import { createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@mui/styles";
-// import AsyncImageUpload from "./AsyncImageUpload";
 import { convertToRaw } from "draft-js";
 import { createEventAPIMethod } from "../../api/client";
 import { useRouter } from "next/router";
@@ -65,7 +64,6 @@ export default function workupload(props) {
 		},
 	});
 
-	// Tags: outlined (선택안함)
 	const [animal, setAnimal] = React.useState("outlined");
 	const handleAnimal = () => {
 		if (animal == "") setAnimal("outlined");
@@ -137,8 +135,6 @@ export default function workupload(props) {
 			formData.append("file", selectedFile);
 			formData.append("upload_preset", unsignedUploadPreset);
 
-			//			console.log("Cloudinary upload");
-			//			console.log(formData.file);
 			uploadImageToCloudinaryAPIMethod(formData).then((response) => {
 				setfileURL(response.url);
 			});
@@ -148,8 +144,6 @@ export default function workupload(props) {
 
 	const [detail, setDetail] = React.useState("");
 	const handleDetail = (e) => {
-		//		const content = JSON.stringify(convertToRaw(e.getCurrentContent()));
-
 		const plainText = e.getCurrentContent().getPlainText(); // for plain text
 		const rContent = convertToRaw(e.getCurrentContent()); // for rte content with text formating
 
@@ -294,7 +288,6 @@ export default function workupload(props) {
 
 					<div style={{ border: "1px solid black" }}>
 						<ThemeProvider theme={myTheme}>
-							{/* <AsyncImageUpload detail = {detail} handleDetail = {handleDetail}/> */}
 							<MUIRichTextEditor label="Start Here..." controls={["title", "bold", "underline"]} value={detail.text} onChange={handleDetail} />
 						</ThemeProvider>
 					</div>

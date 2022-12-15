@@ -26,7 +26,6 @@ export default function Header(props) {
 		});
 	};
 
-	// TODO: remove testing code
 	const populateData = () => {
 		const volunteerWorks = [
 			{
@@ -45,7 +44,7 @@ export default function Header(props) {
 
 		volunteerWorks.map((event) => {
 			createVolunteerWorkAPIMethod(event).then((res) => {
-				//console.log(res);
+				console.log(res);
 			});
 		});
 	};

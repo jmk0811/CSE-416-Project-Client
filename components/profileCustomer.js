@@ -21,9 +21,7 @@ function ProfileCustomer(props) {
 	const handleClick = (e) => {
 		props.handleEdit(e, user);
 		setEditMode(false);
-		updateUserAPIMethod(user).then((res) => {
-			console.log(res);
-		});
+		updateUserAPIMethod(user).then((res) => {});
 	};
 
 	const handleChangeValue = (prop) => (event) => {
@@ -36,10 +34,7 @@ function ProfileCustomer(props) {
 				formData.append("file", selectedFile);
 				formData.append("upload_preset", unsignedUploadPreset);
 
-				//console.log("Cloudinary upload");
-				//console.log(formData.file);
 				uploadImageToCloudinaryAPIMethod(formData).then((response) => {
-					//console.log(response);
 					setUser({ ...user, profileUrl: response.url });
 				});
 			}

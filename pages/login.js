@@ -5,7 +5,6 @@ import Link from "next/link";
 import { loginUserAPIMethod } from "../api/client";
 
 export default function Login(props) {
-	// const [email, setEmail] = useState();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState();
 	const [error, setError] = useState();
@@ -23,7 +22,7 @@ export default function Login(props) {
 			if (status) {
 				setError("");
 				props.setLogin(true);
-				//router.push("/");
+
 				handleClose();
 			} else {
 				setError("login failed");
@@ -41,23 +40,9 @@ export default function Login(props) {
 	}
 	function IsPasswordMatched(e) {
 		e.preventDefault();
-		//console.log("props", props);
-		//console.log("id", email, "password", password);
 	}
 
 	return (
-		// <div className="">
-		// 	<div>
-		// 		<label>ID</label>
-		// 		<input className="" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-		// 	</div>
-		// 	<div>
-		// 		<label>Password</label>
-		// 		<input className="" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-		// 	</div>
-		// 	<button onClick={login}>Login</button>
-		// </div>
-
 		<div>
 			<Dialog open={props.status} onClose={handleClose}>
 				<div className="flex">
@@ -99,11 +84,7 @@ export default function Login(props) {
 										</div>
 										<div className="flex flex-col items-center w-full justify-center p-[30px]">
 											<div className="bg-[#4EA1D3] w-full rounded">
-												<button
-													type="submit"
-													// onClick={IsPasswordMatched}
-													onClick={login}
-												>
+												<button type="submit" onClick={login}>
 													<div className="w-[400px] font-sans text-[25px] text-white text-center text-center decoration-8">Login</div>
 												</button>
 											</div>
