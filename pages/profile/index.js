@@ -162,7 +162,7 @@ export default function index(props) {
 			password: props.currUser.password,
 			type: props.currUser.type,
 			address1: props.currUser.address1,
-			address2: props.currUser.address2,
+			approvedEvents: props.currUser.approvedEvents,
 			profileUrl: props.currUser.profileUrl,
 			gender: props.currUser.gender,
 			dateOfBirth: props.currUser.dateOfBirth,
@@ -210,8 +210,28 @@ export default function index(props) {
 			contractAddress: "",
 		};
 
+		getUserByIdAPIMethod(userId).then((res) => {
+			const newUser = {
+				name: res.name,
+				email: res.email,
+				password: res.password,
+				type: res.type,
+				address1: res.address1,
+				approvedEvents: [...res.approvedEvents, currEvent._id],
+				profileUrl: res.profileUrl,
+				gender: res.gender,
+				dateOfBirth: res.dateOfBirth,
+				phoneNumber: res.phoneNumber,
+				events: res.events,
+				interests: res.events,
+			};
+			updateUserAPIMethod(res, newUser).then((res) => {
+				console.log(res);
+			});
+		});
+
 		createCertificateAPIMethod(certificate).then((res) => {
-			console.log();
+			console.log(res);
 			alert("Successfully approved the user and granted a certificate");
 		});
 	};
@@ -326,9 +346,15 @@ export default function index(props) {
 												<div className="flex flex-row">
 													<div className="mr-[20px]">{user}</div>
 
-													<button className="bg-green-500 px-[10px] py-[2px] rounded-[10px] my-auto text-white text-[14px]" onClick={() => approveUser(user)}>
-														Approve
-													</button>
+													{user.approvedEvents?.includes(currEvent._id) ? (
+														<button className="bg-green-500 px-[10px] py-[2px] rounded-[10px] my-auto text-white text-[14px]">
+															Already approved
+														</button>
+													) : (
+														<button className="bg-green-500 px-[10px] py-[2px] rounded-[10px] my-auto text-white text-[14px]" onClick={() => approveUser(user)}>
+															Approve
+														</button>
+													)}
 												</div>
 											))}
 										</div>

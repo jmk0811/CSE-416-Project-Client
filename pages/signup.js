@@ -50,7 +50,7 @@ export default function SignUp(props) {
 					type,
 
 					address1: addr1,
-					address2: addr2,
+					approvedEvents: [],
 					profileUrl,
 					gender,
 					dateOfBirth,

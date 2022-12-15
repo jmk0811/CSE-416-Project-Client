@@ -29,7 +29,7 @@ function SignUp(props) {
 					email,
 					password: pw,
 					address1: addr1,
-					address2: addr2,
+					approvedEvents: [],
 					profileUrl,
 				};
 				registerUserAPIMethod(user1).then((ret) => {
