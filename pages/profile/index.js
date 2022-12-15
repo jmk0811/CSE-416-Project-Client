@@ -53,6 +53,7 @@ export default function index(props) {
 		updateUserAPIMethod(user, user).then((res) => {
 			console.log(res);
 		});
+		props.setCurrUser(user);
 	};
 
 	const handlePageChange = (page, value) => {

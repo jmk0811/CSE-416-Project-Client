@@ -48,6 +48,7 @@ export default function SignUp(props) {
 					email,
 					password: pw,
 					type,
+
 					address1: addr1,
 					address2: addr2,
 					profileUrl,
@@ -145,7 +146,11 @@ export default function SignUp(props) {
 											Profile Image
 										</label>
 										<div name="customerInfoFormValue" className="flex flex-row justify-center items-center">
-											<img className="avatar" src={profileUrl} style={{ width: "70px", height: "70px", borderRadius: "50%" }} />
+											<img
+												className="avatar"
+												src={profileUrl == "" ? "https://s3.ap-northeast-2.amazonaws.com/wanted-public/profile_default.png" : profileUrl}
+												style={{ width: "70px", height: "70px", borderRadius: "50%" }}
+											/>
 											<input
 												id="file-upload"
 												className="custom-file-upload"
