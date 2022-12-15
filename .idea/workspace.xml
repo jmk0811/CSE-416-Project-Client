@@ -6,13 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fe09c4a4-1171-4842-81c6-27082dd963f8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/SignUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/SignUp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/create.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/create.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/events/details/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/events/details/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/profile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/profile/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/signup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/workUpload/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/workUpload/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
