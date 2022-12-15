@@ -25,6 +25,7 @@ export default function index(props) {
 	const [editMode, setEditMode] = useState(false);
 	const [currEvent, setCurrEvent] = useState();
 	const [certificateUser, setCertificateUser] = useState([]);
+	const [approved, setApproved] = useState([]);
 
 	useEffect(() => {
 		const page_loc = localStorage.getItem("page");
@@ -81,15 +82,21 @@ export default function index(props) {
 			},
 			eventDetails() {
 				setPage("eventDetails");
-				getEventByIdAPIMethod(value).then((res) => {
-					setCurrEvent(res);
-					for (let i = 0; i < res.timeSlots.length; i++) {
-						for (let j = 0; j < res.timeSlots[i].registeredUsers.length; j++) {
-							getUserByIdAPIMethod(res.timeSlots[i].registeredUsers[j]).then((res) => {
-								console.log(">>", res);
+				getEventByIdAPIMethod(value).then((currentEvent) => {
+					setCurrEvent(currentEvent);
+					currEvent?.timeSlots.map((slot, i) => {
+						slot.registeredUsers.map((userId, j) => {
+							getUserByIdAPIMethod(userId).then((user) => {
+								const bool = user.approvedEvents?.includes(currentEvent._id);
+								let tempList = [];
+								if (bool) {
+									tempList.push(user._id);
+									setApproved(tempList);
+									console.log(tempList);
+								}
 							});
-						}
-					}
+						});
+					})
 				});
 				localStorage.setItem("page", "eventDetails");
 			},
@@ -97,6 +104,10 @@ export default function index(props) {
 
 		pages[page]();
 	};
+
+	useEffect(() => {
+		console.log(approved);
+	}, [approved]);
 
 	const loadEvents = async () => {
 		const tempEvents = [];
@@ -233,6 +244,9 @@ export default function index(props) {
 		createCertificateAPIMethod(certificate).then((res) => {
 			console.log(res);
 			alert("Successfully approved the user and granted a certificate");
+			router.push("/profile").then(() => {
+				location.reload();
+			});
 		});
 	};
 
@@ -346,8 +360,8 @@ export default function index(props) {
 												<div className="flex flex-row">
 													<div className="mr-[20px]">{user}</div>
 
-													{user.approvedEvents?.includes(currEvent._id) ? (
-														<button className="bg-green-500 px-[10px] py-[2px] rounded-[10px] my-auto text-white text-[14px]">
+													{approved.includes(user) ? (
+														<button className="bg-gray-400 px-[10px] py-[2px] rounded-[10px] my-auto text-white text-[14px]">
 															Already approved
 														</button>
 													) : (
