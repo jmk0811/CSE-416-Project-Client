@@ -144,7 +144,7 @@ export default function Index(props) {
 							Recruitment Period: {new Date(data?.recruitmentStartDate).toLocaleDateString()} ~ {new Date(data?.recruitmentEndDate).toLocaleDateString()}
 						</div>
 						<div className="mx-auto text-20">
-							Volunteering Period: {new Date(data?.recruitmentStartDate).toLocaleDateString()} ~ {new Date(data?.recruitmentEndDate).toLocaleDateString()}
+							Volunteering Period: {new Date(data?.eventStartDate).toLocaleDateString()} ~ {new Date(data?.eventEndDate).toLocaleDateString()}
 						</div>
 						<div className="mx-auto text-20" style={{ marginTop: "20px" }}>
 							Address: {data?.address}{" "}
