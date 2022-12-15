@@ -1,12 +1,12 @@
 import React from "react";
 import { Box, Typography, Button, Stack, Chip } from "@mui/material";
+import { uploadImageToCloudinaryAPIMethod } from "../../api/client";
 import MUIRichTextEditor from "mui-rte";
 import { createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@mui/styles";
-
 import { convertToRaw } from "draft-js";
+import { createEventAPIMethod } from "../../api/client";
 import { useRouter } from "next/router";
-import { createEventAPIMethod, updateUserAPIMethod, uploadImageToCloudinaryAPIMethod, getCurrentUserAPIMethod } from "../../api/client";
 
 export default function workupload(props) {
 	const router = useRouter();
@@ -145,9 +145,9 @@ export default function workupload(props) {
 	const [detail, setDetail] = React.useState("");
 	const handleDetail = (e) => {
 		const plainText = e.getCurrentContent().getPlainText(); // for plain text
-
 		const rContent = convertToRaw(e.getCurrentContent()); // for rte content with text formating
-		rContent && setDetail(JSON.stringify(plainText)); // store your rteContent to state
+
+		rContent && setDetail(JSON.stringify(rContent)); // store your rteContent to state
 	};
 
 	const handleFormDate = (e, i) => {
@@ -166,6 +166,7 @@ export default function workupload(props) {
 	};
 
 	const handleSubmit = () => {
+		//api: createEventAPIMethod
 		const interest = [];
 		if (animal == "") interest.push("animal");
 		if (education == "") interest.push("education");
@@ -173,52 +174,22 @@ export default function workupload(props) {
 		if (sports == "") interest.push("sports");
 		if (healthcare == "") interest.push("healthcare");
 
-		let temp = [];
-
-		applyDay.map((item) => {
-			const hr = item.time.split(":")[0];
-			const min = item.time.split(":")[1];
-			let tempDate = new Date(item.date);
-			tempDate.setHours(hr);
-			tempDate.setMinutes(min);
-			temp = [...temp, { startTime: tempDate, endTime: "", registerLimit: item.occupy, registeredUsers: [] }];
-		});
-
 		const event = {
-			title,
+			title: title,
 			description: detail,
 			holder: props.currUser._id,
-			recruitmentStartDate,
-			recruitmentEndDate,
+			recruitmentStartDate: recruitmentStartDate,
+			recruitmentEndDate: recruitmentEndDate,
 			eventStartDate: startDate,
 			eventEndDate: endDate,
 			thumbnail: fileURL,
 			image: fileURL,
-			address,
+			address: address,
 			interests: interest,
-			point,
-			timeSlots: temp,
+			point: point,
+			timeSlots: applyDay,
 		};
-
-		createEventAPIMethod(event).then((res) => {
-			const newUser = {
-				name: props.currUser.name,
-				email: props.currUser.email,
-				password: props.currUser.password,
-				type: props.currUser.type,
-				address1: props.currUser.address1,
-				approvedEvents: props.currUser.approvedEvents,
-				profileUrl: props.currUser.profileUrl,
-				gender: props.currUser.gender,
-				dateOfBirth: props.currUser.dateOfBirth,
-				phoneNumber: props.currUser.phoneNumber,
-				events: [...props.currUser.events, res],
-			};
-
-			updateUserAPIMethod(props.currUser, newUser).then((res) => {
-				console.log(res);
-			});
-
+		createEventAPIMethod(event).then((response) => {
 			alert("Your event has been successfully uploaded!");
 			router.push({
 				pathname: "/",
@@ -246,21 +217,13 @@ export default function workupload(props) {
 		if (daysBetween <= 0) {
 			alert("please make the start date before the end date");
 			setRecruitmentEndDate(sd);
+			return;
 		}
 	}, [recruitmentStartDate, recruitmentEndDate]);
 
 	React.useEffect(() => {
-		getCurrentUserAPIMethod()
-			.then((res) => {
-				if (res.type !== "Organization") {
-					alert("Unauthorized");
-					router.push("/");
-				}
-			})
-			.catch((err) => {
-				alert("Unauthorized");
-				router.push("/");
-			});
+		//get event from id here
+		//put info to useState
 	}, []);
 
 	return (
@@ -272,7 +235,7 @@ export default function workupload(props) {
 							Title
 						</div>
 						<input
-							className="text-[25px] font-bold font-sans bg-white"
+							className="text-[25px] font-bold font-sans"
 							type="text"
 							style={{ border: "1px solid black", borderRadius: "10px", padding: "15px", width: "1000px", maxWidth: "70vw" }}
 							value={title}
@@ -284,7 +247,7 @@ export default function workupload(props) {
 						<div className="text-[25px] font-bold font-sans" style={{ display: "flex", justifyContent: "center", alignItems: "center", margin: "10px" }}>
 							Recruitment Period
 						</div>
-						<input className="text-[25px] font-sans bg-gray-300" type="date" value={recruitmentStartDate} onChange={handleRecruitmentStartDate} />
+						<input className="text-[25px] font-sans" type="date" value={recruitmentStartDate} onChange={handleRecruitmentStartDate} />
 						<div
 							className="text-[25px] font-sans"
 							style={{ display: "flex", justifyContent: "center", alignItems: "center", marginRight: "10px", marginLeft: "10px" }}
@@ -292,14 +255,14 @@ export default function workupload(props) {
 							{" "}
 							~{" "}
 						</div>
-						<input className="text-[25px] font-sans bg-gray-300" type="date" value={recruitmentEndDate} onChange={handleRecruitmentEndDate} />
+						<input className="text-[25px] font-sans" type="date" value={recruitmentEndDate} onChange={handleRecruitmentEndDate} />
 					</div>
 
 					<div style={{ display: "flex", flexDirection: "row", justifyContent: "left", maxWidth: "90vw", marginBottom: "20px" }}>
 						<div className="text-[25px] font-bold font-sans" style={{ display: "flex", justifyContent: "center", alignItems: "center", margin: "10px" }}>
 							Volunteering Period
 						</div>
-						<input className="text-[25px] font-sans bg-gray-300" type="date" value={startDate} onChange={handleStartDate} />
+						<input className="text-[25px] font-sans" type="date" value={startDate} onChange={handleStartDate} />
 						<div
 							className="text-[25px] font-sans"
 							style={{ display: "flex", justifyContent: "center", alignItems: "center", marginRight: "10px", marginLeft: "10px" }}
@@ -307,7 +270,7 @@ export default function workupload(props) {
 							{" "}
 							~{" "}
 						</div>
-						<input className="text-[25px] font-sans bg-gray-300" type="date" value={endDate} onChange={handleEndDate} />
+						<input className="text-[25px] font-sans" type="date" value={endDate} onChange={handleEndDate} />
 					</div>
 
 					<div style={{ display: "flex", flexDirection: "row", justifyContent: "left", maxWidth: "90vw", marginTop: "20px", marginBottom: "20px" }}>
@@ -315,7 +278,7 @@ export default function workupload(props) {
 							Address
 						</div>
 						<input
-							className="text-[20px] font-bold font-sans bg-white"
+							className="text-[20px] font-bold font-sans"
 							type="text"
 							style={{ border: "1px solid black", borderRadius: "10px", padding: "15px", width: "1000px", maxWidth: "65vw" }}
 							value={address}
@@ -325,7 +288,7 @@ export default function workupload(props) {
 
 					<div style={{ border: "1px solid black" }}>
 						<ThemeProvider theme={myTheme}>
-							<MUIRichTextEditor label="Start Here..." controls={["bold", "underline", "italic"]} value={detail.text} onChange={handleDetail} />
+							<MUIRichTextEditor label="Start Here..." controls={["title", "bold", "underline"]} value={detail.text} onChange={handleDetail} />
 						</ThemeProvider>
 					</div>
 					<div style={{ display: "flex", flexDirection: "row", justifyContent: "left", maxWidth: "90vw", marginBottom: "20px" }}>
@@ -364,23 +327,15 @@ export default function workupload(props) {
 								onChange={(event) => handleFormDate(event, i)}
 							>
 								<input
-									className={"bg-gray-300"}
 									id="date"
 									type="date"
 									value={dateFormat2(new Date(arr.date), i)}
 									style={{ display: "flex", justifyContent: "center", alignSelf: "center", marginRight: "10px" }}
 								/>
-								<input
-									className={"bg-gray-300"}
-									id="time"
-									type="time"
-									value={arr.time}
-									style={{ display: "flex", justifyContent: "center", alignSelf: "center", marginRight: "10px" }}
-								/>
+								<input id="time" type="time" value={arr.time} style={{ display: "flex", justifyContent: "center", alignSelf: "center", marginRight: "10px" }} />
 								<div style={{ display: "flex", flexDirection: "row", justifyContent: "left", margin: "10px" }}>
 									<Typography style={{ marginRight: "10px" }}>Occupy:</Typography>
 									<input
-										className={"bg-gray-300"}
 										id="occupy"
 										type="number"
 										value={arr.occupy}
@@ -399,7 +354,6 @@ export default function workupload(props) {
 								<div style={{ display: "flex", flexDirection: "row", justifyContent: "left", margin: "10px" }}>
 									<Typography style={{ marginRight: "10px" }}>Registered Users:</Typography>
 									<input
-										className={"bg-gray-300"}
 										id="occupy"
 										type="number"
 										value={0}
@@ -425,7 +379,7 @@ export default function workupload(props) {
 							Points
 						</div>
 						<input
-							className="text-[20px] font-bold font-sans bg-gray-300"
+							className="text-[20px] font-bold font-sans"
 							type="number"
 							style={{ border: "1px solid black", borderRadius: "10px", padding: "15px", maxWidth: "100px" }}
 							value={point}

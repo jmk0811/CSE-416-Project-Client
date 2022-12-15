@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Temporal } from "@js-temporal/polyfill";
-import {createEventAPIMethod, updateUserAPIMethod} from "../api/client";
+import { createEventAPIMethod, updateUserAPIMethod } from "../api/client";
 
 export default function index(props) {
 	const [title, setTitle] = useState("");
@@ -8,41 +8,6 @@ export default function index(props) {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
-		// TODO: remove hardcoded parts
-
-		// const testTimeSlots = [
-		// 	{
-		// 		startTime: Temporal.PlainDateTime.from("2022-12-12T09:00:00"),
-		// 		endTime: Temporal.PlainDateTime.from("2022-12-12T18:00:00"),
-		// 		registerLimit: 6,
-		// 		registeredUsers: [],
-		// 	},
-		// 	{
-		// 		startTime: Temporal.PlainDateTime.from("2022-12-13T09:00:00"),
-		// 		endTime: Temporal.PlainDateTime.from("2022-12-13T18:00:00"),
-		// 		registerLimit: 7,
-		// 		registeredUsers: [],
-		// 	},
-		// 	{
-		// 		startTime: Temporal.PlainDateTime.from("2022-12-14T09:00:00"),
-		// 		endTime: Temporal.PlainDateTime.from("2022-12-14T18:00:00"),
-		// 		registerLimit: 10,
-		// 		registeredUsers: [],
-		// 	},
-		// 	{
-		// 		startTime: Temporal.PlainDateTime.from("2022-12-15T09:00:00"),
-		// 		endTime: Temporal.PlainDateTime.from("2022-12-15T18:00:00"),
-		// 		registerLimit: 3,
-		// 		registeredUsers: [],
-		// 	},
-		// 	{
-		// 		startTime: Temporal.PlainDateTime.from("2022-12-16T09:00:00"),
-		// 		endTime: Temporal.PlainDateTime.from("2022-12-16T18:00:00"),
-		// 		registerLimit: 5,
-		// 		registeredUsers: [],
-		// 	},
-		// ];
 
 		const event = {
 			title,
@@ -63,28 +28,7 @@ export default function index(props) {
 
 		createEventAPIMethod(event).then((res) => {
 			console.log(res);
-			//TODO: append new object id to user's events list
 		});
-
-		/*
-		const newUser = {
-			name: props.currUser.name,
-			email: props.currUser.email,
-			password: props.currUser.password,
-			type: props.currUser.type,
-			address1: props.currUser.address1,
-			approvedEvents: props.currUser.approvedEvents,
-			profileUrl: props.currUser.profileUrl,
-			gender: props.currUser.gender,
-			dateOfBirth: props.currUser.dateOfBirth,
-			phoneNumber: props.currUser.phoneNumber,
-			events: [...props.currUser.events, eventId],
-		}
-
-		updateUserAPIMethod(props.currUser, newUser).then((res) => {
-			console.log(res);
-		});
-		*/
 	};
 
 	return (

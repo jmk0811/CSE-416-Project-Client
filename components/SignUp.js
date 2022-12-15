@@ -33,9 +33,7 @@ function SignUp(props) {
 					profileUrl,
 				};
 				registerUserAPIMethod(user1).then((ret) => {
-					console.log(ret);
 					if (ret) {
-						// props.setShowSignup(false);
 						props.setLogin(true);
 					} else {
 						setError("Invalid information. Properly fill out the information");
@@ -69,16 +67,12 @@ function SignUp(props) {
 				formData.append("file", selectedFile);
 				formData.append("upload_preset", unsignedUploadPreset);
 
-				console.log("Cloudinary upload");
-				console.log(formData.file);
 				uploadImageToCloudinaryAPIMethod(formData).then((response) => {
-					console.log(response);
 					setProfileUrl(response.url);
 				});
 			}
 		} else if (prop === "x") {
 			event.preventDefault();
-			// props.setShowSignup(false);
 			setError("");
 		}
 	};

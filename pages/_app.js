@@ -10,17 +10,13 @@ export default function MyApp({ Component, pageProps }) {
 
 	useEffect(() => {
 		getCurrentUserAPIMethod().then((user) => {
-			console.log(`login user: ${user?.email}`);
-			console.log(`user type: ${user?.type}`);
-			console.log(user);
 			if (user != null && Object.keys(user).length !== 0) {
 				setLogin(true);
 				setCurrUser(user);
 			} else {
 				setLogin(false);
-				// console.log(login)
+
 				setCurrUser({});
-				// console.log(currUser)
 			}
 		});
 	}, [login]);
