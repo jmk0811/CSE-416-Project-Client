@@ -6,7 +6,7 @@ import { ThemeProvider } from "@mui/styles";
 // import AsyncImageUpload from "./AsyncImageUpload";
 import { convertToRaw } from "draft-js";
 import { useRouter } from "next/router";
-import {createEventAPIMethod, updateUserAPIMethod, uploadImageToCloudinaryAPIMethod, getCurrentUserAPIMethod} from "../../api/client";
+import { createEventAPIMethod, updateUserAPIMethod, uploadImageToCloudinaryAPIMethod, getCurrentUserAPIMethod } from "../../api/client";
 
 export default function workupload(props) {
 	const router = useRouter();
@@ -136,10 +136,7 @@ export default function workupload(props) {
 			formData.append("file", selectedFile);
 			formData.append("upload_preset", unsignedUploadPreset);
 
-			console.log("Cloudinary upload");
-			console.log(formData.file);
 			uploadImageToCloudinaryAPIMethod(formData).then((response) => {
-				console.log(response.url);
 				setfileURL(response.url);
 			});
 		}
@@ -177,8 +174,6 @@ export default function workupload(props) {
 		if (sports == "") interest.push("sports");
 		if (healthcare == "") interest.push("healthcare");
 
-		console.log(applyDay);
-
 		let temp = [];
 
 		applyDay.map((item) => {
@@ -207,8 +202,6 @@ export default function workupload(props) {
 		};
 
 		createEventAPIMethod(event).then((res) => {
-			console.log('res', res);
-
 			const newUser = {
 				name: props.currUser.name,
 				email: props.currUser.email,
@@ -258,16 +251,18 @@ export default function workupload(props) {
 	}, [recruitmentStartDate, recruitmentEndDate]);
 
 	React.useEffect(() => {
-		getCurrentUserAPIMethod().then((res) => {
-			if(res.type !== 'Organization' ){
-				alert('Unauthorized')
-				router.push('/')
-			}
-		}).catch((err) => {
-			alert('Unauthorized')
-			router.push('/')
-		})
-	}, [])
+		getCurrentUserAPIMethod()
+			.then((res) => {
+				if (res.type !== "Organization") {
+					alert("Unauthorized");
+					router.push("/");
+				}
+			})
+			.catch((err) => {
+				alert("Unauthorized");
+				router.push("/");
+			});
+	}, []);
 
 	return (
 		<Box display="flex" flexDirection="column">
@@ -377,7 +372,13 @@ export default function workupload(props) {
 									value={dateFormat2(new Date(arr.date), i)}
 									style={{ display: "flex", justifyContent: "center", alignSelf: "center", marginRight: "10px" }}
 								/>
-								<input className={"bg-gray-300"} id="time" type="time" value={arr.time} style={{ display: "flex", justifyContent: "center", alignSelf: "center", marginRight: "10px" }} />
+								<input
+									className={"bg-gray-300"}
+									id="time"
+									type="time"
+									value={arr.time}
+									style={{ display: "flex", justifyContent: "center", alignSelf: "center", marginRight: "10px" }}
+								/>
 								<div style={{ display: "flex", flexDirection: "row", justifyContent: "left", margin: "10px" }}>
 									<Typography style={{ marginRight: "10px" }}>Occupy:</Typography>
 									<input

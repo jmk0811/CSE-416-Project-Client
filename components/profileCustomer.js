@@ -36,10 +36,10 @@ function ProfileCustomer(props) {
 				formData.append("file", selectedFile);
 				formData.append("upload_preset", unsignedUploadPreset);
 
-				console.log("Cloudinary upload");
-				console.log(formData.file);
+				//console.log("Cloudinary upload");
+				//console.log(formData.file);
 				uploadImageToCloudinaryAPIMethod(formData).then((response) => {
-					console.log(response);
+					//console.log(response);
 					setUser({ ...user, profileUrl: response.url });
 				});
 			}

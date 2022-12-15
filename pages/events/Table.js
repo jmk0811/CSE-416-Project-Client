@@ -70,7 +70,7 @@ export default function Table(props) {
 		if (props.healthcare === "outlined") filterEvent = filterEvent.filter((e) => !e.interests.includes("healthcare"));
 		if (props.sports === "outlined") filterEvent = filterEvent.filter((e) => !e.interests.includes("sports"));
 
-		console.log(filterEvent);
+		//console.log(filterEvent);
 		setEvent(filterEvent);
 	}, [
 		props.recruitmentStartDate,

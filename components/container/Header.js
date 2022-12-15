@@ -44,9 +44,8 @@ export default function Header(props) {
 		];
 
 		volunteerWorks.map((event) => {
-			console.log(event);
 			createVolunteerWorkAPIMethod(event).then((res) => {
-				console.log(res);
+				//console.log(res);
 			});
 		});
 	};

@@ -92,7 +92,6 @@ export default function Index(props) {
 
 	useEffect(() => {
 		getEventsAPIMethod().then((res) => {
-			console.log("getEvent", res);
 			setEvents(res);
 		});
 	}, []);
@@ -216,7 +215,6 @@ export default function Index(props) {
 					</AccordionDetails>
 				</Accordion>
 				<div>
-
 					<Typography variant="h3" style={{ alignContent: "center", fontWeight: "bolder" }}>
 						Volunteer Works
 					</Typography>

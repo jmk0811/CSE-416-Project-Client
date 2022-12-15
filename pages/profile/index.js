@@ -93,11 +93,11 @@ export default function index(props) {
 								if (bool) {
 									tempList.push(user._id);
 									setApproved(tempList);
-									console.log(tempList);
+									//console.log(tempList);
 								}
 							});
 						});
-					})
+					});
 				});
 				localStorage.setItem("page", "eventDetails");
 			},
@@ -117,13 +117,13 @@ export default function index(props) {
 			if (props.currUser?.events !== undefined) {
 				Promise.all(
 					props.currUser?.events?.map(async (id) => {
-						console.log(id);
+						//console.log(id);
 						const res = await getEventByIdAPIMethod(id);
-						console.log(res);
+						//console.log(res);
 						tempEvents.push(res);
 					}),
 				).then(() => {
-					console.log(tempEvents);
+					//console.log(tempEvents);
 					setEvents(tempEvents);
 					return tempEvents;
 				});
@@ -133,13 +133,13 @@ export default function index(props) {
 			if (props.currUser?.events !== undefined) {
 				Promise.all(
 					props.currUser?.events?.map(async (id) => {
-						console.log(id);
+						//console.log(id);
 						const res = await getEventByIdAPIMethod(id);
-						console.log(res);
+						//console.log(res);
 						tempEvents.push(res);
 					}),
 				).then(() => {
-					console.log(tempEvents);
+					//console.log(tempEvents);
 					setEvents(tempEvents);
 					return tempEvents;
 				});
@@ -155,7 +155,7 @@ export default function index(props) {
 			tempList.map((cert) => {
 				sum += events.filter((e) => e._id === cert.event)[0]?.point;
 			});
-			console.log(sum);
+
 			setPoints(sum);
 		});
 	};
@@ -183,7 +183,6 @@ export default function index(props) {
 		};
 
 		updateUserAPIMethod(props.currUser, newUser).then((res) => {
-			console.log(res);
 			router.push("/profile").then(() => {
 				location.reload();
 			});
@@ -243,7 +242,6 @@ export default function index(props) {
 		});
 
 		createCertificateAPIMethod(certificate).then((res) => {
-			console.log(res);
 			alert("Successfully approved the user and granted a certificate");
 			router.push("/profile").then(() => {
 				location.reload();
@@ -251,7 +249,6 @@ export default function index(props) {
 		});
 	};
 
-	console.log(events);
 	return (
 		<div className="relative flex flex-row min-h-screen bg-bg1">
 			<div className="w-[256px] pr-[20px] py-[20px]">
@@ -363,9 +360,7 @@ export default function index(props) {
 													<div className="mr-[20px]">{user}</div>
 
 													{approved.includes(user) ? (
-														<button className="bg-gray-400 px-[10px] py-[2px] rounded-[10px] my-auto text-white text-[14px]">
-															Already approved
-														</button>
+														<button className="bg-gray-400 px-[10px] py-[2px] rounded-[10px] my-auto text-white text-[14px]">Already approved</button>
 													) : (
 														<button className="bg-green-500 px-[10px] py-[2px] rounded-[10px] my-auto text-white text-[14px]" onClick={() => approveUser(user)}>
 															Approve

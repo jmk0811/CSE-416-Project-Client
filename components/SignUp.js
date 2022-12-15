@@ -33,7 +33,7 @@ function SignUp(props) {
 					profileUrl,
 				};
 				registerUserAPIMethod(user1).then((ret) => {
-					console.log(ret);
+					//console.log(ret);
 					if (ret) {
 						// props.setShowSignup(false);
 						props.setLogin(true);
@@ -69,10 +69,10 @@ function SignUp(props) {
 				formData.append("file", selectedFile);
 				formData.append("upload_preset", unsignedUploadPreset);
 
-				console.log("Cloudinary upload");
-				console.log(formData.file);
+				//console.log("Cloudinary upload");
+				//console.log(formData.file);
 				uploadImageToCloudinaryAPIMethod(formData).then((response) => {
-					console.log(response);
+					//console.log(response);
 					setProfileUrl(response.url);
 				});
 			}
