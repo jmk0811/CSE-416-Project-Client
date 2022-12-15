@@ -77,6 +77,23 @@ export default function index(props) {
 			certificates() {
 				loadEvents();
 				loadCertificates();
+				if (props.currUser.type === "Organization") {
+					getEventByIdAPIMethod(value).then((currentEvent) => {
+						setCurrEvent(currentEvent);
+						currEvent?.timeSlots.map((slot, i) => {
+							slot.registeredUsers.map((userId, j) => {
+								getUserByIdAPIMethod(userId).then((user) => {
+									const bool = user.approvedEvents?.includes(currentEvent._id);
+									let tempList = [];
+									if (bool) {
+										tempList.push(user._id);
+										setApproved(tempList);
+									}
+								});
+							});
+						});
+					});
+				}
 				setPage("certificates");
 				localStorage.setItem("page", "certificates");
 			},
@@ -306,7 +323,7 @@ export default function index(props) {
 						<div>{currEvent?.description}</div>
 						<img className="" src={currEvent?.image} />
 						<div className="flex flex-col mt-[30px]">
-							<div>MyTime Slots</div>
+							<div className={"font-bold"}>My Time Slots</div>
 							{currEvent?.timeSlots
 								.filter((slot) => slot.registeredUsers.includes(props.currUser._id))
 								.map((item) => (
