@@ -75,33 +75,13 @@ git clone https://github.com/jmk0811/CSE-416-Project-Server.git
 
 ### STEP 2. Install all packages needed for both client and server (npm i)
 
-### STEP 3. Change file content at index.js from mui-rte (node_modules > mui-rte >index.js)
+### STEP 3. Run server-side (nodemon server.js or node server.js)
 
-before:
-``` 
- export {default} from './dist/MUIRichTextEditor'
-```
-after:
-```
-const MUIRichTextEditor = require('./dist/MUIRichTextEditor'); module.exports = MUIRichTextEditor;
-```
-
-Note: This step may not be necessary it's already changed.
-
-### STEP 4. Run server-side (nodemon server.js or node server.js)
-
-### STEP 5. Run client side (npm run dev) 
+### STEP 4. Run client side (npm run dev) 
 
 ## Operating Systems
 
 The platform should run on any modern browser. However, our recommended browser is Chrome.
-
-## Sample Accounts
-
-Volunteers: user@test.com
-Content Creators: org@test.com
-
-Password: Test!1234
 
 ## API Design Documentation
 
