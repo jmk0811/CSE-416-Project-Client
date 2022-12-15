@@ -54,12 +54,11 @@ export default function Index(props) {
 		setStartDate(e);
 	};
 
-	const [endDate, setEndDate] = useState(new Date("2031-01-01")); // dayjs(Date.now())
+	const [endDate, setEndDate] = useState(new Date("2031-01-01"));
 	const handleEndDateChange = (e) => {
 		setEndDate(e);
 	};
 
-	// Tags: outlined (선택안함)
 	const [animal, setAnimal] = useState("");
 	const handleAnimal = () => {
 		if (animal == "") setAnimal("outlined");
@@ -92,7 +91,6 @@ export default function Index(props) {
 
 	useEffect(() => {
 		getEventsAPIMethod().then((res) => {
-			console.log("getEvent", res);
 			setEvents(res);
 		});
 	}, []);
@@ -112,8 +110,6 @@ export default function Index(props) {
 									<InputLabel id="demo-simple-select-label"> Location </InputLabel>
 									<Select labelId="demo-simple-select-label" id="demo-simple-select" value={location} label="Location" onChange={handleChangeLocation}>
 										<MenuItem value={1}> Comming Soon </MenuItem>
-										{/* <MenuItem value={2}> Gyeonggi-do</MenuItem>
-                                                <MenuItem value={3}> Incheon </MenuItem> */}
 									</Select>
 								</FormControl>
 
@@ -216,7 +212,6 @@ export default function Index(props) {
 					</AccordionDetails>
 				</Accordion>
 				<div>
-
 					<Typography variant="h3" style={{ alignContent: "center", fontWeight: "bolder" }}>
 						Volunteer Works
 					</Typography>

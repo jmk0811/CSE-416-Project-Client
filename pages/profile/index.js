@@ -21,7 +21,7 @@ export default function index(props) {
 	const [certificates, setCertificates] = useState([]);
 	const [user, setUser] = useState(props.currUser);
 	const [points, setPoints] = useState(0);
-	// const [value, setValue] = useState([]);
+	var today = new Date();
 	const [editMode, setEditMode] = useState(false);
 	const [currEvent, setCurrEvent] = useState();
 	const [certificateUser, setCertificateUser] = useState([]);
@@ -77,6 +77,23 @@ export default function index(props) {
 			certificates() {
 				loadEvents();
 				loadCertificates();
+				if (props.currUser.type === "Organization") {
+					getEventByIdAPIMethod(value).then((currentEvent) => {
+						setCurrEvent(currentEvent);
+						currEvent?.timeSlots.map((slot, i) => {
+							slot.registeredUsers.map((userId, j) => {
+								getUserByIdAPIMethod(userId).then((user) => {
+									const bool = user.approvedEvents?.includes(currentEvent._id);
+									let tempList = [];
+									if (bool) {
+										tempList.push(user._id);
+										setApproved(tempList);
+									}
+								});
+							});
+						});
+					});
+				}
 				setPage("certificates");
 				localStorage.setItem("page", "certificates");
 			},
@@ -92,11 +109,10 @@ export default function index(props) {
 								if (bool) {
 									tempList.push(user._id);
 									setApproved(tempList);
-									console.log(tempList);
 								}
 							});
 						});
-					})
+					});
 				});
 				localStorage.setItem("page", "eventDetails");
 			},
@@ -105,40 +121,33 @@ export default function index(props) {
 		pages[page]();
 	};
 
-	useEffect(() => {
-		console.log(approved);
-	}, [approved]);
+	useEffect(() => {}, [approved]);
 
 	const loadEvents = async () => {
 		const tempEvents = [];
-		// TODO: refactor
+
 		if (props.currUser?.type === "User") {
 			if (props.currUser?.events !== undefined) {
 				Promise.all(
 					props.currUser?.events?.map(async (id) => {
-						console.log(id);
 						const res = await getEventByIdAPIMethod(id);
-						console.log(res);
+
 						tempEvents.push(res);
 					}),
 				).then(() => {
-					console.log(tempEvents);
 					setEvents(tempEvents);
 					return tempEvents;
 				});
 			}
 		} else {
-			// TODO: get participants list
 			if (props.currUser?.events !== undefined) {
 				Promise.all(
 					props.currUser?.events?.map(async (id) => {
-						console.log(id);
 						const res = await getEventByIdAPIMethod(id);
-						console.log(res);
+
 						tempEvents.push(res);
 					}),
 				).then(() => {
-					console.log(tempEvents);
 					setEvents(tempEvents);
 					return tempEvents;
 				});
@@ -154,7 +163,7 @@ export default function index(props) {
 			tempList.map((cert) => {
 				sum += events.filter((e) => e._id === cert.event)[0]?.point;
 			});
-			console.log(sum);
+
 			setPoints(sum);
 		});
 	};
@@ -182,7 +191,6 @@ export default function index(props) {
 		};
 
 		updateUserAPIMethod(props.currUser, newUser).then((res) => {
-			console.log(res);
 			router.push("/profile").then(() => {
 				location.reload();
 			});
@@ -242,7 +250,6 @@ export default function index(props) {
 		});
 
 		createCertificateAPIMethod(certificate).then((res) => {
-			console.log(res);
 			alert("Successfully approved the user and granted a certificate");
 			router.push("/profile").then(() => {
 				location.reload();
@@ -316,7 +323,7 @@ export default function index(props) {
 						<div>{currEvent?.description}</div>
 						<img className="" src={currEvent?.image} />
 						<div className="flex flex-col mt-[30px]">
-							<div>MyTime Slots</div>
+							<div className={"font-bold"}>My Time Slots</div>
 							{currEvent?.timeSlots
 								.filter((slot) => slot.registeredUsers.includes(props.currUser._id))
 								.map((item) => (
@@ -327,10 +334,6 @@ export default function index(props) {
 												{new Date(item.startTime).toLocaleDateString()} {new Date(item.startTime).toTimeString().slice(0, 9)}
 											</div>
 										</div>
-										{/* <div className={"flex flex-row"}> */}
-										{/*	<div>Ending date: </div> */}
-										{/*	<div>{item.endTime}</div> */}
-										{/* </div> */}
 									</div>
 								))}
 						</div>
@@ -357,13 +360,11 @@ export default function index(props) {
 												{new Date(slot.startTime).toLocaleDateString()} {new Date(slot.startTime).toTimeString().slice(0, 9)}:
 											</div>
 											{slot.registeredUsers.map((user) => (
-												<div className="flex flex-row">
+												<div className="flex flex-row mb-[10px]">
 													<div className="mr-[20px]">{user}</div>
 
 													{approved.includes(user) ? (
-														<button className="bg-gray-400 px-[10px] py-[2px] rounded-[10px] my-auto text-white text-[14px]">
-															Already approved
-														</button>
+														<button className="bg-gray-400 px-[10px] py-[2px] rounded-[10px] my-auto text-white text-[14px]">Already approved</button>
 													) : (
 														<button className="bg-green-500 px-[10px] py-[2px] rounded-[10px] my-auto text-white text-[14px]" onClick={() => approveUser(user)}>
 															Approve
@@ -378,7 +379,7 @@ export default function index(props) {
 						</div>
 					</div>
 				)}
-				{/* {page === "points" && <div className="flex flex-col" />} */}
+
 				{page === "certificates" && (
 					<div className="flex flex-col">
 						<div className="flex flex-col">

@@ -60,9 +60,7 @@ export default function SignUp(props) {
 				};
 
 				registerUserAPIMethod(user1).then((ret) => {
-					console.log(ret);
 					if (ret) {
-						// props.setShowSignup(false);
 						props.setLogin(true);
 						router.push({
 							pathname: "/",
@@ -89,14 +87,6 @@ export default function SignUp(props) {
 			setEmail(event.target.value);
 		} else if (prop === "pw") {
 			setPw(event.target.value);
-			/*		} else if (prop === "addr1") {
-			setAddr1(event.target.value);
-		} else if (prop === "addr2") {
-			setAddr2(event.target.value);
-		} */
-			// } else if (prop === "userId") {
-			// 	setUserId(event.target.value);
-			// }
 		} else if (prop === "gender") {
 			setGender(event.target.value);
 		} else if (prop === "DOB") {
@@ -114,16 +104,13 @@ export default function SignUp(props) {
 				formData.append("file", selectedFile);
 				formData.append("upload_preset", unsignedUploadPreset);
 
-				console.log("Cloudinary upload");
-				console.log(formData.file);
 				uploadImageToCloudinaryAPIMethod(formData).then((response) => {
-					console.log(response);
 					setProfileUrl(response.url);
 				});
 			}
 		} else if (prop == "x") {
 			event.preventDefault();
-			// props.setShowSignup(false);
+
 			setError("");
 		}
 	};
@@ -281,13 +268,7 @@ export default function SignUp(props) {
 											Phone number*
 										</label>
 
-										<PhoneInput
-											country="us"
-											// value={this.state.phone}
-											style={{ width: "300px" }}
-											name="phoneNumber"
-											onChange={handleChange("phoneNumber")}
-										/>
+										<PhoneInput country="us" style={{ width: "300px" }} name="phoneNumber" onChange={handleChange("phoneNumber")} />
 									</div>
 
 									<div name="SignUpcustomerInfoForm" className="flex form-group items-center jusitfy-self-center h-100% col-md-6 border m-[3px]">

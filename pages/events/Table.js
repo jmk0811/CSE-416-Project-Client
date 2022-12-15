@@ -16,7 +16,6 @@ function CustomToolbar() {
 export default function Table(props) {
 	const router = useRouter();
 	const handleEvent = (e) => {
-		// router.push(`/work/${e.id}`); subfolder 하는 방법 알아보기
 		router.push({
 			pathname: "/events/details/",
 			query: { query: e.id },
@@ -70,7 +69,6 @@ export default function Table(props) {
 		if (props.healthcare === "outlined") filterEvent = filterEvent.filter((e) => !e.interests.includes("healthcare"));
 		if (props.sports === "outlined") filterEvent = filterEvent.filter((e) => !e.interests.includes("sports"));
 
-		console.log(filterEvent);
 		setEvent(filterEvent);
 	}, [
 		props.recruitmentStartDate,

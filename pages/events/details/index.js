@@ -11,15 +11,16 @@ export default function Index(props) {
 	const router = useRouter();
 
 	useEffect(() => {
-		getEventByIdAPIMethod(props.query.query).then((res) => {
-			console.log(res);
-			setEventId(props.query.query);
-			setDate(res);
-			setTimeSlots(res.timeSlots);
-		}).catch((err) => {
-			alert('Please Login First')
-			router.push('/')
-		});
+		getEventByIdAPIMethod(props.query.query)
+			.then((res) => {
+				setEventId(props.query.query);
+				setDate(res);
+				setTimeSlots(res.timeSlots);
+			})
+			.catch((err) => {
+				alert("Please Login First");
+				router.push("/");
+			});
 	}, []);
 
 	const [isChecked, setIsChecked] = React.useState(() => timeSlots.map((i) => false));
@@ -57,9 +58,6 @@ export default function Index(props) {
 		if (isChecked.indexOf(true) === -1) {
 			return alert("Please select the time slot");
 		}
-		// TODO
-		// 완료 페이지로 이동
-		// 서버에서 추가로 확인해야할 것 이 있어서 추후에 설명 드리겠습니다 use Queue
 
 		const newUser = {
 			name: props.currUser.name,
@@ -142,9 +140,15 @@ export default function Index(props) {
 				<Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" maxWidth="md" width="md" p={{ xs: 1, sm: 2, md: 0 }}>
 					<div className="flex flex-col">
 						<div className="mx-auto text-28 font-bold my-[50px]">{data?.title}</div>
-						<div className="mx-auto text-20">Recruitment Period: {new Date(data?.recruitmentStartDate).toLocaleDateString()} ~ {new Date(data?.recruitmentEndDate).toLocaleDateString()}</div>
-						<div className="mx-auto text-20">Volunteering Period: {new Date(data?.recruitmentStartDate).toLocaleDateString()} ~ {new Date(data?.recruitmentEndDate).toLocaleDateString()}</div>
-						<div className="mx-auto text-20" style={{marginTop: '20px'}}>Address: {data?.address} </div>
+						<div className="mx-auto text-20">
+							Recruitment Period: {new Date(data?.recruitmentStartDate).toLocaleDateString()} ~ {new Date(data?.recruitmentEndDate).toLocaleDateString()}
+						</div>
+						<div className="mx-auto text-20">
+							Volunteering Period: {new Date(data?.recruitmentStartDate).toLocaleDateString()} ~ {new Date(data?.recruitmentEndDate).toLocaleDateString()}
+						</div>
+						<div className="mx-auto text-20" style={{ marginTop: "20px" }}>
+							Address: {data?.address}{" "}
+						</div>
 						<div className="mx-auto text-20">Points: {data?.point} </div>
 						<div className="mx-auto text-20 my-[20px] mb-[100px]">{data?.description}</div>
 						<div className="">{data?.image && <img className="w-full h-full object-cover" src={data?.image} />}</div>
@@ -168,17 +172,7 @@ export default function Index(props) {
 							</Grid>
 						</Box>
 					</Box>
-					<Box
-						display="flex"
-						flexWrap="wrap"
-						flexDirection="column"
-						justifyContent="center"
-						alignItems="center"
-						width="80vw"
-						maxWidth="md"
-						// height="50vh"
-						// maxHeight="75vh"
-					>
+					<Box display="flex" flexWrap="wrap" flexDirection="column" justifyContent="center" alignItems="center" width="80vw" maxWidth="md">
 						<Typography style={{ fontSize: "30px" }}> Application Information </Typography>
 						<Typography>If your information does the match the following, please change the information on your profile page before applying</Typography>
 
@@ -210,12 +204,11 @@ export default function Index(props) {
 								<TextField
 									id="outlined-basic"
 									variant="outlined"
-									style={{ marginBottom: "10px", marginTop: "10px"}}
+									style={{ marginBottom: "10px", marginTop: "10px" }}
 									value={contactNumber}
 									onChange={handleNumberChange}
 								/>
 							</div>
-							
 						</div>
 
 						<div style={{ display: "flex", flexDirection: "column" }}>
@@ -254,7 +247,6 @@ export default function Index(props) {
 	);
 
 	function formatDate(input) {
-		console.log(input);
 		const date = new Date(input.startTime);
 		const occupy = input.registerLimit;
 		const registered = input.registeredUsers.length;
@@ -269,7 +261,7 @@ export default function Index(props) {
 						{" "}
 						{date.getHours()}:0{date.getMinutes()}{" "}
 					</div>
-						{occupy-registered == 1 ? <div> {occupy - registered} slot available </div> : <div> {occupy - registered} slots available </div> }
+					{occupy - registered == 1 ? <div> {occupy - registered} slot available </div> : <div> {occupy - registered} slots available </div>}
 				</div>
 			);
 		return (
@@ -282,7 +274,7 @@ export default function Index(props) {
 					{" "}
 					{date.getHours()}:{date.getMinutes()}{" "}
 				</div>
-					{occupy-registered == 1 ? <div> {occupy - registered} slot available </div> : <div> {occupy - registered} slots available </div> }
+				{occupy - registered == 1 ? <div> {occupy - registered} slot available </div> : <div> {occupy - registered} slots available </div>}
 			</div>
 		);
 	}
