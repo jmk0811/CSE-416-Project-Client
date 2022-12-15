@@ -67,7 +67,7 @@ export default function Index(props) {
 			password: props.currUser.password,
 			type: props.currUser.type,
 			address1: props.currUser.address1,
-			address2: props.currUser.address2,
+			approvedEvents: props.currUser.approvedEvents,
 			profileUrl: props.currUser.profileUrl,
 			gender: props.currUser.gender,
 			dateOfBirth: props.currUser.dateOfBirth,

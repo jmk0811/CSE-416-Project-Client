@@ -215,7 +215,7 @@ export default function workupload(props) {
 				password: props.currUser.password,
 				type: props.currUser.type,
 				address1: props.currUser.address1,
-				address2: props.currUser.address2,
+				approvedEvents: props.currUser.approvedEvents,
 				profileUrl: props.currUser.profileUrl,
 				gender: props.currUser.gender,
 				dateOfBirth: props.currUser.dateOfBirth,
@@ -332,7 +332,7 @@ export default function workupload(props) {
 					<div style={{ border: "1px solid black" }}>
 						<ThemeProvider theme={myTheme}>
 							{/* <AsyncImageUpload detail = {detail} handleDetail = {handleDetail}/> */}
-							<MUIRichTextEditor label="Start Here..." controls={["title", "bold", "underline"]} value={detail.text} onChange={handleDetail} />
+							<MUIRichTextEditor label="Start Here..." controls={["bold", "underline", "italic"]} value={detail.text} onChange={handleDetail} />
 						</ThemeProvider>
 					</div>
 					<div style={{ display: "flex", flexDirection: "row", justifyContent: "left", maxWidth: "90vw", marginBottom: "20px" }}>
