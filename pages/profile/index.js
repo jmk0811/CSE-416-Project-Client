@@ -21,6 +21,7 @@ export default function index(props) {
 	const [certificates, setCertificates] = useState([]);
 	const [user, setUser] = useState(props.currUser);
 	const [points, setPoints] = useState(0);
+	var today = new Date();
 	// const [value, setValue] = useState([]);
 	const [editMode, setEditMode] = useState(false);
 	const [currEvent, setCurrEvent] = useState();
@@ -213,6 +214,7 @@ export default function index(props) {
 		});
 	};
 
+	console.log(events);
 	return (
 		<div className="relative flex flex-row min-h-screen bg-bg1">
 			<div className="w-[256px] pr-[20px] py-[20px]">
